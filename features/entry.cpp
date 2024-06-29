@@ -97,7 +97,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			CGameSceneNode.value = C_C4.getCGameSceneNode();
 			CGameSceneNode.getOrigin();
 
-			esp::drawC4(CGameSceneNode.origin, viewMatrix, localPlayer, C_C4.isPlanted());
+			esp::drawC4(CGameSceneNode.origin, viewMatrix, localPlayer, C_C4);
 		}
 
 		// Aim

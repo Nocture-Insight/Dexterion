@@ -160,6 +160,12 @@ public:
 	bool planted;
 	bool isPlanted();
 
+	bool m_bCarrier;
+	bool isCarrier(int index);
+
+	uintptr_t m_pCarrier;
+	uintptr_t getCarrier();
+
 	uintptr_t scene;
 	uintptr_t getCGameSceneNode();
 };

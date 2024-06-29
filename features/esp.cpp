@@ -80,8 +80,8 @@ void esp::makeDistance() {
 	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(sideESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset - 12}, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), distanceText.c_str());
 }
 
-void esp::drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlayer, bool planted) {
-	if (!planted) return;
+void esp::drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlayer, C_C4 C_C4) {
+	if (!C_C4.isPlanted()) return;
 
 	Vector3 c4PosToScreen = origin.worldToScreen(viewMatrix);
 
@@ -95,7 +95,7 @@ void esp::drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlay
 	float boxX = c4PosToScreen.x - width / 2;
 	float boxY = c4PosToScreen.y - height / 2;
 
-	Render::DrawGradientLine({ boxX, boxY }, { width + boxX, height + boxY }, ImColor(espConf.c4Colors[0], espConf.c4Colors[1], espConf.c4Colors[2], 1.f), (espConf.c4Gradient ? ImColor(espConf.c4ColorsGradient[0], espConf.c4ColorsGradient[1], espConf.c4ColorsGradient[2], 1.f) : ImColor(espConf.c4Colors[0], espConf.c4Colors[1], espConf.c4Colors[2], 1.f)), espConf.c4Thickness);
+	Render::DrawGradientLine({ boxX, boxY }, { width + boxX, height + boxY }, ImColor(espConf.c4Colors[0], espConf.c4Colors[1], espConf.c4Colors[2], 1.f), (espConf.c4Gradient ? ImColor(espConf.c4ColorsGradient[0], espConf.c4ColorsGradient[1], espConf.c4ColorsGradient[2], 1.f) : ImColor(espConf.c4Colors[0], espConf.c4Colors[1], espConf.c4Colors[2], 1.f)), espConf.c4Thickness)
 }
 
 

@@ -240,6 +240,14 @@ bool C_C4::isPlanted() {
 	return planted;
 }
 
+bool C_C4::isCarrier(int index) {
+	return m_bCarrier = false;
+}
+
+uintptr_t C_C4::getCarrier() {
+	return m_pCarrier = 0x0;
+}
+
 uintptr_t C_C4::getCGameSceneNode() {
 	scene = MemMan.ReadMem<uintptr_t>(c4 + clientDLL::C_BaseEntity_["m_pGameSceneNode"]);
 	return scene;

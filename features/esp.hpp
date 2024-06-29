@@ -38,5 +38,5 @@ namespace esp {
 
 	void boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name, int health, uintptr_t boneArray,bool isSpotted = false);
 
-	void drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlayer, bool planted);
+	void drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlayer, C_C4 C_C4);
 }

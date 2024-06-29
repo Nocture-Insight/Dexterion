@@ -77,6 +77,7 @@ inline nlohmann::json espConfig::to_json() {
 	json["hpCounter"] = hpCounter;
 	json["isPawnGun"] = isPawnGun;
 	json["filledBox"] = filledBox;
+	json["c4Carrier"] = c4Carrier;
 	json["c4Gradient"] = c4Gradient;
 	json["isPawnName"] = isPawnName;
 	json["headColours"] = headColours;
@@ -120,6 +121,7 @@ inline bool espConfig::from_json(nlohmann::json json) {
 	cornerGradient[1] = json["cornerGradient"][1];
 	cornerGradient[2] = json["cornerGradient"][2];
 	filledBox = json["filledBox"];
+	c4Carrier = json["c4Carrier"];
 	isPawnName = json["isPawnName"];
 	headColours[0] = json["headColours"][0];
 	headColours[1] = json["headColours"][1];

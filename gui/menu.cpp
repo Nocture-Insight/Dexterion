@@ -112,6 +112,8 @@ void imGuiMenu::espRender() {
 		if (espConf.c4State) {
 			ImGui::Checkbox("Gradient", &espConf.c4Gradient);
 			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Carrier", &espConf.c4Carrier);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		}
 		ImGui::EndChild();
 

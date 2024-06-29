@@ -51,6 +51,8 @@ struct espConfig {
 	bool c4State;
 	bool c4Gradient;
 
+	bool c4Carrier;
+
 	float c4Thickness = 1.f;
 
 	float c4Colors[3] = { 1.f, 0.f, 0.f };
