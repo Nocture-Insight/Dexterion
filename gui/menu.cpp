@@ -334,6 +334,8 @@ void imGuiMenu::miscRender() {
 		ImGui::Checkbox("DeathMatch Mode", &miscConf.deathmatchMode);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Dropped Item ESP", &miscConf.itemESP);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Spectator List", &miscConf.spectator);
 		ImGui::EndChild();
 	}
 }

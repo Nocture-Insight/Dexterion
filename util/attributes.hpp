@@ -49,13 +49,14 @@ namespace offsets {
 
 nlohmann::json buttons = json::readFromJsonFile(json::buttonsFile)["client.dll"];
 
-
 class CCSPlayerController{
 public:
 	uintptr_t entityList;
+	uintptr_t baseAddy;
 	int id;
 
 	CCSPlayerController(uintptr_t base) {
+		baseAddy = base;
 		entityList = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwEntityList"]);
 	}
 
@@ -67,6 +68,12 @@ public:
 
 	int pawnHealth;
 	int getPawnHealth();
+
+	bool alive;
+	bool isAlive();
+
+	bool spectating;
+	bool isSpectating(bool localPlayer);
 
 	uintptr_t pawnTeam;
 	uintptr_t getPawnTeam();

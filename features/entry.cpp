@@ -40,15 +40,17 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	// Tigger
 	if (aimConf.trigger) aim::triggerBot(localPlayer, client.base);
 
+	std::vector<std::string> spectators{};
 
 	// Main loop
 	for (int i = 0; i < 64; i++) {
-
 		// Player controller
 		CCSPlayerController.id = i;
 		CCSPlayerController.getListEntry();
+		//std::cout << CCSPlayerController.listEntry << " - ";
 		if (!CCSPlayerController.listEntry) continue;
 		CCSPlayerController.getController();
+		//std::cout << CCSPlayerController.value << std::endl;
 		if (CCSPlayerController.value == 0) continue;
 		CCSPlayerController.getPawnName();
 
@@ -58,20 +60,21 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		C_CSPlayerPawn.getPlayerPawn();
 		C_CSPlayerPawn.getPawnHealth();
 
+		// Spectator List
+		if (miscConf.spectator && CCSPlayerController.isSpectating(true))
+			spectators.push_back(CCSPlayerController.pawnName);
+
 		// Checks
 		if (aim::lockedPlayer == C_CSPlayerPawn.playerPawn && (C_CSPlayerPawn.pawnHealth <= 0 || (aimConf.checkSpotted && !C_CSPlayerPawn.getEntitySpotted()))) aim::lockedPlayer = 0;
 		if ((C_CSPlayerPawn.pawnHealth <= 0 || C_CSPlayerPawn.pawnHealth > 100) || strcmp(CCSPlayerController.pawnName.c_str(), "DemoRecorder") == 0) continue;
 		if (localPlayer.getTeam() == CCSPlayerController.getPawnTeam() && !miscConf.deathmatchMode) continue;
-
 
 		// Game scene node
 		CGameSceneNode.value = C_CSPlayerPawn.getCGameSceneNode();
 
 		// ESP
 		if (espConf.state) {
-
 			if (C_CSPlayerPawn.getPlayerPawn() == localPlayer.getPlayerPawn()) continue;
-
 			esp::sharedData::weaponID = C_CSPlayerPawn.getWeaponID();
 			esp::sharedData::weaponName = C_CSPlayerPawn.getWeaponName();
 			esp::sharedData::localOrigin = localPlayer.getOrigin();
@@ -133,6 +136,13 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 				aim::aimBot(localPlayer, baseViewAngles, C_CSPlayerPawn.playerPawn, CGameSceneNode.boneArray, client);
 			}
 		}
+	}
+	float y = 0u;
+
+	for (int i = 0; i < spectators.size(); i++) {
+		std::string name = spectators[i];
+		Render::DrawText({ 10.f, 320.f + y }, ImColor(1.f, 1.f, 1.f, 1.f), name.c_str());
+		y += 10u;
 	}
 
 	// Dropped Item

@@ -16,4 +16,8 @@ inline namespace Render {
 		ImGui::GetBackgroundDrawList()->AddRectFilledMultiColor(ImVec2(end.x - thickness, start.y), ImVec2(end.x, end.y), start_color, start_color, end_color, end_color);
 		ImGui::GetBackgroundDrawList()->AddRectFilledMultiColor(ImVec2(end.x, end.y + thickness), ImVec2(start.x, end.y), end_color, end_color, end_color, end_color);
 	}
+
+	inline void DrawText(ImVec2 pos, ImColor color, const char* text) {
+		ImGui::GetBackgroundDrawList()->AddText(pos, (ImU32)color, text);
+	}
 }

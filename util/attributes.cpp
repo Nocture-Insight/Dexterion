@@ -17,6 +17,48 @@ int CCSPlayerController::getPawnHealth() {
 	return pawnHealth;
 }
 
+bool CCSPlayerController::isAlive()
+{
+	alive = MemMan.ReadMem<int>(value + clientDLL::CCSPlayerController_["m_iPawnHealth"]) > 0 && MemMan.ReadMem<int>(value + clientDLL::CCSPlayerController_["m_iPawnHealth"]) < 2000;
+	return alive;
+}
+
+uintptr_t getAddressBase(uintptr_t entityList, uintptr_t playerPawn) {
+	uintptr_t listEntrySecond = MemMan.ReadMem<uintptr_t>(entityList + 0x8 * ((playerPawn & 0x7FFF) >> 9) + 16);
+	return listEntrySecond == 0
+		? 0
+		: MemMan.ReadMem<uintptr_t>(listEntrySecond + 120 * (playerPawn & 0x1FF));
+}
+
+bool CCSPlayerController::isSpectating(bool localPlayer)
+{
+	uint32_t spectatorPawn = MemMan.ReadMem<uint32_t>(value + clientDLL::clientDLLOffsets["CBasePlayerController"]["fields"]["m_hPawn"]);
+	uintptr_t pawn = getAddressBase(entityList, spectatorPawn);
+
+	uintptr_t obs = MemMan.ReadMem<uintptr_t>(pawn + clientDLL::clientDLLOffsets["C_BasePlayerPawn"]["fields"]["m_pObserverServices"]);
+	uint64_t oTarget = MemMan.ReadMem<uint64_t>(obs + clientDLL::clientDLLOffsets["CPlayer_ObserverServices"]["fields"]["m_hObserverTarget"]);
+	uintptr_t handle = getAddressBase(entityList, oTarget);
+
+	if (localPlayer) {
+		uintptr_t LocalPlayer = MemMan.ReadMem<uintptr_t>(baseAddy + offsets::clientDLL["dwLocalPlayerController"]);
+		uintptr_t localPlayerPawn = MemMan.ReadMem<uintptr_t>(LocalPlayer + clientDLL::clientDLLOffsets["CBasePlayerController"]["fields"]["m_hPawn"]);
+		uintptr_t list_entry2 = MemMan.ReadMem<uintptr_t>(entityList + 0x8 * ((localPlayerPawn & 0x7FFF) >> 9) + 16);
+		if (!list_entry2)
+			return false;
+
+		const uintptr_t CSlocalPlayerPawn = MemMan.ReadMem<uintptr_t>(list_entry2 + 120 * (localPlayerPawn & 0x1FF));
+
+		if (obs && handle == CSlocalPlayerPawn)
+			return true;
+		return false;
+	}
+	else {
+		if (obs)
+			return true;
+		return false;
+	}
+}
+
 std::uint32_t CCSPlayerController::getC_CSPlayerPawn() {
 	C_CSPlayerPawn_ = MemMan.ReadMem<std::uint32_t>(value + clientDLL::CCSPlayerController_["m_hPlayerPawn"]);
 	return C_CSPlayerPawn_;
