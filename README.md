@@ -67,3 +67,10 @@ I'll be working on try to make everything read-only (Anti-Flash aside because it
 - [a2x/cs2-dumper](https://github.com/a2x/cs2-dumper)
 - [nlohmann/json](https://github.com/nlohmann/json)
 - [ocornut/imgui](https://github.com/ocornut/imgui)
+
+## TODO
+- Add an option to move Spectator List position.
+- Add Bomb Timer (With colour, position and size customization)
+- Add C4 Carrier ESP (Colour customizable)
+- Fix ESP suddenly stop issue.
+- Any request in the issues tab.
