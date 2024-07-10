@@ -43,7 +43,8 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 			rcs.x = (aimPunch.x - oldAngles.x) * 2.f / (0.022f * aimConf.sens);
 			rcs.y = (aimPunch.y - oldAngles.y) * 2.f / (0.022f * aimConf.sens);
 
-			oldAngles = aimPunch;
+			oldAngles.x = aimPunch.y;
+			oldAngles.y = aimPunch.x;
 		}
 		newAngle = newAngle - rcs;
 	};
