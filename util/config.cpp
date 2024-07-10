@@ -30,30 +30,35 @@ inline nlohmann::json aimConfig::to_json() {
 }
 
 inline bool aimConfig::from_json(nlohmann::json json) {
-	rcs = json["rcs"];
-	fov = json["fov"];
-	bone = json["bone"];
-	sens = json["sens"];
-	state = json["state"];
-	bones = json["bones"];
-	hotAim = json["hotAim"];
-	hotKey = json["hotKey"];
-	trigger = json["trigger"];
-	boneMap = json["boneMap"];
-	aimMode = json["aimMode"];
-	isHotAim = json["isHotAim"];
-	aimModes = json["aimModes"];
-	smoothing = json["smoothing"];
-	hotKeyMap = json["hotKeyMap"];
-	fovCircle = json["fovCircle"];
-	boneSelect = json["boneSelect"];
-	hotTrigger = json["hotTrigger"];
-	playerLock = json["playerLock"];
-	aimModeMap = json["aimModeMap"];
-	checkSpotted = json["checkSpotter"];
-	hotSelectAim = json["hotSelectAim"];
-	isHotTrigger = json["isHotTrigger"];
-	hotSelectTrigger = json["hotSelectTrigger"];
+	try {
+		rcs = json["rcs"];
+		fov = json["fov"];
+		bone = json["bone"];
+		sens = json["sens"];
+		state = json["state"];
+		bones = json["bones"];
+		hotAim = json["hotAim"];
+		hotKey = json["hotKey"];
+		trigger = json["trigger"];
+		boneMap = json["boneMap"];
+		aimMode = json["aimMode"];
+		isHotAim = json["isHotAim"];
+		aimModes = json["aimModes"];
+		smoothing = json["smoothing"];
+		hotKeyMap = json["hotKeyMap"];
+		fovCircle = json["fovCircle"];
+		boneSelect = json["boneSelect"];
+		hotTrigger = json["hotTrigger"];
+		playerLock = json["playerLock"];
+		aimModeMap = json["aimModeMap"];
+		checkSpotted = json["checkSpotter"];
+		hotSelectAim = json["hotSelectAim"];
+		isHotTrigger = json["isHotTrigger"];
+		hotSelectTrigger = json["hotSelectTrigger"];
+	}
+	catch (nlohmann::json::type_error& ignored) {
+		std::cout << "[Config.cpp] aimConfig section has missing properties, using defaults for missing options." << std::endl;
+	}
 
 	return true;
 }
@@ -99,62 +104,67 @@ inline nlohmann::json espConfig::to_json() {
 }
 
 inline bool espConfig::from_json(nlohmann::json json) {
-	head = json["head"];
-	joint = json["joint"];
-	state = json["state"];
-	width = json["width"];
-	health[0] = json["health"][0];
-	health[1] = json["health"][1];
-	health[2] = json["health"][2];
-	pawnGun = json["pawnGun"];
-	c4State = json["c4State"];
-	distance = json["distance"];
-	skeleton = json["skeleton"];
-	pawnName = json["pawnName"];
-	boundBox = json["boundBox"];
-	gradient = json["gradient"];
-	snapLines = json["snapLines"];
-	hpCounter = json["hpCounter"];
-	isPawnGun = json["isPawnGun"];
-	c4Gradient = json["c4Gradient"];
-	cornerGradient[0] = json["cornerGradient"][0];
-	cornerGradient[1] = json["cornerGradient"][1];
-	cornerGradient[2] = json["cornerGradient"][2];
-	filledBox = json["filledBox"];
-	c4Carrier = json["c4Carrier"];
-	isPawnName = json["isPawnName"];
-	headColours[0] = json["headColours"][0];
-	headColours[1] = json["headColours"][1];
-	headColours[2] = json["headColours"][2];
-	isHealthBar = json["isHealthBar"];
-	jointColours[0] = json["jointColours"][0];
-	jointColours[1] = json["jointColours"][1];
-	jointColours[2] = json["jointColours"][2];
-	c4Colors[0] = json["c4Colors"][0];
-	c4Colors[1] = json["c4Colors"][1];
-	c4Colors[2] = json["c4Colors"][2];
-	c4Thickness = json["c4Thickness"];
-	checkSpotted = json["checkSpotted"];
-	cornerColours[0] = json["cornerColours"][0];
-	cornerColours[1] = json["cornerColours"][1];
-	cornerColours[2] = json["cornerColours"][2];
-	filledBoxAlpha = json["filledBoxAlpha"];
-	spottedColours[0] = json["spottedColours"][0];
-	spottedColours[1] = json["spottedColours"][1];
-	spottedColours[2] = json["spottedColours"][2];
-	skeletonColours[0] = json["skeletonColours"][0];
-	skeletonColours[1] = json["skeletonColours"][1];
-	skeletonColours[2] = json["skeletonColours"][2];
-	attributeColours[0] = json["attributeColours"][0];
-	attributeColours[1] = json["attributeColours"][1];
-	attributeColours[2] = json["attributeColours"][2];
-	boundBoxThickness = json["boundBoxThickness"];
-	notSpottedColours[0] = json["notSpottedColours"][0];
-	notSpottedColours[1] = json["notSpottedColours"][1];
-	notSpottedColours[2] = json["notSpottedColours"][2];
-	c4ColorsGradient[0] = json["c4ColorsGradient"][0];
-	c4ColorsGradient[1] = json["c4ColorsGradient"][1];
-	c4ColorsGradient[2] = json["c4ColorsGradient"][2];
+	try {
+		head = json["head"];
+		joint = json["joint"];
+		state = json["state"];
+		width = json["width"];
+		health[0] = json["health"][0];
+		health[1] = json["health"][1];
+		health[2] = json["health"][2];
+		pawnGun = json["pawnGun"];
+		c4State = json["c4State"];
+		distance = json["distance"];
+		skeleton = json["skeleton"];
+		pawnName = json["pawnName"];
+		boundBox = json["boundBox"];
+		gradient = json["gradient"];
+		snapLines = json["snapLines"];
+		hpCounter = json["hpCounter"];
+		isPawnGun = json["isPawnGun"];
+		c4Gradient = json["c4Gradient"];
+		cornerGradient[0] = json["cornerGradient"][0];
+		cornerGradient[1] = json["cornerGradient"][1];
+		cornerGradient[2] = json["cornerGradient"][2];
+		filledBox = json["filledBox"];
+		c4Carrier = json["c4Carrier"];
+		isPawnName = json["isPawnName"];
+		headColours[0] = json["headColours"][0];
+		headColours[1] = json["headColours"][1];
+		headColours[2] = json["headColours"][2];
+		isHealthBar = json["isHealthBar"];
+		jointColours[0] = json["jointColours"][0];
+		jointColours[1] = json["jointColours"][1];
+		jointColours[2] = json["jointColours"][2];
+		c4Colors[0] = json["c4Colors"][0];
+		c4Colors[1] = json["c4Colors"][1];
+		c4Colors[2] = json["c4Colors"][2];
+		c4Thickness = json["c4Thickness"];
+		checkSpotted = json["checkSpotted"];
+		cornerColours[0] = json["cornerColours"][0];
+		cornerColours[1] = json["cornerColours"][1];
+		cornerColours[2] = json["cornerColours"][2];
+		filledBoxAlpha = json["filledBoxAlpha"];
+		spottedColours[0] = json["spottedColours"][0];
+		spottedColours[1] = json["spottedColours"][1];
+		spottedColours[2] = json["spottedColours"][2];
+		skeletonColours[0] = json["skeletonColours"][0];
+		skeletonColours[1] = json["skeletonColours"][1];
+		skeletonColours[2] = json["skeletonColours"][2];
+		attributeColours[0] = json["attributeColours"][0];
+		attributeColours[1] = json["attributeColours"][1];
+		attributeColours[2] = json["attributeColours"][2];
+		boundBoxThickness = json["boundBoxThickness"];
+		notSpottedColours[0] = json["notSpottedColours"][0];
+		notSpottedColours[1] = json["notSpottedColours"][1];
+		notSpottedColours[2] = json["notSpottedColours"][2];
+		c4ColorsGradient[0] = json["c4ColorsGradient"][0];
+		c4ColorsGradient[1] = json["c4ColorsGradient"][1];
+		c4ColorsGradient[2] = json["c4ColorsGradient"][2];
+	}
+	catch (nlohmann::json::type_error& ignored) {
+		std::cout << "[Config.cpp] espConfig section has missing properties, using defaults for missing options." << std::endl;
+	}
 
 	return true;
 }
@@ -174,16 +184,21 @@ inline nlohmann::json miscConfig::to_json() {
 }
 
 inline bool miscConfig::from_json(nlohmann::json json) {
-	fov = json["fov"];
-	flash = json["flash"];
-	itemESP = json["itemESP"];
-	bunnyHop = json["bunnyHop"];
-	fovCheck = json["fovCheck"];
-	spectator = json["spectator"];
-	deathmatchMode = json["deathmatchMode"];
-	spectatorColours[0] = json["spectatorColours"][0];
-	spectatorColours[1] = json["spectatorColours"][1];
-	spectatorColours[2] = json["spectatorColours"][2];
+	try {
+		fov = json["fov"];
+		flash = json["flash"];
+		itemESP = json["itemESP"];
+		bunnyHop = json["bunnyHop"];
+		fovCheck = json["fovCheck"];
+		spectator = json["spectator"];
+		deathmatchMode = json["deathmatchMode"];
+		spectatorColours[0] = json["spectatorColours"][0];
+		spectatorColours[1] = json["spectatorColours"][1];
+		spectatorColours[2] = json["spectatorColours"][2];
+	}
+	catch (nlohmann::json::type_error& ignored) {
+		std::cout << "[Config.cpp] miscConfig section has missing properties, using defaults for missing options." << std::endl;
+	}
 
 	return true;
 }
@@ -197,10 +212,15 @@ nlohmann::json config::to_json() {
 }
 
 void config::load() {
-	config::configFile = json::readFromJsonFile(json::configFile);
-	espConf.from_json(config::configFile["espConf"]);
-	aimConf.from_json(config::configFile["aimConf"]);
-	miscConf.from_json(config::configFile["miscConf"]);
+	try {
+		config::configFile = json::readFromJsonFile(json::configFile);
+		espConf.from_json(config::configFile["espConf"]);
+		aimConf.from_json(config::configFile["aimConf"]);
+		miscConf.from_json(config::configFile["miscConf"]);
+	}
+	catch (nlohmann::json::type_error& ignored) {
+		std::cout << "[Config.cpp] Configuration section has missing properties, using defaults for missing options." << std::endl;
+	}
 }
 
 void config::save() {
