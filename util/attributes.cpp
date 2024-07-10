@@ -32,20 +32,15 @@ uintptr_t getAddressBase(uintptr_t entityList, uintptr_t playerPawn) {
 
 bool CCSPlayerController::isSpectating(bool localPlayer)
 {
-	if (localPlayer) {
-		uintptr_t LocalPlayer = MemMan.ReadMem<uintptr_t>(baseAddy + offsets::clientDLL["dwLocalPlayerController"]);
-		uintptr_t localPlayerPawn = MemMan.ReadMem<uintptr_t>(LocalPlayer + clientDLL::clientDLLOffsets["CBasePlayerController"]["fields"]["m_hPawn"]);
-		uintptr_t list_entry2 = MemMan.ReadMem<uintptr_t>(entityList + 0x8 * ((localPlayerPawn & 0x7FFF) >> 9) + 16);
-		if (!list_entry2)
-			return false;
+	uintptr_t LocalPlayer = MemMan.ReadMem<uintptr_t>(baseAddy + offsets::clientDLL["dwLocalPlayerController"]);
+	uintptr_t localPlayerPawn = MemMan.ReadMem<uintptr_t>(LocalPlayer + clientDLL::clientDLLOffsets["CBasePlayerController"]["fields"]["m_hPawn"]);
+	uintptr_t list_entry2 = MemMan.ReadMem<uintptr_t>(entityList + 0x8 * ((localPlayerPawn & 0x7FFF) >> 9) + 16);
+	if (!list_entry2)
+		return false;
 
-		const uintptr_t CSlocalPlayerPawn = MemMan.ReadMem<uintptr_t>(list_entry2 + 120 * (localPlayerPawn & 0x1FF));
+	const uintptr_t CSlocalPlayerPawn = MemMan.ReadMem<uintptr_t>(list_entry2 + 120 * (localPlayerPawn & 0x1FF));
 
-		return this->getSpectating() != 0 && this->spectatorTarget == CSlocalPlayerPawn;
-	}
-	else {
-		return this->getSpectating() != 0;
-	}
+	return this->getSpectating() != 0 || (localPlayer && this->spectatorTarget == CSlocalPlayerPawn);
 }
 
 uintptr_t CCSPlayerController::getSpectating()
