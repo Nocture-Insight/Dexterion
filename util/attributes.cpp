@@ -32,13 +32,6 @@ uintptr_t getAddressBase(uintptr_t entityList, uintptr_t playerPawn) {
 
 bool CCSPlayerController::isSpectating(bool localPlayer)
 {
-	uint32_t spectatorPawn = MemMan.ReadMem<uint32_t>(value + clientDLL::clientDLLOffsets["CBasePlayerController"]["fields"]["m_hPawn"]);
-	uintptr_t pawn = getAddressBase(entityList, spectatorPawn);
-
-	uintptr_t obs = MemMan.ReadMem<uintptr_t>(pawn + clientDLL::clientDLLOffsets["C_BasePlayerPawn"]["fields"]["m_pObserverServices"]);
-	uint64_t oTarget = MemMan.ReadMem<uint64_t>(obs + clientDLL::clientDLLOffsets["CPlayer_ObserverServices"]["fields"]["m_hObserverTarget"]);
-	uintptr_t handle = getAddressBase(entityList, oTarget);
-
 	if (localPlayer) {
 		uintptr_t LocalPlayer = MemMan.ReadMem<uintptr_t>(baseAddy + offsets::clientDLL["dwLocalPlayerController"]);
 		uintptr_t localPlayerPawn = MemMan.ReadMem<uintptr_t>(LocalPlayer + clientDLL::clientDLLOffsets["CBasePlayerController"]["fields"]["m_hPawn"]);
@@ -48,15 +41,25 @@ bool CCSPlayerController::isSpectating(bool localPlayer)
 
 		const uintptr_t CSlocalPlayerPawn = MemMan.ReadMem<uintptr_t>(list_entry2 + 120 * (localPlayerPawn & 0x1FF));
 
-		if (obs && handle == CSlocalPlayerPawn)
-			return true;
-		return false;
+		return this->getSpectating() != 0 && this->spectatorTarget == CSlocalPlayerPawn;
 	}
 	else {
-		if (obs)
-			return true;
-		return false;
+		return this->getSpectating() != 0;
 	}
+}
+
+uintptr_t CCSPlayerController::getSpectating()
+{
+	uint32_t spectatorPawn = MemMan.ReadMem<uint32_t>(value + clientDLL::clientDLLOffsets["CBasePlayerController"]["fields"]["m_hPawn"]);
+	uintptr_t pawn = getAddressBase(entityList, spectatorPawn);
+
+	uintptr_t obs = MemMan.ReadMem<uintptr_t>(pawn + clientDLL::clientDLLOffsets["C_BasePlayerPawn"]["fields"]["m_pObserverServices"]);
+	uint64_t oTarget = MemMan.ReadMem<uint64_t>(obs + clientDLL::clientDLLOffsets["CPlayer_ObserverServices"]["fields"]["m_hObserverTarget"]);
+	uintptr_t handle = getAddressBase(entityList, oTarget);
+
+	if (obs)
+		return spectatorTarget = handle;
+	return spectatorTarget = 0;
 }
 
 std::uint32_t CCSPlayerController::getC_CSPlayerPawn() {

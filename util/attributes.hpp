@@ -75,6 +75,9 @@ public:
 	bool spectating;
 	bool isSpectating(bool localPlayer);
 
+	uintptr_t spectatorTarget;
+	uintptr_t getSpectating();
+
 	uintptr_t pawnTeam;
 	uintptr_t getPawnTeam();
 
