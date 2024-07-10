@@ -175,6 +175,6 @@ BoneConnection boneConnections[] = {
 	BoneConnection(bones::kneeRight, bones::ankleRight)
 };
 
-namespace timAppleSystem {
+namespace DexterionSystem {
 	std::string weaponIconsTTF = ".\\fonts\\weaponIcons.ttf";
 }

@@ -53,7 +53,7 @@ void esp::makeName(std::string name) {
 
 void esp::makeWeaponname() {
 	std::string name;
-	if (strcmp(sharedData::weaponName.c_str(), "") == 0 || !std::filesystem::exists(timAppleSystem::weaponIconsTTF)) {
+	if (strcmp(sharedData::weaponName.c_str(), "") == 0 || !std::filesystem::exists(DexterionSystem::weaponIconsTTF)) {
 		name = getWeaponFromID(sharedData::weaponID);
 		ImVec2 textSize = ImGui::CalcTextSize(name.c_str());
 

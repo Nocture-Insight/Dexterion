@@ -59,7 +59,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	}
 	
 	SetConsoleTextAttribute(hConsole, 9);
-	printf("[timapple.cpp] Getting addresses...\n");
+	printf("[dexterion.cpp] Getting addresses...\n");
 	MemoryManagement::moduleData client;
 	client.module = MemMan.getModule(procId, L"client.dll");
 	client.base = MemMan.getModuleBase(procId, "client.dll");
@@ -69,17 +69,17 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 	}
 	SetConsoleTextAttribute(hConsole, 10);
-	printf("[timapple.cpp] Addresses found succesfully!\n");
+	printf("[dexterion.cpp] Addresses found succesfully!\n");
 
 	SetConsoleTextAttribute(hConsole, 9);
-	printf("[timapple.cpp] Creating overlay...\n");
+	printf("[dexterion.cpp] Creating overlay...\n");
 	// Overlay
 	overlayESP overlayClass;
-	WNDCLASSEXW windowClass = overlayClass.createWindowClass(hInstance, Wndproc, L"Tim Apple");
+	WNDCLASSEXW windowClass = overlayClass.createWindowClass(hInstance, Wndproc, L"Dexterion");
 	HWND window = overlayClass.createWindow(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
 
 	SetConsoleTextAttribute(hConsole, 9);
-	printf("[timapple.cpp] Drawing overlay...\n");
+	printf("[dexterion.cpp] Drawing overlay...\n");
 	overlayClass.makeFrameIntoClientArea();
 	overlayClass.makeDeviceAndSwapChain();
 	overlayClass.initWindow(nShowCmd);

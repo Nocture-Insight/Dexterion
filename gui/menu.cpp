@@ -346,9 +346,19 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Github");
 		ImGui::PopFont();
-		ImGui::Text("https://github.com/kristofhracza/tim_apple");
+		ImGui::Text("Me: https://github.com/Skwrr/Dexterion");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Text("https://github.com/Skwrr/tim_apple");
+		ImGui::Text("Inspiration: https://github.com/kristofhracza/tim_apple");
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::titleText);
+		ImGui::Text("HackVsHack");
+		ImGui::PopFont();
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::subTitleText);
+		ImGui::Text("Release thread");
+		ImGui::PopFont();
+		ImGui::Text("https://hackvshack.net/threads/dexterion-semi-external-cs2-cheat-updated-10-07-2024.4978/");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::titleText);
@@ -358,12 +368,14 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Release thread");
 		ImGui::PopFont();
-		ImGui::Text("https://www.unknowncheats.me/forum/counter-strike-2-releases/609206-cs2-external-cheat-tim-apple.html");
+		ImGui::Text("Me: Soon");
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Text("Inspiration: https://www.unknowncheats.me/forum/counter-strike-2-releases/609206-cs2-external-cheat-tim-apple.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Developer Profile");
 		ImGui::PopFont();
-		ImGui::Text("https://www.unknowncheats.me/forum/members/5680770.html");
+		ImGui::Text("https://www.unknowncheats.me/forum/members/6169955.html");
 		ImGui::EndChild();
 	}
 }
@@ -398,7 +410,7 @@ void imGuiMenu::menuBar() {
 void imGuiMenu::renderMenu(bool state) {
 	ImGui::PushFont(normalText);
 	ImGui::SetNextWindowSize({WIDTH,HEIGHT}, ImGuiCond_FirstUseEver);
-	ImGui::Begin("Tim Apple", &state, ImGuiWindowFlags_MenuBar);
+	ImGui::Begin("Dexterion", &state, ImGuiWindowFlags_MenuBar);
 	
 	// Config
 	setStyle();

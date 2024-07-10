@@ -22,8 +22,9 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{e6cbdc8b-c819-4a41-85b1-27203f206e29}</ProjectGuid>
-    <RootNamespace>timapple</RootNamespace>
+    <RootNamespace>dexterion</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Dexterion</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -173,7 +174,7 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="json\jsonOps.cpp" />
-    <ClCompile Include="timapple.cpp" />
+    <ClCompile Include="dexterion.cpp" />
     <ClCompile Include="util\attributes.cpp" />
     <ClCompile Include="util\config.cpp" />
   </ItemGroup>

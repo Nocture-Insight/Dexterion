@@ -45,7 +45,7 @@ void misc::droppedItem(C_CSPlayerPawn C_CSPlayerPawn, CGameSceneNode CGameSceneN
 			auto [horizontalOffset, verticalOffset] = getTextOffsets(textSize.x, textSize.y, 2.f);
 
 			ImFont* gunText = {};
-			if (std::filesystem::exists(timAppleSystem::weaponIconsTTF)) {
+			if (std::filesystem::exists(DexterionSystem::weaponIconsTTF)) {
 				gunText = imGuiMenu::weaponIcons;
 				name = gunIcon(name);
 			}

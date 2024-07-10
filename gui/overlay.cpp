@@ -94,7 +94,7 @@ void overlayESP::initWindow(int nShowCmd) {
 	imGuiMenu::subTitleText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 15.f);
 	imGuiMenu::highlightText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanai.ttf", 13.f);
 	imGuiMenu::espNameText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 15.f);
-	imGuiMenu::weaponIcons = io.Fonts->AddFontFromFileTTF(timAppleSystem::weaponIconsTTF.c_str(), 20.f);
+	imGuiMenu::weaponIcons = io.Fonts->AddFontFromFileTTF(DexterionSystem::weaponIconsTTF.c_str(), 20.f);
 
 	ImGui::StyleColorsDark();
 
