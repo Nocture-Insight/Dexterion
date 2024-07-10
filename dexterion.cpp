@@ -33,6 +33,16 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	AllocConsole();
 	freopen("CONOUT$", "w", stdout);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	// Execute CURL command to update offset JSON
+	SetConsoleTextAttribute(hConsole, 15);
+	system("curl https://raw.githubusercontent.com/a2x/cs2-dumper/main/output/buttons.json > buttons.json");
+	system("curl https://raw.githubusercontent.com/a2x/cs2-dumper/main/output/client.dll.json > client.dll.json");
+	system("curl https://raw.githubusercontent.com/a2x/cs2-dumper/main/output/offsets.json > offsets.json");
+	SetConsoleTextAttribute(hConsole, 10);
+	printf("[MemMan] Required files updated\n");
+
+	
 	// Memory and game related vars (used in entry and passed through overlay)
 	int procId = MemMan.getPid(L"cs2.exe");
 	SetConsoleTextAttribute(hConsole, 9);
