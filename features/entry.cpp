@@ -141,7 +141,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 	for (int i = 0; i < spectators.size(); i++) {
 		std::string name = spectators[i];
-		Render::DrawText({ 10.f, 320.f + y }, ImColor(1.f, 1.f, 1.f, 1.f), name.c_str());
+		Render::DrawText({ 10.f, 320.f + y }, utils::float3ToImColor(miscConf.spectatorColours, 1.f), name.c_str());
 		y += 10u;
 	}
 

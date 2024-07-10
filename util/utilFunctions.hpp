@@ -23,6 +23,10 @@ inline namespace utils {
 		return std::wstring(buffer).substr(0, pos);
 	}
 
+	inline ImColor float3ToImColor(float colours[3], float a = 1.f) {
+		return ImColor(colours[0], colours[1], colours[2], a);
+	}
+
 	inline namespace espF {
 		inline float fixFontSize(float size) {
 			int returnSize = 1;

@@ -169,6 +169,7 @@ inline nlohmann::json miscConfig::to_json() {
 	json["fovCheck"] = fovCheck;
 	json["spectator"] = spectator;
 	json["deathmatchMode"] = deathmatchMode;
+	json["spectatorColours"] = spectatorColours;
 	return json;
 }
 
@@ -180,6 +181,9 @@ inline bool miscConfig::from_json(nlohmann::json json) {
 	fovCheck = json["fovCheck"];
 	spectator = json["spectator"];
 	deathmatchMode = json["deathmatchMode"];
+	spectatorColours[0] = json["spectatorColours"][0];
+	spectatorColours[1] = json["spectatorColours"][1];
+	spectatorColours[2] = json["spectatorColours"][2];
 
 	return true;
 }

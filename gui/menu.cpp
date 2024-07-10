@@ -308,12 +308,22 @@ void imGuiMenu::aimRender() {
 
 void imGuiMenu::miscRender() {
 	if (tabCount == 3) {
-		ImGui::BeginChild("Movement", ImVec2(0, imGuiMenu::heightSeparatorInt), true);
+		ImGui::BeginChild("Movement", ImVec2(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt), true);
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Movement");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Bunny hop", &miscConf.bunnyHop);
+		ImGui::EndChild();
+
+		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
+
+		ImGui::BeginChild("Colours", ImVec2(0, imGuiMenu::heightSeparatorInt), true);
+		ImGui::PushFont(imGuiMenu::titleText);
+		ImGui::Text("Colours");
+		ImGui::PopFont();
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::ColorEdit3("Spectator List", (float*)&miscConf.spectatorColours);
 		ImGui::EndChild();
 
 		horizontalSplitter(HEIGHT);

@@ -12,6 +12,7 @@ namespace imGuiMenu {
 	inline float textSeparatorSpace = 4.f;
 	inline float widthSeparatorInt = WIDTH / 2;
 	inline float heightSeparatorInt = HEIGHT / 2 + 20;
+	inline float bottomHeightSeparatorInt = HEIGHT;
 
 	inline ImFont* normalText;
 	inline ImFont* titleText;

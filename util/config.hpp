@@ -112,6 +112,7 @@ struct miscConfig {
 	bool deathmatchMode;
 	bool fovCheck = false;
 	bool spectator;
+	float spectatorColours[3] = { 1.f, 0.f, 0.f };
 	int fov = 90;
 
 	inline nlohmann::json to_json();
