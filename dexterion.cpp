@@ -34,6 +34,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	freopen("CONOUT$", "w", stdout);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+	SetConsoleTextAttribute(hConsole, 9);
+	printf("[MemMan] Updating required files\n");
+	
 	// Execute CURL command to update offset JSON
 	SetConsoleTextAttribute(hConsole, 15);
 	system("curl https://raw.githubusercontent.com/a2x/cs2-dumper/main/output/buttons.json > buttons.json");
