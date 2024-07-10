@@ -40,7 +40,9 @@ bool CCSPlayerController::isSpectating(bool localPlayer)
 
 	const uintptr_t CSlocalPlayerPawn = MemMan.ReadMem<uintptr_t>(list_entry2 + 120 * (localPlayerPawn & 0x1FF));
 
-	return this->getSpectating() != 0 || (localPlayer && this->spectatorTarget == CSlocalPlayerPawn);
+	if (localPlayer)
+		return (localPlayer && this->spectatorTarget == CSlocalPlayerPawn);
+	return this->getSpectating() != 0;
 }
 
 uintptr_t CCSPlayerController::getSpectating()
