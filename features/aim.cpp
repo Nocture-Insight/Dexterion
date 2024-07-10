@@ -78,7 +78,7 @@ Vector3 aim::recoilControl(LocalPlayer localPlayer, bool move) {
 
 	if (localPlayer.getShotsFired() == 54587654) return newAngles; // Spectator check
 
-	if (localPlayer.getShotsFired() > 1 && lockedPlayer == 0) {
+	if (localPlayer.getShotsFired() > 1) {
 		Vector3 aimPunch = MemMan.ReadMem<Vector3>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawn_["m_aimPunchAngle"]);
 		newAngles.x = (aimPunch.x - oldAngles.x) * 2.f / (0.022f * aimConf.sens);
 		newAngles.y = (aimPunch.y - oldAngles.y) * 2.f / (0.022f * aimConf.sens);
