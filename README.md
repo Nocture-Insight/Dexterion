@@ -59,7 +59,7 @@ Run the `updateoffset.cmd` in the same folder as your executable is
 
 ### Is this cheat read-only?
 It can be if you use the features that don't write to the game's memory.     
-Namely: All ESP, Bunny Hop, Aim Bot, RCS and Trigger Bot
+Namely: All ESP, Aim Bot, RCS and Trigger Bot
 I'll be working on try to make everything read-only (Anti-Flash aside because it's impossible to make it external)
 
 ## Credits
