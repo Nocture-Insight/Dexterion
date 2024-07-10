@@ -368,7 +368,7 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Release thread");
 		ImGui::PopFont();
-		ImGui::Text("Me: Soon");
+		ImGui::Text("Me: https://www.unknowncheats.me/forum/counter-strike-2-a/647464-dexterion-semi-external-cs2-cheat.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Text("Inspiration: https://www.unknowncheats.me/forum/counter-strike-2-releases/609206-cs2-external-cheat-tim-apple.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
