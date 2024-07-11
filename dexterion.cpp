@@ -33,6 +33,15 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	AllocConsole();
 	freopen("CONOUT$", "w", stdout);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	// Execute updateoffset.cmd in order to update before run
+	SetConsoleTextAttribute(hConsole, 9);
+	printf("[MemMan] Updating required files\n");
+	SetConsoleTextAttribute(hConsole, 15);
+	system("cmd.exe /C updateoffset.cmd");
+	SetConsoleTextAttribute(hConsole, 10);
+	printf("[MemMan] Required files updated\n");
+	
 	// Memory and game related vars (used in entry and passed through overlay)
 	int procId = MemMan.getPid(L"cs2.exe");
 	SetConsoleTextAttribute(hConsole, 9);
