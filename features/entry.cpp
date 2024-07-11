@@ -142,7 +142,9 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	}
 
 	if (miscConf.spectator) {
-		ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse;// | ImGuiWindowFlags_NoResize;
+		ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize;
+		ImGui::SetNextWindowPos({ 0.f, 200.f }, ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowSize({ 100.f, 250.f }, ImGuiCond_FirstUseEver);
 		if (ImGui::Begin("Spectators", nullptr, flags)) {
 
 			for (int i = 0; i < spectators.size(); i++) {
