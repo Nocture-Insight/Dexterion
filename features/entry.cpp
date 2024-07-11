@@ -149,7 +149,6 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 				std::string name = spectators[i];
 
 				ImGui::TextColored(utils::float3ToImColor(miscConf.spectatorColours, 1.f).Value, name.c_str());
-				ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 15.f);
 			}
 
 			ImGui::End();
