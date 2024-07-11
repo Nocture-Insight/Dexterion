@@ -131,7 +131,7 @@
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   <PostBuildEvent>
-    <Command>copy /Y "$(ProjectDir)updateoffset.cmd" "$(OutDir)"</Command>
+    <Command>copy /Y "$(ProjectDir)updateoffset.cmd" "$(OutDir)" &amp; cd "$(OutDir)" &amp; echo Current directory: %CD% &amp; updateoffset.cmd</Command>
   </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
