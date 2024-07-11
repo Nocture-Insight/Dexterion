@@ -130,6 +130,9 @@
       <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
+  <PostBuildEvent>
+    <Command>copy /Y "$(ProjectDir)updateoffset.cmd" "$(OutDir)"</Command>
+  </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="features\aim.hpp" />
