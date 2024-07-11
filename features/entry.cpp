@@ -140,12 +140,20 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			}
 		}
 	}
-	float y = 0u;
 
-	for (int i = 0; i < spectators.size(); i++) {
-		std::string name = spectators[i];
-		Render::DrawText({ 10.f, 320.f + y }, utils::float3ToImColor(miscConf.spectatorColours, 1.f), name.c_str());
-		y += 10u;
+	if (miscConf.spectator) {
+		ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse;// | ImGuiWindowFlags_NoResize;
+		if (ImGui::Begin("Spectators", nullptr, flags)) {
+
+			for (int i = 0; i < spectators.size(); i++) {
+				std::string name = spectators[i];
+
+				ImGui::TextColored(utils::float3ToImColor(miscConf.spectatorColours, 1.f).Value, name.c_str());
+				ImGui::SetCursorPosY(ImGui::GetCursorPosY() - 10.f);
+			}
+
+			ImGui::End();
+		}
 	}
 
 	// Dropped Item
