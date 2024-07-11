@@ -26,8 +26,8 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 	angle = CalculateAngle(localPlayer.eyepos, aimPos, localPlayer.viewAngles);
 	newAngle = calculateBestAngle(angle, aimConf.fov);
 
-	newAngle.x = (newAngle.x / (0.022f * aimConf.sens)) / aimConf.smoothing;
-	newAngle.y = (newAngle.y / (0.022f * aimConf.sens)) / aimConf.smoothing;
+	newAngle.x = (newAngle.x / (0.011f * aimConf.sens)) / aimConf.smoothing;
+	newAngle.y = (newAngle.y / (0.011f * aimConf.sens)) / aimConf.smoothing;
 
 	if (newAngle.IsZero()) {
 		lockedPlayer = 0;
@@ -40,8 +40,8 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 
 		if (localPlayer.getShotsFired() > 1 && localPlayer.shotsFired < 9999 /* Spectator check */) {
 			Vector3 aimPunch = MemMan.ReadMem<Vector3>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawn_["m_aimPunchAngle"]);
-			rcs.x = (aimPunch.x - oldAngles.x) * 2.f / (0.022f * aimConf.sens);
-			rcs.y = (aimPunch.y - oldAngles.y) * 2.f / (0.022f * aimConf.sens);
+			rcs.x = (aimPunch.x - oldAngles.x) * 2.f / (0.011f * aimConf.sens);
+			rcs.y = (aimPunch.y - oldAngles.y) * 2.f / (0.011f * aimConf.sens);
 
 			oldAngles.x = aimPunch.y;
 			oldAngles.y = aimPunch.x;
