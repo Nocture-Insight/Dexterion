@@ -39,6 +39,7 @@ namespace clientDLL {
 	nlohmann::json C_CSGameRules_= clientDLLOffsets["C_CSGameRules"]["fields"];
 	nlohmann::json CCSWeaponBaseVData_ = clientDLLOffsets["CCSWeaponBaseVData"]["fields"];
 	nlohmann::json CCSPlayerBase_CameraServices_ = clientDLLOffsets["CCSPlayerBase_CameraServices"]["fields"];
+	nlohmann::json C_PlantedC4_ = clientDLLOffsets["C_PlantedC4"]["fields"];
 };
 
 
@@ -175,6 +176,15 @@ public:
 
 	uintptr_t m_pCarrier;
 	uintptr_t getCarrier();
+
+	int site;
+	int getPlantedSite();
+
+	bool isDefusing;
+	bool isBeingDefused();
+
+	long defuseTime;
+	long getDefuseTime();
 
 	uintptr_t scene;
 	uintptr_t getCGameSceneNode();

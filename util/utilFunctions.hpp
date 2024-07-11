@@ -27,6 +27,11 @@ inline namespace utils {
 		return ImColor(colours[0], colours[1], colours[2], a);
 	}
 
+	inline uint64_t currentTimeMillis() {
+		using namespace std::chrono;
+		return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+	}
+
 	inline namespace espF {
 		inline float fixFontSize(float size) {
 			int returnSize = 1;

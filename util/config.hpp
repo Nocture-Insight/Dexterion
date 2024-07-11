@@ -112,6 +112,8 @@ struct miscConfig {
 	bool deathmatchMode;
 	bool fovCheck = false;
 	bool spectator;
+	bool bombTimer;
+	float bombTimerColours[3] = { 0.f, 1.f, 0.5f };
 	float spectatorColours[3] = { 1.f, 0.f, 0.f };
 	int fov = 90;
 

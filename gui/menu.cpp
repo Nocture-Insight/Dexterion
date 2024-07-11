@@ -324,6 +324,8 @@ void imGuiMenu::miscRender() {
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::ColorEdit3("Spectator List", (float*)&miscConf.spectatorColours);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::ColorEdit3("Bomb Timer", (float*)&miscConf.bombTimerColours);
 		ImGui::EndChild();
 
 		horizontalSplitter(HEIGHT);
@@ -346,6 +348,8 @@ void imGuiMenu::miscRender() {
 		ImGui::Checkbox("Dropped Item ESP", &miscConf.itemESP);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Spectator List", &miscConf.spectator);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Bomb Timer", &miscConf.bombTimer);
 		ImGui::EndChild();
 	}
 }

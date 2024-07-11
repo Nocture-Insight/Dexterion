@@ -28,6 +28,9 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	// Recoil control
 	if (aimConf.rcs) aim::recoilControl(localPlayer, true);
 
+	// Bomb Timer
+	if (miscConf.bombTimer) bomb::timer(C_C4);
+
 	// Bunny hop
 	if (miscConf.bunnyHop) misc::bunnyHop(client.base, localPlayer.getFlags());
 

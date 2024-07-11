@@ -4,6 +4,7 @@
 #include "aim.hpp"
 #include "fov.hpp"
 #include "misc.hpp"
+#include "bomb.hpp"
 #include "include.hpp"
 
 #include "../util/config.hpp"

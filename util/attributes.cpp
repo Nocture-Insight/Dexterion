@@ -290,6 +290,21 @@ uintptr_t C_C4::getCarrier() {
 	return m_pCarrier = 0x0;
 }
 
+int C_C4::getPlantedSite()
+{
+	return site = MemMan.ReadMem<int>(c4 + clientDLL::C_PlantedC4_["m_nBombSite"]);
+}
+
+bool C_C4::isBeingDefused()
+{
+	return isDefusing = MemMan.ReadMem<bool>(c4 + clientDLL::C_PlantedC4_["m_bBeingDefused"]);
+}
+
+long C_C4::getDefuseTime()
+{
+	return defuseTime = MemMan.ReadMem<long>(c4 + clientDLL::C_PlantedC4_["m_flDefuseCountDown"]);
+}
+
 uintptr_t C_C4::getCGameSceneNode() {
 	scene = MemMan.ReadMem<uintptr_t>(c4 + clientDLL::C_BaseEntity_["m_pGameSceneNode"]);
 	return scene;

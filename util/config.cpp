@@ -177,9 +177,11 @@ inline nlohmann::json miscConfig::to_json() {
 	json["itemESP"] = itemESP;
 	json["bunnyHop"] = bunnyHop;
 	json["fovCheck"] = fovCheck;
+	json["bombTimer"] = bombTimer;
 	json["spectator"] = spectator;
 	json["deathmatchMode"] = deathmatchMode;
 	json["spectatorColours"] = spectatorColours;
+	json["bombTimerColours"] = bombTimerColours;
 	return json;
 }
 
@@ -195,6 +197,10 @@ inline bool miscConfig::from_json(nlohmann::json json) {
 		spectatorColours[0] = json["spectatorColours"][0];
 		spectatorColours[1] = json["spectatorColours"][1];
 		spectatorColours[2] = json["spectatorColours"][2];
+		bombTimer = json["bombTimer"];
+		bombTimerColours[0] = json["bombTimerColours"][0];
+		bombTimerColours[1] = json["bombTimerColours"][1];
+		bombTimerColours[2] = json["bombTimerColours"][2];
 	}
 	catch (nlohmann::json::type_error& ignored) {
 		std::cout << "[Config.cpp] miscConfig section has missing properties, using defaults for missing options." << std::endl;
