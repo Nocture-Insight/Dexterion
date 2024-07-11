@@ -29,8 +29,14 @@ void bomb::timer(C_C4 C_C4) {
 	if (isPlanted && remaining >= 0) {
 		std::ostringstream oss;
 
+		std::vector<std::string> sites = {
+			"A",
+			"B",
+			"C"
+		};
+
 		oss.precision(4);
-		oss << "Bomb on " << C_C4.getPlantedSite() << ": " << std::fixed << remaining << " s";
+		oss << "Bomb on " << sites[C_C4.getPlantedSite()] << ": " << std::fixed << remaining << " s";
 
 		std::string Text = std::move(oss).str().c_str();
 
