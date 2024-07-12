@@ -5,7 +5,7 @@
 bool clientDLL::load() {
 	clientDLLOffsets = json::readFromJsonFile(json::clientDLLFile);
 
-	if (clientDLLOffsets == -1 || clientDLLOffsets == 0)
+	if (clientDLLOffsets == 0)
 		return 0;
 
 	clientDLLOffsets = clientDLLOffsets["client.dll"]["classes"];
@@ -35,10 +35,10 @@ bool offsets::load()
 {
 	clientDLL = json::readFromJsonFile(json::offsetFile);
 
-	if (clientDLL == 0 || clientDLL == -1)
+	if (clientDLL == 0)
 		return 0;
 
-	clientDLL == clientDLL["client.dll"];
+	clientDLL = clientDLL["client.dll"];
 
 	return 1;
 }
@@ -46,7 +46,7 @@ bool offsets::load()
 bool loadJson() {
 	buttons = json::readFromJsonFile(json::buttonsFile);
 
-	if (buttons == 0 || buttons == -1)
+	if (buttons == 0)
 		return 0;
 
 	buttons = buttons["client.dll"];
@@ -59,7 +59,6 @@ bool loadJson() {
 
 	return 1;
 }
-
 
 uintptr_t CCSPlayerController::getListEntry() {
 	listEntry = MemMan.ReadMem<uintptr_t>(entityList + (0x8 * (id & 0x7FFF) >> 9) + 0x10);
@@ -335,6 +334,8 @@ bool SharedFunctions::inGame(DWORD_PTR base) {
 
 	return match;
 }
+
+
 
 bool C_C4::isPlanted() {
 	planted = MemMan.ReadMem<bool>(base + offsets::clientDLL["dwPlantedC4"] - 0x8);
