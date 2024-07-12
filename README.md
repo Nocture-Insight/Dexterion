@@ -49,6 +49,7 @@ Run the `updateoffset.cmd` in the same folder as your executable is
 - Anti flash
 - Deathmatch Mode
 - Dropped item ESP **(PERFORMANCE ISSUES)**
+- Bomb Timer
 - Spectator List
 
 ## FAQ
