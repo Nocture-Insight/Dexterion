@@ -14,5 +14,8 @@ nlohmann::json json::readFromJsonFile(std::wstring fileName) {
 	catch (nlohmann::json::parse_error& ex) {
 		return 0;
 	}
+	catch (nlohmann::json::type_error& ex) {
+		return -1;
+	}
 	return fileContent;
 }

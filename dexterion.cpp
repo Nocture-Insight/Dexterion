@@ -68,6 +68,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		client.base = MemMan.getModuleBase(procId, "client.dll");
 		std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 	}
+	if (!loadJson()) {
+		SetConsoleTextAttribute(hConsole, 12);
+		std::cout << "[attributes.cpp] Cannot load JSON files (did you run updateoffsets.cmd?)" << std::endl;
+		system("pause");
+		return 0;
+	}
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("[dexterion.cpp] Addresses found succesfully!\n");
 
