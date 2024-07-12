@@ -1,5 +1,5 @@
 # Dexterion
-CS2 Semi External Cheat
+CS2 External Cheat
 
 ![Preview](screenshots/preview.png)
 ![Preview1](screenshots/preview0.png)
@@ -58,9 +58,10 @@ Run the `updateoffset.cmd` in the same folder as your executable is
 *(If the program cannot see the file, weapon names will be displayed instead)*
 
 ### Is this cheat read-only?
-It can be if you use the features that don't write to the game's memory.     
-Namely: All ESP, Aim Bot, RCS and Trigger Bot
-I'll be working on try to make everything read-only (Anti-Flash aside because it's impossible to make it external)
+Yes, except Anti-Flash, Bunnyhop and FOV.
+
+### Is this Cheat OBS Bypass?
+Yes.
 
 ## Credits
 - [kristofhracza/tim_apple](https://github.com/kristofhracza/tim_apple) (Forked from this. Inspiration)
@@ -74,4 +75,6 @@ I'll be working on try to make everything read-only (Anti-Flash aside because it
 - Add custom lang.
 - Add C4 Carrier ESP (Colour customizable)
 - Fix ESP suddenly stop issue.
-- Any request in the issues tab.
+- Config File shareable / can load multiples config files.
+### Any request in the issues tab.
+
