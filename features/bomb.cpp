@@ -9,8 +9,8 @@ void bomb::timer(C_C4 C_C4) {
 
 	static float overlayWidth = 200.f;
 	ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize;
-	ImGui::SetNextWindowPos({ (ImGui::GetIO().DisplaySize.x - overlayWidth) / 2.f, 80.f}, ImGuiCond_Once);
-	ImGui::SetNextWindowSize({ overlayWidth, 0 }, ImGuiCond_Once);
+	ImGui::SetNextWindowPos({ (ImGui::GetIO().DisplaySize.x - overlayWidth) / 2.f, 80.f}, ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize({ overlayWidth, 0 }, ImGuiCond_FirstUseEver);
 
 	ImGui::Begin("Bomb Timer", nullptr, flags);
 
