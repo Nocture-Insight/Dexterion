@@ -82,26 +82,17 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		cs2Pid = GetPIDByName(L"cs2.exe");
 		if (cs2Pid != 0) {
 			SetConsoleTextAttribute(hConsole, 10);
-			std::wcout << L"cs2.exe found! PID: " << cs2Pid << std::endl;
+			std::wcout << L"[MemMan] Counter Strike 2 Found! PID: " << cs2Pid << std::endl;
 		}
 		else {
 			SetConsoleTextAttribute(hConsole, 12);
-			std::wcout << L"cs2.exe not found. Retrying in 5 seconds..." << std::endl;
+			std::wcout << L"[MemMan] Counter Strike 2 not found. Retrying in 5 seconds..." << std::endl;
 			Sleep(5000); // Wait for 5 seconds before the next attempt
 		}
 	}
-	
 	// Memory and game related vars (used in entry and passed through overlay)
-	int procId = MemMan.getPid(L"cs2.exe");
-	SetConsoleTextAttribute(hConsole, 9);
-	if (procId == 0)
-		printf("[MemMan] Waiting For Counter Strike 2\n");
-	while (procId == 0) {
-		procId = MemMan.getPid(L"cs2.exe");
-		std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-	}
-	SetConsoleTextAttribute(hConsole, 10);
-	printf("[MemMan] Counter Strike 2 Found (%d)!\n", procId);
+	int procId = static_cast<INT>(cs2Pid);
+
 	SetConsoleTextAttribute(hConsole, 9);
 	printf("[Config.hpp] Checking for config file...\n");
 	if (config::exists()) {
