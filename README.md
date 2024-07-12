@@ -58,7 +58,10 @@ Run the `updateoffset.cmd` in the same folder as your executable is
 *(If the program cannot see the file, weapon names will be displayed instead)*
 
 ### Is this cheat read-only?
-Yes, except Anti-Flash.
+Yes, except Anti-Flash, Bunnyhop and FOV.
+
+### Is this Cheat OBS Bypass?
+Yes.
 
 ## Credits
 - [kristofhracza/tim_apple](https://github.com/kristofhracza/tim_apple) (Forked from this. Inspiration)
