@@ -11,6 +11,9 @@
 
 #include <iostream>
 #include <psapi.h> // For EnumProcesses
+#include <filesystem> // For checking file existence
+
+namespace fs = std::filesystem; // Alias for namespace filesystem
 
 LRESULT Wndproc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam)) {
@@ -60,9 +63,17 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	SetConsoleTextAttribute(hConsole, 9);
 	printf("[MemMan] Updating required files\n");
 	SetConsoleTextAttribute(hConsole, 15);
-	system("cmd.exe /C updateoffset.cmd");
-	SetConsoleTextAttribute(hConsole, 10);
-	printf("[MemMan] Required files updated\n");
+	
+	if (fs::exists("updateoffset.cmd")) {
+		system("cmd.exe /C updateoffset.cmd");
+		SetConsoleTextAttribute(hConsole, 10);
+		printf("[MemMan] Required files updated\n");
+	}
+	else {
+		SetConsoleTextAttribute(hConsole, 12);
+		printf("Error: updateoffset.cmd not found. Application cannot continue.\n");
+		return 1; // Exit with error code
+	}
 
 	DWORD cs2Pid = 0;
 
