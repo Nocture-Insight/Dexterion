@@ -19,6 +19,10 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	localPlayer.getPlayerPawn();
 	// Aimbot FOV circle
 	if (aimConf.fovCircle) {
+		if (!overlayESP::isMenuOpen()) {
+			if (!misc::isGameWindowActive()) return;
+		}
+
 		ImVec2 p = ImGui::GetWindowPos();
 		float screenMidX = GetSystemMetrics(SM_CXSCREEN) / 2.f;
 		float screenMidY = GetSystemMetrics(SM_CYSCREEN) / 2.f;
@@ -89,11 +93,11 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 			if (espConf.checkSpotted) {
 				if (SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer)) {
-					esp::boundingBox(C_CSPlayerPawn.origin, viewMatrix, CCSPlayerController.pawnName, C_CSPlayerPawn.pawnHealth, CGameSceneNode.boneArray,true);
+					esp::boundingBox(C_CSPlayerPawn.origin, viewMatrix, CCSPlayerController.pawnName, C_CSPlayerPawn.pawnHealth, CGameSceneNode.boneArray, true);
 				}
 			}
 			else {
-				esp::boundingBox(C_CSPlayerPawn.origin, viewMatrix, CCSPlayerController.pawnName, C_CSPlayerPawn.pawnHealth, CGameSceneNode.boneArray,SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer));
+				esp::boundingBox(C_CSPlayerPawn.origin, viewMatrix, CCSPlayerController.pawnName, C_CSPlayerPawn.pawnHealth, CGameSceneNode.boneArray, SharedFunctions::spottedCheck(C_CSPlayerPawn, localPlayer));
 			}
 		}
 
@@ -110,7 +114,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		if (aimConf.state) {
 
 			if (C_CSPlayerPawn.getPlayerPawn() == localPlayer.getPlayerPawn()) continue;
-			
+
 			// Player lock
 			if (aimConf.playerLock) {
 				aim::lockedPlayer = doPreferred(C_CSPlayerPawn, CGameSceneNode, localPlayer, aim::lockedPlayer, viewMatrix, aimConf.aimModeMap[aimConf.aimModes[aimConf.aimMode]], client).playerPawn;
@@ -142,6 +146,10 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	}
 
 	if (miscConf.spectator) {
+		if (!overlayESP::isMenuOpen()) {
+			if (!misc::isGameWindowActive()) return;
+		}
+
 		ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize;
 		ImGui::SetNextWindowPos({ 0.f, 200.f }, ImGuiCond_FirstUseEver);
 		ImGui::SetNextWindowSize({ 100.f, 250.f }, ImGuiCond_FirstUseEver);
@@ -158,7 +166,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	}
 
 	// Dropped Item
-	if (miscConf.itemESP) misc::droppedItem(C_CSPlayerPawn, CGameSceneNode,viewMatrix);
+	if (miscConf.itemESP) misc::droppedItem(C_CSPlayerPawn, CGameSceneNode, viewMatrix);
 }
 
 C_CSPlayerPawn doPreferred(C_CSPlayerPawn C_CSPlayerPawn_, CGameSceneNode CGameSceneNode, LocalPlayer localPlayer, uintptr_t preferredTarget, view_matrix_t viewMatrix, int mode, MemoryManagement::moduleData client) {

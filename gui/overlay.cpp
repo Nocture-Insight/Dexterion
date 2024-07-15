@@ -9,7 +9,7 @@
 
 #include "../features/entry.hpp"
 
-WNDCLASSEXW overlayESP::createWindowClass(HINSTANCE hInstance,WNDPROC Wndproc, LPCWSTR windowname) {
+WNDCLASSEXW overlayESP::createWindowClass(HINSTANCE hInstance, WNDPROC Wndproc, LPCWSTR windowname) {
 	this->hInstance = hInstance;
 
 	windowClass.cbSize = sizeof(WNDCLASSEXA);
@@ -109,14 +109,18 @@ void overlayESP::initWindow(int nShowCmd) {
 	printf("[overlay.cpp] Overlay Drew Succesfully!\n");
 }
 
+bool overlayESP::menutoggle = true;
+
+bool overlayESP::isMenuOpen() {
+	return !menutoggle;
+}
+
 void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 	bool state = true;
-	bool menutoggle = true;
 
-	while (state){
-		if (GetAsyncKeyState(VK_INSERT) & 1){
+	while (state) {
+		if (GetAsyncKeyState(VK_INSERT) & 1)
 			menutoggle = !menutoggle;
-		}
 
 		MSG msg;
 		while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
@@ -141,7 +145,7 @@ void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
-		mainLoop(state,client);
+		mainLoop(state, client);
 
 		if (menutoggle) {
 			imGuiMenu::renderMenu(state);
@@ -161,7 +165,7 @@ void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 
 		loadedSwapChain->Present(1, 0);
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(1/100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(1 / 100));
 	}
 }
 
