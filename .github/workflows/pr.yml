@@ -4,6 +4,7 @@ on:
     - opened
 
 name: Add PR to project
+permissions: write-all
 
 jobs:
   add-to-project:
