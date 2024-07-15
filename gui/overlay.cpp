@@ -108,18 +108,15 @@ void overlayESP::initWindow(int nShowCmd) {
 bool overlayESP::menuOpen = false;
 
 bool overlayESP::isMenuOpen() {
-	return menuOpen;
+	return menutoggle;
 }
 
 void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 	bool state = true;
-	bool menutoggle = true;
 
 	while (state) {
-		if (GetAsyncKeyState(VK_INSERT) & 1) {
+		if (GetAsyncKeyState(VK_INSERT) & 1)
 			menutoggle = !menutoggle;
-			menuOpen = menutoggle;
-		}
 
 		MSG msg;
 		while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
