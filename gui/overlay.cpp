@@ -25,7 +25,11 @@ WNDCLASSEXW overlayESP::createWindowClass(HINSTANCE hInstance,WNDPROC Wndproc, L
 HWND overlayESP::createWindow(int horizontalSize, int verticallSize) {
 	HWND window = nullptr;
 	RegisterClassExW(&windowClass);
-	window = CreateWindowExW(WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED, windowClass.lpszClassName, windowClass.lpszClassName, WS_POPUP, 0, 0, 1920, 1080, 0, 0, windowClass.hInstance, 0);
+
+	int winx = GetSystemMetrics(SM_CXSCREEN);
+	int winy = GetSystemMetrics(SM_CYSCREEN);
+
+	window = CreateWindowExW(WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED, windowClass.lpszClassName, windowClass.lpszClassName, WS_POPUP, 0, 0, winx, winy, 0, 0, windowClass.hInstance, 0);
 	SetLayeredWindowAttributes(window, RGB(0, 0, 0), BYTE(255), LWA_ALPHA);
 
 	this->window = window;
@@ -89,7 +93,7 @@ void overlayESP::initWindow(int nShowCmd) {
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
 	io.Fonts->AddFontDefault();
-	imGuiMenu::normalText= io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Verdana.ttf", 15.f);
+	imGuiMenu::normalText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Verdana.ttf", 15.f);
 	imGuiMenu::titleText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 16.f);
 	imGuiMenu::subTitleText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanab.ttf", 15.f);
 	imGuiMenu::highlightText = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdanai.ttf", 13.f);
