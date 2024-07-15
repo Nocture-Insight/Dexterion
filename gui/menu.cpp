@@ -390,6 +390,9 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::Text("Developer Profile");
 		ImGui::PopFont();
 		ImGui::Text("https://www.unknowncheats.me/forum/members/6169955.html");
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Text("Version: Release 32");
 		ImGui::EndChild();
 	}
 }
