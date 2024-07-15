@@ -1,4 +1,5 @@
 #include "esp.hpp"
+#include "misc.hpp"
 
 #include <filesystem>
 
@@ -8,10 +9,10 @@ void esp::makeHealthBar(float health) {
 	float red = (255.f - (health * 2.55f)) - 100.f;
 	float green = (health * 2.55f) / 100.f;
 
-	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2.f), sharedData::originalPosToScreen.y - sharedData::height}, { sharedData::headPosToScreen.x - (sharedData::width + 4.5f), sharedData::originalPosToScreen.y }, ImColor(0.f, 0.f, 0.f, 0.3f));
+	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2.f), sharedData::originalPosToScreen.y - sharedData::height }, { sharedData::headPosToScreen.x - (sharedData::width + 4.5f), sharedData::originalPosToScreen.y }, ImColor(0.f, 0.f, 0.f, 0.3f));
 	ImGui::GetBackgroundDrawList()->AddRectFilled({ sharedData::headPosToScreen.x - (sharedData::width + 2.f), sharedData::originalPosToScreen.y - healthBarYOffset }, { sharedData::headPosToScreen.x - (sharedData::width + 4.5f), sharedData::originalPosToScreen.y }, ImColor(red, green, 0.f, 1.f));
 	if (espConf.hpCounter) {
-		ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(sideESPText,distance), {sharedData::headPosToScreen.x - (sharedData::width + 10.f), sharedData::originalPosToScreen.y - healthBarYOffset - 12.f}, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), std::to_string((int)health).c_str());
+		ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(sideESPText, distance), { sharedData::headPosToScreen.x - (sharedData::width + 10.f), sharedData::originalPosToScreen.y - healthBarYOffset - 12.f }, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), std::to_string((int)health).c_str());
 	}
 }
 
@@ -33,7 +34,7 @@ void esp::makeSkeleton(view_matrix_t viewMatrix, uintptr_t boneArray) {
 		if (espConf.head) {
 			Vector3 headBone = MemMan.ReadMem<Vector3>(boneArray + bones::head * 32);
 			Vector3 headBonePos = headBone.worldToScreen(viewMatrix);
-			ImGui::GetBackgroundDrawList()->AddCircle({ headBonePos.x,headBonePos.y }, 40.f/(distance == 0 ? 1 : distance), headColour);
+			ImGui::GetBackgroundDrawList()->AddCircle({ headBonePos.x,headBonePos.y }, 40.f / (distance == 0 ? 1 : distance), headColour);
 		}
 
 		if (espConf.joint) ImGui::GetBackgroundDrawList()->AddCircleFilled({ b1.x, b1.y }, getJointSize(5.f, distance), jointColour);
@@ -45,9 +46,9 @@ void esp::makeSkeleton(view_matrix_t viewMatrix, uintptr_t boneArray) {
 
 void esp::makeName(std::string name) {
 	ImVec2 textSize = ImGui::CalcTextSize(name.c_str());
-	auto [horizontalOffset, verticalOffset] =  getTextOffsets(textSize.x,textSize.y, 2.f);
+	auto [horizontalOffset, verticalOffset] = getTextOffsets(textSize.x, textSize.y, 2.f);
 
-	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(normalESPText, distance), {sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset}, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), name.c_str());
+	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(normalESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset }, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), name.c_str());
 }
 
 
@@ -77,7 +78,7 @@ void esp::makeDistance() {
 
 	auto [horizontalOffset, verticalOffset] = getTextOffsets(textSize.x, textSize.y, 2.f);
 
-	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(sideESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset - 12}, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), distanceText.c_str());
+	ImGui::GetBackgroundDrawList()->AddText(imGuiMenu::espNameText, getFontSize(sideESPText, distance), { sharedData::headPosToScreen.x - horizontalOffset, sharedData::headPosToScreen.y - verticalOffset - 12 }, ImColor(espConf.attributeColours[0], espConf.attributeColours[1], espConf.attributeColours[2]), distanceText.c_str());
 }
 
 void esp::drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlayer, C_C4 C_C4) {
@@ -88,7 +89,7 @@ void esp::drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlay
 	float distance = utils::getDistance(localPlayer.getOrigin(), origin);
 
 	if (c4PosToScreen.z <= 0.f) return; // Check if C4 is behind the player
-	
+
 	float height = 5000 / distance;
 	float width = height * 1.2f;
 
@@ -98,9 +99,12 @@ void esp::drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlay
 	Render::DrawGradientLine({ boxX, boxY }, { width + boxX, height + boxY }, ImColor(espConf.c4Colors[0], espConf.c4Colors[1], espConf.c4Colors[2], 1.f), (espConf.c4Gradient ? ImColor(espConf.c4ColorsGradient[0], espConf.c4ColorsGradient[1], espConf.c4ColorsGradient[2], 1.f) : ImColor(espConf.c4Colors[0], espConf.c4Colors[1], espConf.c4Colors[2], 1.f)), espConf.c4Thickness);
 }
 
-
 void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name, int health, uintptr_t boneArray, bool isSpotted) {
 	if (origin.IsZero()) return;
+
+	if (!overlayESP::isMenuOpen()) {
+		if (!misc::isGameWindowActive()) return;
+	}
 
 	Vector3 originalPosToScreen = origin.worldToScreen(viewMatrix);
 	sharedData::originalPosToScreen = originalPosToScreen;
@@ -128,7 +132,7 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 			else Render::DrawGradientLine({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.cornerColours[0], espConf.cornerColours[1], espConf.cornerColours[2], 1.f), ImColor(espConf.cornerGradient[0], espConf.cornerGradient[1], espConf.cornerGradient[2], 1.f), espConf.boundBoxThickness);
 			if (espConf.filledBox) ImGui::GetBackgroundDrawList()->AddRectFilled({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, filledBoxcolour, 0.f, 0.f);
 		}
-		
+
 		if (espConf.isHealthBar) {
 			makeHealthBar(health);
 		}

@@ -1,5 +1,14 @@
 #include "misc.hpp"
 
+bool misc::isGameWindowActive() {
+	HWND hwnd = GetForegroundWindow();
+	if (hwnd) {
+		char windowTitle[256];
+		GetWindowTextA(hwnd, windowTitle, sizeof(windowTitle));
+		return std::string(windowTitle).find("Counter-Strike 2") != std::string::npos;
+	}
+	return false;
+}
 
 void misc::bunnyHop(DWORD_PTR base, int flags) {
 	if (GetAsyncKeyState(VK_SPACE) && flags & bhopInAir) {
@@ -11,6 +20,10 @@ void misc::bunnyHop(DWORD_PTR base, int flags) {
 }
 
 void misc::droppedItem(C_CSPlayerPawn C_CSPlayerPawn, CGameSceneNode CGameSceneNode, view_matrix_t viewMatrix) {
+	if (!overlayESP::isMenuOpen()) {
+		if (!misc::isGameWindowActive()) return;
+	}
+
 	for (int i = 65; i < 1024; i++) {
 		// Entity
 		C_CSPlayerPawn.value = i;
@@ -24,7 +37,7 @@ void misc::droppedItem(C_CSPlayerPawn C_CSPlayerPawn, CGameSceneNode CGameSceneN
 		uintptr_t entity = MemMan.ReadMem<uintptr_t>(C_CSPlayerPawn.playerPawn + 0x10);
 		uintptr_t designerNameAddy = MemMan.ReadMem<uintptr_t>(entity + 0x20);
 
-		char designerNameBuffer[MAX_PATH]{}; 
+		char designerNameBuffer[MAX_PATH]{};
 		MemMan.ReadRawMem(designerNameAddy, designerNameBuffer, MAX_PATH);
 
 		std::string name = std::string(designerNameBuffer);

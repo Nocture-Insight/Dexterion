@@ -1,15 +1,19 @@
 #include "bomb.hpp"
+#include "misc.hpp"
 
 #include <iostream>
 
 void bomb::timer(C_C4 C_C4) {
+	if (!overlayESP::isMenuOpen()) {
+		if (!misc::isGameWindowActive()) return;
+	}
 	bool planted = C_C4.isPlanted();
 	bool defusing = C_C4.isBeingDefused();
 	float defuseTime = C_C4.getDefuseTime();
 
 	static float overlayWidth = 200.f;
 	ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize;
-	ImGui::SetNextWindowPos({ (ImGui::GetIO().DisplaySize.x - overlayWidth) / 2.f, 80.f}, ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowPos({ (ImGui::GetIO().DisplaySize.x - overlayWidth) / 2.f, 80.f }, ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize({ overlayWidth, 0 }, ImGuiCond_FirstUseEver);
 
 	ImGui::Begin("Bomb Timer", nullptr, flags);
@@ -60,7 +64,7 @@ void bomb::timer(C_C4 C_C4) {
 	}
 
 	ImGui::PushStyleColor(ImGuiCol_PlotHistogram, utils::float3ToImColor(miscConf.bombTimerColours, 1.f).Value);
-	ImGui::ProgressBar(bar, {overlayWidth - 20, 15});
+	ImGui::ProgressBar(bar, { overlayWidth - 20, 15 });
 	ImGui::PopStyleColor();
 	ImGui::End();
 }
