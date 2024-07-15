@@ -182,8 +182,8 @@
     <ClCompile Include="util\config.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="dexterion.ico" />
-    <Image Include="dexterion.png" />
+    <Image Include="assets\dexterion.ico" />
+    <Image Include="assets\dexterion.png" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Dexterion.rc" />

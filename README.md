@@ -1,6 +1,6 @@
 <div align="center">
   
-![DexterionBanner](screenshots/dexterion_banner.jpg)
+![DexterionBanner](assets/dexterion_banner.jpg)
   
 [![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=plastic)](https://en.wikipedia.org/wiki/C%2B%2B)
 [![CS2](https://img.shields.io/badge/game-CS2-yellow.svg?style=plastic)](https://store.steampowered.com/app/730) 
@@ -88,8 +88,8 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
     <h2>Screenshots</h2>
   </summary>
 
-![Preview](screenshots/preview.png)
-![Preview1](screenshots/preview0.png)
-![Preview2](screenshots/preview1.png)
+![Preview](assets/screenshots/preview.png)
+![Preview1](assets/screenshots/preview0.png)
+![Preview2](assets/screenshots/preview1.png)
 
 </details>
