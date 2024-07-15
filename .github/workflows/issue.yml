@@ -1,15 +1,20 @@
+name: Add issues to project
+
 on:
   issues:
-    types: [opened]
-
-permissions: write-all
+    types:
+      - opened
 
 jobs:
-  createCard:
+  add-to-project:
+    name: Add issue to project
     runs-on: ubuntu-latest
     steps:
-      - name: Create or Update Project Card
-        uses: peter-evans/create-or-update-project-card@v1
+      - uses: actions/add-to-project@RELEASE_VERSION
         with:
-          project-name: Dexterion Development
-          column-name: View Needed
+          # You can target a project in a different organization
+          # to the issue
+          project-url: https://github.com/users/Skwrr/projects/1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          labeled: bug, enhancement
+          label-operator: OR
