@@ -15,9 +15,9 @@ Welcome to **Dexterion**! A free open-source with educational propurse cheat bui
 - [Compile](#Compiling)
 - [Anti-Cheat](#Anti-Cheat)
 - [Features](#Features)
-- [FAQ](#FAQ)
 - [Credits](#Credits)
 - [LICENSE](#License)
+- [Disclaimer](#Disclaimer)
 - [ScreenShots](#Screenshoots)
 
 ## Compiling
@@ -68,11 +68,6 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 
 > [!CAUTION]
 > **Bunny Hop, Anti-Flash, Fov are using write memory function from windows api and this could result in a ban.**
-
-## FAQ
-
-### OBS Bypass?
-Yes, you need to capture only the game.
 
 ## Credits
 - [kristofhracza/tim_apple](https://github.com/kristofhracza/tim_apple) (Forked from this. Inspiration)
