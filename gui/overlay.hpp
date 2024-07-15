@@ -20,7 +20,6 @@ public:
 	HINSTANCE hInstance;
 	WNDCLASSEXW windowClass;
 	HWND window;
-	bool menutoggle = true;
 
 	DXGI_SWAP_CHAIN_DESC swapChain{};
 	D3D_FEATURE_LEVEL featureLevels[2]{
@@ -34,7 +33,7 @@ public:
 	D3D_FEATURE_LEVEL loadedLevel{};
 	ID3D11Texture2D* backBuffer{ 0 };
 
-	static bool menuOpen;
+	static bool menutoggle;
 	static bool isMenuOpen();
 	WNDCLASSEXW createWindowClass(HINSTANCE hInstance, WNDPROC Wndproc, LPCWSTR windowname);
 
