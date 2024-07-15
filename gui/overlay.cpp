@@ -112,7 +112,7 @@ void overlayESP::initWindow(int nShowCmd) {
 bool overlayESP::menutoggle = true;
 
 bool overlayESP::isMenuOpen() {
-	return !menutoggle;
+	return menutoggle;
 }
 
 void overlayESP::renderLoop(MemoryManagement::moduleData client) {
