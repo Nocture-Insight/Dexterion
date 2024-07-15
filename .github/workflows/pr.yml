@@ -1,5 +1,5 @@
 on:
-  issues:
+  pull_request:
     types: [opened]
 
 permissions: write-all
@@ -12,4 +12,4 @@ jobs:
         uses: peter-evans/create-or-update-project-card@v1
         with:
           project-name: Dexterion Development
-          column-name: View Needed
+          column-name: Review Needed
