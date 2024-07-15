@@ -152,6 +152,7 @@
     <ClInclude Include="imgui\render.h" />
     <ClInclude Include="json\json.hpp" />
     <ClInclude Include="json\jsonOps.hpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="util\attributes.hpp" />
     <ClInclude Include="util\config.hpp" />
     <ClInclude Include="util\MemMan.hpp" />
@@ -179,6 +180,13 @@
     <ClCompile Include="dexterion.cpp" />
     <ClCompile Include="util\attributes.cpp" />
     <ClCompile Include="util\config.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="dexterion.ico" />
+    <Image Include="dexterion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Dexterion.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
