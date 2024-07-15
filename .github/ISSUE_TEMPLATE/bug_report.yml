@@ -38,10 +38,10 @@ body:
     validations:
       required: true
   - type: textarea
-        attributes:
-          label: ⚙️ Configuration Files
-          description: |
-          Drop here your config file.
+     attributes:
+      label: ⚙️ Configuration Files
+      description: |
+       Drop here your config file.
     validations:
       required: true
   - type: textarea
