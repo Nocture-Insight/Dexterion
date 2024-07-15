@@ -33,8 +33,9 @@ public:
 	D3D_FEATURE_LEVEL loadedLevel{};
 	ID3D11Texture2D* backBuffer{ 0 };
 
-
-	WNDCLASSEXW createWindowClass(HINSTANCE hInstance,WNDPROC Wndproc,LPCWSTR windowname);
+	static bool menuOpen;
+	static bool isMenuOpen();
+	WNDCLASSEXW createWindowClass(HINSTANCE hInstance, WNDPROC Wndproc, LPCWSTR windowname);
 
 	HWND createWindow(int horizontalSize, int verticallSize);
 
