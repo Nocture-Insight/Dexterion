@@ -38,7 +38,7 @@ body:
     validations:
       required: true
   - type: textarea
-     attributes:
+    attributes:
       label: ⚙️ Configuration Files
       description: Drop here your config file.
     validations:
