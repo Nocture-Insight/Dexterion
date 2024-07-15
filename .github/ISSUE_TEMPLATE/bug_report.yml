@@ -18,7 +18,7 @@ body:
         How did you installed offsets.
       value: |
         - Dexterion version: (You can find this in about tab)
-        - Describe install method of offsets: (e.g., From <a href="https://github.com/a2x/cs2-dumper">a2x repo's</a>, Self Dump)
+        - Describe install method of offsets: (e.g., Direct Download from a2x repo's, Self Dump)
       placeholder: |
         - Dexterion version: Realese 26
         - Describe install method of offsets: Self Dump
