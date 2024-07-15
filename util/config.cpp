@@ -217,32 +217,46 @@ nlohmann::json config::to_json() {
 	return json;
 }
 
-void config::load() {
+void config::load(int index) {
+	if (index < 0 || index >= MAX_CONFIGS) return;
+
 	try {
-		config::configFile = json::readFromJsonFile(json::configFile);
-		espConf.from_json(config::configFile["espConf"]);
-		aimConf.from_json(config::configFile["aimConf"]);
-		miscConf.from_json(config::configFile["miscConf"]);
+		//std::cout << index << " Current index" << std::endl; // debug
+		std::wcout << "[Config.cpp] Loading config: " << CONFIG_NAMES[index] << std::endl; // debug
+		configFiles[index] = json::readFromJsonFile(CONFIG_NAMES[index]);
+		//std::cout << "Loaded JSON: " << configFiles[index].dump(4) << std::endl; // debug
+		aimConf.from_json(configFiles[index]["aimConf"]);
+		espConf.from_json(configFiles[index]["espConf"]);
+		miscConf.from_json(configFiles[index]["miscConf"]);
 	}
-	catch (nlohmann::json::type_error& ignored) {
+	catch (const nlohmann::json::type_error& e) {
+		std::cout << "[Config.cpp] Error: " << e.what() << std::endl;
 		std::cout << "[Config.cpp] Configuration section has missing properties, using defaults for missing options." << std::endl;
 	}
 }
 
-void config::save() {
-	std::ofstream outfile;
 
-	outfile.open(utils::getExePath().append(json::configFile), std::ios_base::out);
+void config::save(int index) {
+	if (index < 0 || index >= MAX_CONFIGS) return;
+
+	std::wstring filePath = utils::getExePath() + L"\\" + CONFIG_NAMES[index];
+	//std::wcout << filePath << " Current index: " << index << std::endl; // debug
+	std::ofstream outfile(filePath, std::ios_base::out);
 	outfile << config::to_json();
-
 	outfile.close();
 }
 
-void config::create() {
-	std::ofstream outfile(utils::getExePath().append(json::configFile));
+void config::create(int index) {
+	if (index < 0 || index >= MAX_CONFIGS) return;
+
+	std::wstring filePath = utils::getExePath() + L"\\" + CONFIG_NAMES[index];
+	std::ofstream outfile(filePath);
 	outfile.close();
 }
 
-bool config::exists() {
-	return std::ifstream(utils::getExePath().append(json::configFile)).good();
+bool config::exists(int index) {
+	if (index < 0 || index >= MAX_CONFIGS) return false;
+
+	std::wstring filePath = utils::getExePath() + L"\\" + CONFIG_NAMES[index];
+	return std::ifstream(filePath).good();
 }

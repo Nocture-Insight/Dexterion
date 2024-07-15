@@ -46,16 +46,16 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	printf("[MemMan] Counter Strike 2 Found (%d)!\n", procId);
 	SetConsoleTextAttribute(hConsole, 9);
 	printf("[Config.hpp] Checking for config file...\n");
-	if (config::exists()) {
+	if (config::exists(0)) { // passing 0 cause setup
 		SetConsoleTextAttribute(hConsole, 10);
 		printf("[Config.hpp] Config File Found! Loading preferred config...\n");
-		config::load();
+		config::load(0);
 	}
 	else {
 		SetConsoleTextAttribute(hConsole, 12);
 		printf("[Config.hpp] Config File Not Found! Loading Defaults...\n");
-		config::create();
-		config::save();
+		config::create(0);
+		config::save(0);
 	}
 	
 	SetConsoleTextAttribute(hConsole, 9);
