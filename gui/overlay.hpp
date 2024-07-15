@@ -20,6 +20,7 @@ public:
 	HINSTANCE hInstance;
 	WNDCLASSEXW windowClass;
 	HWND window;
+	bool menutoggle = true;
 
 	DXGI_SWAP_CHAIN_DESC swapChain{};
 	D3D_FEATURE_LEVEL featureLevels[2]{
