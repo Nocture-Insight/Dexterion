@@ -105,10 +105,10 @@ void overlayESP::initWindow(int nShowCmd) {
 	printf("[overlay.cpp] Overlay Drew Succesfully!\n");
 }
 
-bool overlayESP::menuOpen = false;
+bool overlayESP::menutoggle = true;
 
 bool overlayESP::isMenuOpen() {
-	return menutoggle;
+	return !menutoggle;
 }
 
 void overlayESP::renderLoop(MemoryManagement::moduleData client) {
