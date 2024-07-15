@@ -1,33 +1,52 @@
----
 name: Bug report
-about: Create a report to help us improve
+description: Report errors or unexpected behavior
 title: "[ISSUE/BUG]"
-labels: bug
-assignees: Skwrr
+labels: [bug]
+body:
+  - type: checkboxes
+    attributes:
+      label: 🔍 Is there already an issue for your problem?
+      description: Please make sure you are not creating an already submitted <a href="https://github.com/Skwrr/Dexterion/issues">Issue</a>. Also check closed issue.
+      options:
+        - label: I have checked older issues, open and closed
+          required: true
+  - type: textarea
+    attributes:
+      label: ℹ Environment / Computer Info
+      description: |
+        Please provide the details of version installed.
+        How did you installed offsets.
+      value: |
+        - Dexterion version: (You can find this in about tab)
+        - Describe install method of offsets: (e.g., From <a href="https://github.com/a2x/cs2-dumper">a2x repo's</a>, Self Dump)
+      placeholder: |
+        - Dexterion version: Realese 26
+        - Describe install method of offsets: Self Dump
+      render: Markdown
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 📝 Description
+      description: |
+        List steps to reproduce the error and details on what happens and what you expected to happen.
+      placeholder: |
+        1. Please number your steps like so.\n
+        2. This helps readability of your instructions.
 
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Enable '....'
-3. Do '....'
-4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context/information about the problem here.
-
-**Configuration file**
-For easier reproduction, please attach your configuration file here (ONLY PASTEBIN, HASTEBIN, PRIVATEBIN, ETC)
+        Feel free to write down additional notes you may want us to know.
+    validations:
+      required: true
+  - type: textarea
+        attributes:
+          label: ⚙️ Configuration Files
+          description: |
+          Drop here your config file.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 📸 Screenshots
+      description: Place any screenshots of the issue here if needed
+    validations:
+      required: false
