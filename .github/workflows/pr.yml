@@ -1,0 +1,15 @@
+on:
+  pull_request:
+    types: [opened]
+
+permissions: write-all
+
+jobs:
+  createCard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create or Update Project Card
+        uses: peter-evans/create-or-update-project-card@v1
+        with:
+          project-name: Dexterion Development
+          column-name: Review Needed
