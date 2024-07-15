@@ -122,14 +122,18 @@ struct miscConfig {
 };
 miscConfig miscConf = {};
 
+//settings for configs
+constexpr int MAX_CONFIGS = 4;
+const std::wstring CONFIG_NAMES[MAX_CONFIGS] = { L"Config1.json", L"Config2.json", L"Config3.json", L"Config4.json"};
 inline namespace config {
-	inline nlohmann::json configFile = json::readFromJsonFile(json::configFile);
+	inline nlohmann::json configFiles[MAX_CONFIGS]; // to store multiple configs
+	inline int currentConfigIndex = 0; // current config
 
 	nlohmann::json to_json();
-	void load();
-	void save();
-	void create();
-	bool exists();
+	void load(int index);
+	void save(int index);
+	void create(int index);
+	bool exists(int index);
 }
 
 enum bones : int {
