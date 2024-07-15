@@ -44,6 +44,6 @@ jobs:
       with:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./x64/Release/Dexterion.exe
-        asset_name: Dexterion v${{ github.run_number }}.exe
+        asset_name: Dexterion v2.0.0.exe
         asset_content_type: application/exe
         
