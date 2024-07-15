@@ -11,5 +11,5 @@ jobs:
       - name: Create or Update Project Card
         uses: peter-evans/create-or-update-project-card@v1
         with:
-          project-name: My project
+          project-name: Dexterion Development
           column-name: View Needed
