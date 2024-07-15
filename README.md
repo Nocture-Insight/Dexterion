@@ -11,14 +11,14 @@ Welcome to **Dexterion**! A free open-source with educational propurse cheat bui
 </div>
 
 ## Table of contents 
-- [Usage](#Usage)
 - [Compile](#Compiling)
+- [Usage](#Usage)
 - [Anti-Cheat](#Anti-Cheat)
 - [Features](#Features)
 - [Credits](#Credits)
 - [LICENSE](#License)
 - [Disclaimer](#Disclaimer)
-- [ScreenShots](#Screenshoots)
+- [Previews](#Previews)
 
 ## Compiling
 Open `dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
@@ -77,7 +77,7 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 
 ## Disclaimer
 > [!IMPORTANT]
-> We are not responsible for any banned account and the bad use of this application program. This application was made for educational propurse to test the [VAC ( Valve Anti-Cheat )](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74). **USE AT YOUR OWN RISK**
+> We are not responsible for any **banned accounts** and the **bad use** of this application This application was made for educational propurse to test the [VAC ( Valve Anti-Cheat )](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74). **USE AT YOUR OWN RISK**.
 
 ## License
 > [!NOTE]
@@ -85,7 +85,7 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 
 <details>
   <summary>
-    <h2>Screenshots</h2>
+    <h2>Previews</h2>
   </summary>
 
 ![Preview](assets/screenshots/preview.png)
