@@ -313,7 +313,7 @@ void imGuiMenu::miscRender() {
 		ImGui::Text("Movement");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Bunny hop", &miscConf.bunnyHop);
+		ImGui::Checkbox("Bunny hop (!!! WRITE MEMORY !!!)", &miscConf.bunnyHop);
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
@@ -335,9 +335,9 @@ void imGuiMenu::miscRender() {
 		ImGui::Text("Visual");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Anti flash", &miscConf.flash);
+		ImGui::Checkbox("Anti flash (!!! WRITE MEMORY !!!)", &miscConf.flash);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Fov Changer", &miscConf.fovCheck);
+		ImGui::Checkbox("Fov Changer (!!! WRITE MEMORY !!!)", &miscConf.fovCheck);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		if (miscConf.fovCheck) {
 			ImGui::SliderInt("FOV", &miscConf.fov, 30, 140);
