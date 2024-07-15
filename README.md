@@ -1,6 +1,6 @@
 <div align="center">
   
-![DexterionBanner](screenshots/banner.png)
+![DexterionBanner](screenshots/dexterion_banner2.jpg)
   
 [![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=plastic)](https://en.wikipedia.org/wiki/C%2B%2B)
 [![CS2](https://img.shields.io/badge/game-CS2-yellow.svg?style=plastic)](https://store.steampowered.com/app/730) 
