@@ -40,10 +40,9 @@ body:
   - type: textarea
      attributes:
       label: ⚙️ Configuration Files
-      description: |
-       Drop here your config file.
+      description: Drop here your config file.
     validations:
-      required: true
+      required: false
   - type: textarea
     attributes:
       label: 📸 Screenshots
