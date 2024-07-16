@@ -12,36 +12,67 @@
 inline namespace Logger {
 	inline HANDLE hConsole;
 
-	inline void info(auto str, bool endLine = true) {
+	std::wstring ToWstring(std::string Str) {
+		std::vector<wchar_t> buf(Str.size());
+		std::use_facet<std::ctype<wchar_t>>(std::locale()).widen(Str.data(),
+			Str.data() + Str.size(),
+			buf.data());
+		return std::wstring(buf.data(), buf.size());
+	}
+
+	// WString
+	inline void info(std::wstring str, bool endLine = true) {
 		SetConsoleTextAttribute(hConsole, 9);
 		if (endLine)
-			std::cout << "[Info] " << str << std::endl;
+			std::wcout << "[Info] " << str << std::endl;
 		else
-			std::cout << "[Info] " << str;
+			std::wcout << "[Info] " << str;
 	}
 
-	inline void success(auto str, bool endLine = true) {
+	inline void success(std::wstring str, bool endLine = true) {
 		SetConsoleTextAttribute(hConsole, 10);
 		if (endLine)
-			std::cout << "[Success] " << str << std::endl;
+			std::wcout << "[Success] " << str << std::endl;
 		else
-			std::cout << "[Success] " << str;
+			std::wcout << "[Success] " << str;
 	}
 
-	inline void error(auto str, bool endLine = true) {
+	inline void error(std::wstring str, bool endLine = true) {
 		SetConsoleTextAttribute(hConsole, 12);
 		if (endLine)
-			std::cout << "[Error] " << str << std::endl;
+			std::wcout << "[Error] " << str << std::endl;
 		else
-			std::cout << "[Error] " << str;
+			std::wcout << "[Error] " << str;
 	}
 
-	inline void warn(auto str, bool endLine = true) {
+	inline void warn(std::wstring str, bool endLine = true) {
 		SetConsoleTextAttribute(hConsole, 14);
 		if (endLine)
-			std::cout << "[Warning] " << str << std::endl;
+			std::wcout << "[Warning] " << str << std::endl;
 		else
-			std::cout << "[Warning] " << str;
+			std::wcout << "[Warning] " << str;
+	}
+
+
+
+
+
+
+	// String
+	inline void info(std::string str, bool endLine = true) {
+		info(ToWstring(str), endLine);
+	}
+
+	inline void success(std::string str, bool endLine = true) {
+		success(ToWstring(str), endLine);
+	}
+
+	inline void error(std::string str, bool endLine = true) {
+		error(ToWstring(str), endLine);
+	}
+
+	inline void warn(std::string str, bool endLine = true) {
+		warn(ToWstring(str), endLine);
 	}
 }
 
