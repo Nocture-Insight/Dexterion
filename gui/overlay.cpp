@@ -117,6 +117,7 @@ bool overlayESP::isMenuOpen() {
 
 void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 	bool state = true;
+	bool check;
 
 	while (state) {
 		if (GetAsyncKeyState(VK_INSERT) & 1)
@@ -164,6 +165,11 @@ void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 		loadedSwapChain->Present(1, 0);
+
+		if (!check) {
+			check = !check;
+			Logger::success("[overlay.cpp] Overlay drew succesfully! Cheat loaded.");
+		}
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(1 / 100));
 	}
