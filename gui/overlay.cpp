@@ -105,8 +105,7 @@ void overlayESP::initWindow(int nShowCmd) {
 	ImGui_ImplWin32_Init(window);
 	ImGui_ImplDX11_Init(device, deviceContext);
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-	printf("[overlay.cpp] Overlay Drew Succesfully!\n");
+	Logger::success("[overlay.cpp] Overlay Drew Succesfully!");
 }
 
 bool overlayESP::menutoggle = true;
