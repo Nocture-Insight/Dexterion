@@ -124,7 +124,7 @@ miscConfig miscConf = {};
 
 //settings for configs
 constexpr int MAX_CONFIGS = 4;
-const std::wstring CONFIG_NAMES[MAX_CONFIGS] = { L"Config1.json", L"Config2.json", L"Config3.json", L"Config4.json"};
+const std::wstring CONFIG_NAMES[MAX_CONFIGS] = { L"config.json", L"config1.json", L"config2.json", L"config3.json"};
 inline namespace config {
 	inline nlohmann::json configFiles[MAX_CONFIGS]; // to store multiple configs
 	inline int currentConfigIndex = 0; // current config
