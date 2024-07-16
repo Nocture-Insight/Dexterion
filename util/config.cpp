@@ -228,8 +228,11 @@ void config::load(int index) {
 		miscConf.from_json(configFiles[index]["miscConf"]);
 	}
 	catch (const nlohmann::json::type_error& e) {
-		
-		Logger::error(std::format("[Config.cpp] Error: {%d}", e.what()), true);
+		std::ostringstream str;
+
+		str << "[Config.cpp] Error: " << e.what();
+
+		Logger::error(str.str(), true);
 		Logger::warn("[Config.cpp] Configuration section has missing properties, using defaults for missing options.", true);
 	}
 }
