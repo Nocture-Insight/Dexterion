@@ -229,7 +229,7 @@ void config::load(int index) {
 	}
 	catch (const nlohmann::json::type_error& e) {
 		
-		Logger::error("[Config.cpp] Error: " + e.what(), true);
+		Logger::error(std::format("[Config.cpp] Error: {%d}", e.what()), true);
 		Logger::warn("[Config.cpp] Configuration section has missing properties, using defaults for missing options.", true);
 	}
 }
