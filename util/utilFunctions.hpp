@@ -12,12 +12,11 @@
 inline namespace Logger {
 	inline HANDLE hConsole;
 
-	std::wstring ToWstring(std::string Str) {
-		std::vector<wchar_t> buf(Str.size());
-		std::use_facet<std::ctype<wchar_t>>(std::locale()).widen(Str.data(),
-			Str.data() + Str.size(),
-			buf.data());
-		return std::wstring(buf.data(), buf.size());
+	inline std::wstring StrToWstr(std::string str)
+	{
+		std::wstring temp;
+		std::copy(str.begin(), str.end(), std::back_inserter(temp));
+		return temp;
 	}
 
 	// WString
@@ -60,19 +59,19 @@ inline namespace Logger {
 
 	// String
 	inline void info(std::string str, bool endLine = true) {
-		info(ToWstring(str), endLine);
+		info(StrToWstr(str), endLine);
 	}
 
 	inline void success(std::string str, bool endLine = true) {
-		success(ToWstring(str), endLine);
+		success(StrToWstr(str), endLine);
 	}
 
 	inline void error(std::string str, bool endLine = true) {
-		error(ToWstring(str), endLine);
+		error(StrToWstr(str), endLine);
 	}
 
 	inline void warn(std::string str, bool endLine = true) {
-		warn(ToWstring(str), endLine);
+		warn(StrToWstr(str), endLine);
 	}
 }
 
