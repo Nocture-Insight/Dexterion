@@ -57,7 +57,7 @@ inline bool aimConfig::from_json(nlohmann::json json) {
 		hotSelectTrigger = json["hotSelectTrigger"];
 	}
 	catch (nlohmann::json::type_error& ignored) {
-		std::cout << "[Config.cpp] aimConfig section has missing properties, using defaults for missing options." << std::endl;
+		Logger::warn("[Config.cpp] aimConfig section has missing properties, using defaults for missing options.");
 	}
 
 	return true;
@@ -203,7 +203,7 @@ inline bool miscConfig::from_json(nlohmann::json json) {
 		bombTimerColours[2] = json["bombTimerColours"][2];
 	}
 	catch (nlohmann::json::type_error& ignored) {
-		std::cout << "[Config.cpp] miscConfig section has missing properties, using defaults for missing options." << std::endl;
+		Logger::warn("[Config.cpp] miscConfig section has missing properties, using defaults for missing options.");
 	}
 
 	return true;
@@ -221,17 +221,16 @@ void config::load(int index) {
 	if (index < 0 || index >= MAX_CONFIGS) return;
 
 	try {
-		//std::cout << index << " Current index" << std::endl; // debug
-		std::wcout << "[Config.cpp] Loading config: " << CONFIG_NAMES[index] << std::endl; // debug
+		Logger::info(L"[Config.cpp] Loading config: " + CONFIG_NAMES[index], true);
 		configFiles[index] = json::readFromJsonFile(CONFIG_NAMES[index]);
-		//std::cout << "Loaded JSON: " << configFiles[index].dump(4) << std::endl; // debug
 		aimConf.from_json(configFiles[index]["aimConf"]);
 		espConf.from_json(configFiles[index]["espConf"]);
 		miscConf.from_json(configFiles[index]["miscConf"]);
 	}
 	catch (const nlohmann::json::type_error& e) {
-		std::cout << "[Config.cpp] Error: " << e.what() << std::endl;
-		std::cout << "[Config.cpp] Configuration section has missing properties, using defaults for missing options." << std::endl;
+		
+		Logger::error("[Config.cpp] Error: " + e.what(), true);
+		Logger::warn("[Config.cpp] Configuration section has missing properties, using defaults for missing options.", true);
 	}
 }
 
