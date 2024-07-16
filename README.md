@@ -77,7 +77,7 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 
 ## Disclaimer
 > [!IMPORTANT]
-> We are not responsible for any **banned accounts** and the **bad use** of this application This application was made for educational propurse to test the [VAC ( Valve Anti-Cheat )](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74). **USE AT YOUR OWN RISK**.
+> We are not responsible for any **banned accounts** and the **bad use** of this application. This application was made for educational propurse to test the [VAC ( Valve Anti-Cheat )](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74). **USE AT YOUR OWN RISK**.
 
 ## License
 > [!NOTE]
