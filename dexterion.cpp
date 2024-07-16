@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <thread>
 #include <chrono>
+#include <format>
 
 #include "util/config.hpp"
 #include "gui/overlay.hpp"
@@ -33,33 +34,30 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	AllocConsole();
 	freopen("CONOUT$", "w", stdout);
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	Logger::hConsole = hConsole;
+
 	// Memory and game related vars (used in entry and passed through overlay)
 	int procId = MemMan.getPid(L"cs2.exe");
-	SetConsoleTextAttribute(hConsole, 9);
 	if (procId == 0)
-		printf("[MemMan] Waiting For Counter Strike 2\n");
+		Logger::info("[MemMan] Waiting For Counter Strike 2");
 	while (procId == 0) {
 		procId = MemMan.getPid(L"cs2.exe");
 		std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 	}
-	SetConsoleTextAttribute(hConsole, 10);
-	printf("[MemMan] Counter Strike 2 Found (%d)!\n", procId);
-	SetConsoleTextAttribute(hConsole, 9);
-	printf("[Config.hpp] Checking for config file...\n");
-	if (config::exists()) {
-		SetConsoleTextAttribute(hConsole, 10);
-		printf("[Config.hpp] Config File Found! Loading preferred config...\n");
-		config::load();
+	Logger::success(std::format("[MemMan] Counter Strike 2 Found (%d)!", procId));
+	Logger::info("[Config.hpp] Checking for config file...");
+	if (config::exists(0)) { // passing 0 cause setup
+		Logger::success("[Config.hpp] Config File Found! Loading config...");
+		config::load(0);
 	}
 	else {
-		SetConsoleTextAttribute(hConsole, 12);
-		printf("[Config.hpp] Config File Not Found! Loading Defaults...\n");
-		config::create();
-		config::save();
+		Logger::error("[Config.hpp] Config File Not Found! Loading Defaults...");
+		config::create(0);
+		config::save(0);
 	}
 	
-	SetConsoleTextAttribute(hConsole, 9);
-	printf("[dexterion.cpp] Getting addresses...\n");
+	Logger::info("[dexterion.cpp] Getting addresses...");
 	MemoryManagement::moduleData client;
 	client.module = MemMan.getModule(procId, L"client.dll");
 	client.base = MemMan.getModuleBase(procId, "client.dll");
@@ -69,29 +67,24 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 	}
 	if (!loadJson()) {
-		SetConsoleTextAttribute(hConsole, 12);
-		std::cout << "[attributes.cpp] Cannot load JSON files (did you run updateoffsets.cmd?)" << std::endl;
+		Logger::error("[attributes.cpp] Cannot load JSON files (did you run updateoffsets.cmd?)");
 		system("pause");
 		return 0;
 	}
-	SetConsoleTextAttribute(hConsole, 10);
-	printf("[dexterion.cpp] Addresses found succesfully!\n");
-
-	SetConsoleTextAttribute(hConsole, 9);
-	printf("[dexterion.cpp] Creating overlay...\n");
+	Logger::success("[dexterion.cpp] Addresses found succesfully!");
+	
+	Logger::info("[dexterion.cpp] Creating overlay...");
 	// Overlay
 	overlayESP overlayClass;
 	WNDCLASSEXW windowClass = overlayClass.createWindowClass(hInstance, Wndproc, L"Dexterion");
 	HWND window = overlayClass.createWindow(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
 
-	SetConsoleTextAttribute(hConsole, 9);
-	printf("[dexterion.cpp] Drawing overlay...\n");
+	Logger::info("[dexterion.cpp] Drawing overlay...");
 	overlayClass.makeFrameIntoClientArea();
 	overlayClass.makeDeviceAndSwapChain();
 	overlayClass.initWindow(nShowCmd);
 
-	SetConsoleTextAttribute(hConsole, 9);
-	printf("[overlay.cpp] Starting main loop...\n");
+	Logger::info("[overlay.cpp] Starting main loop...");
 	overlayClass.renderLoop(client);
 
 	return 0;

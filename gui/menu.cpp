@@ -397,15 +397,29 @@ void imGuiMenu::aboutMeRender() {
 	}
 }
 
+
 void imGuiMenu::configRender() {
 	if (tabCount == 5) {
 		ImGui::BeginChild("Configuration File", ImVec2(0, 0), true);
+		std::vector<std::string> configNamesNarrow;
+		// wide strings to narrow strings
+		for (const auto& name : CONFIG_NAMES) {
+			configNamesNarrow.push_back(std::string(name.begin(), name.end()));
+		}
+		// vector for combo
+		std::vector<const char*> configNamesCStr;
+		for (const auto& name : configNamesNarrow) {
+			configNamesCStr.push_back(name.c_str());
+		}
+
+		ImGui::Combo("Select Config", &currentConfigIndex, configNamesCStr.data(), configNamesCStr.size());
+
 		if (ImGui::Button("Save", ImVec2(50, 20))) {
-			config::save();
+			config::save(currentConfigIndex);
 		}
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		if (ImGui::Button("Load", ImVec2(50, 20))) {
-			config::load();
+			config::load(currentConfigIndex);
 		}
 		ImGui::EndChild();
 	}

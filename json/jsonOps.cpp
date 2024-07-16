@@ -4,7 +4,9 @@ nlohmann::json json::readFromJsonFile(std::wstring fileName) {
 	nlohmann::json fileContent;
 	try {
 		std::wstring currentPath;
-		currentPath = utils::getExePath().append(fileName);
+		std::wstring Directory = utils::getExePath();
+		Directory = Directory + L"\\";
+		currentPath = Directory.append(fileName);
 
 		std::ifstream f(currentPath);
 		fileContent = nlohmann::json::parse(f);

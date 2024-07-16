@@ -54,10 +54,8 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 		// Player controller
 		CCSPlayerController.id = i;
 		CCSPlayerController.getListEntry();
-		//std::cout << CCSPlayerController.listEntry << " - ";
 		if (!CCSPlayerController.listEntry) continue;
 		CCSPlayerController.getController();
-		//std::cout << CCSPlayerController.value << std::endl;
 		if (CCSPlayerController.value == 0) continue;
 		CCSPlayerController.getPawnName();
 

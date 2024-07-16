@@ -1,15 +1,19 @@
 on:
   pull_request:
-    types: [opened]
+    types: 
+    - opened
 
+name: Add PR to project
 permissions: write-all
 
 jobs:
-  createCard:
+  add-to-project:
+    name: Add PR to project
     runs-on: ubuntu-latest
     steps:
-      - name: Create or Update Project Card
-        uses: peter-evans/create-or-update-project-card@v1
+      - uses: actions/add-to-project@v1.0.2
         with:
-          project-name: Dexterion Development
-          column-name: Review Needed
+          # You can target a project in a different organization
+          # to the issue
+          project-url: https://github.com/users/Skwrr/projects/1
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -105,18 +105,18 @@ void overlayESP::initWindow(int nShowCmd) {
 	ImGui_ImplWin32_Init(window);
 	ImGui_ImplDX11_Init(device, deviceContext);
 
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-	printf("[overlay.cpp] Overlay Drew Succesfully!\n");
+	Logger::success("[overlay.cpp] Overlay Drew Succesfully!");
 }
 
 bool overlayESP::menutoggle = true;
 
 bool overlayESP::isMenuOpen() {
-	return !menutoggle;
+	return menutoggle;
 }
 
 void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 	bool state = true;
+	bool check = false;
 
 	while (state) {
 		if (GetAsyncKeyState(VK_INSERT) & 1)
@@ -164,6 +164,11 @@ void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
 		loadedSwapChain->Present(1, 0);
+
+		if (!check) {
+			check = !check;
+			Logger::success("[overlay.cpp] Overlay drew succesfully! Cheat loaded.");
+		}
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(1 / 100));
 	}

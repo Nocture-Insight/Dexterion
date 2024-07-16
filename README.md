@@ -1,68 +1,73 @@
-# Dexterion
-CS2 External Cheat
+<div align="center">
+  
+![DexterionBanner](assets/dexterion_banner.jpg)
+  
+[![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=plastic)](https://en.wikipedia.org/wiki/C%2B%2B)
+[![CS2](https://img.shields.io/badge/game-CS2-yellow.svg?style=plastic)](https://store.steampowered.com/app/730) 
+[![License](https://img.shields.io/badge/License-BDSv3-green.svg?style=plastic)](https://github.com/Skwrr/Dexterion/blob/master/LICENSE)
 
-![Preview](screenshots/preview.png)
-![Preview1](screenshots/preview0.png)
-![Preview2](screenshots/preview1.png)
+Welcome to **Dexterion**! A free open-source with educational propurse cheat built to test [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74).
 
-## Compiling from source
-Open `dexterion.sln` in Visual Studio 2022, set build configuration to `Release | x64`.      
-Press Build solution and you should receive `Dexterion.exe` file.      
+</div>
 
-## Usage #1
-1. Run `Dexterion vX.exe` before opening Counter Strike 2.
-2. Open Counter Strike 2.
-3. Wait for everything to load.
-4. Enjoy cheating!
-## Usage #2
-1. Open Counter Strike 2.
-2. Run `Dexterion vX.exe` when CS2 is COMPLETELY LOADED.
-3. Enjoy cheating!
-### Controls
-Press the `INSERT` key to toggle the menu.     
-Press the `END` key to end the cheat.
+## Table of contents 
+- [Compile](#Compiling)
+- [Usage](#Usage)
+- [Anti-Cheat](#Anti-Cheat)
+- [Features](#Features)
+- [Credits](#Credits)
+- [LICENSE](#License)
+- [Disclaimer](#Disclaimer)
+- [Previews](#Previews)
 
-## Offsets
-### Script download
-Run the `updateoffset.cmd` in the same folder as your executable is
-### Manual download
-1. Download [client.dll.json](https://github.com/a2x/cs2-dumper/tree/main/output/client.dll.json), [offsets.json](https://github.com/a2x/cs2-dumper/tree/main/output/offsets.json) and [buttons.json](https://github.com/a2x/cs2-dumper/tree/main/output/buttons.json) 
-2. Place these files in the same folder as the executable file `Dexterion vX.exe` is    
+## Compiling
+Open `dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
+Press Build solution and you should receive **Dexterion.exe** file in the path `Dexterion/x64/Realese/`
+
+## Usage
+### Update Offsets ( Choose 1 or 2 )
+1. Update Offsets. (Run `updateoffsets.cmd` in the same folder as `Dexterion.exe`)
+2. Manualy update from [a2x repo's](https://github.com/a2x/cs2-dumper/blob/main/output) the following files: `buttons.json`, `offsets.json`, `client.dll.json`.
+### Run
+4. Run `Dexterion.exe` From realese path
+5. Follow Terminal instructions.
+6. Wait For Load.
+
+### Toggle/Kill UI
+- Toggle UI: `Inset` key.
+- Terminate UI: `End` key.
+
+### Using Icon Fonts
+Move fonts folder to the same folder as `Dexterion.exe` is.
+
+## Anti-Cheat
+> [!CAUTION]
+> **This is a cheat, this agains any game tos. We are not responsible of any account banned. USE AT YOUR OWN RISK.**
 
 ## Features
-*Most features have visibility check*
-### ESP
-- Health bar (+ HP counter)
-- Player name
-- Weapon icons / names
-- Skeleton
-- Joints
-- Head
-- Snap lines
-- Distance
-### Aim
-- Aimbot (+ Player lock)
-- Recoil control system
-- Trigger bot (random click delay)
-### Misc
-- Bunny hop
-- Anti flash
-- Deathmatch Mode
-- Dropped item ESP **(PERFORMANCE ISSUES)**
-- Bomb Timer
-- Spectator List
+- ESP
+  - Health bar (+ HP counter)
+  - Player name
+  - Weapon icons / names
+  - Skeleton
+  - Joints
+  - Head
+  - Snap lines
+  - Distance
+- Aim
+  - Aimbot (+ Player lock)
+  - Recoil control system
+  - Trigger bot (random click delay)
+- Misc
+  - Bunny hop
+  - Anti flash
+  - Deathmatch Mode
+  - Dropped item ESP (PERFORMANCE ISSUES)
+  - Bomb Timer
+  - Spectator List
 
-## FAQ
-### How to use the weapon icon font file
-1. Make a folder called `fonts` in the same folder as the executable is.
-2. Add the file `weaponIcons.ttf` in the folder.
-*(If the program cannot see the file, weapon names will be displayed instead)*
-
-### Is this cheat read-only?
-Yes, except Anti-Flash, Bunnyhop and FOV.
-
-### Is this Cheat OBS Bypass?
-Yes.
+> [!CAUTION]
+> **Bunny Hop, Anti-Flash, Fov are using write memory function from windows api and this could result in a ban.**
 
 ## Credits
 - [kristofhracza/tim_apple](https://github.com/kristofhracza/tim_apple) (Forked from this. Inspiration)
@@ -70,12 +75,21 @@ Yes.
 - [nlohmann/json](https://github.com/nlohmann/json)
 - [ocornut/imgui](https://github.com/ocornut/imgui)
 
-## TODO
-- ~~Add an option to move Spectator List position.~~
-- ~~Add Bomb Timer (With colour, position and size customization)~~
-- Add custom lang.
-- Add C4 Carrier ESP (Colour customizable)
-- Fix ESP suddenly stop issue.
-- Config File shareable / can load multiples config files.
-### Any request in the issues tab.
+## Disclaimer
+> [!IMPORTANT]
+> We are not responsible for any **banned accounts** and the **bad use** of this application. This application was made for educational propurse to test the [VAC ( Valve Anti-Cheat )](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74). **USE AT YOUR OWN RISK**.
 
+## License
+> [!NOTE]
+> This repository is under [BSD-3](https://github.com/Skwrr/Dexterion/blob/master/LICENSE) Clause License.
+
+<details>
+  <summary>
+    <h2>Previews</h2>
+  </summary>
+
+![Preview](assets/screenshots/preview.png)
+![Preview1](assets/screenshots/preview0.png)
+![Preview2](assets/screenshots/preview1.png)
+
+</details>
