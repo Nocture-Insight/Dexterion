@@ -9,6 +9,42 @@
 #include "../imgui/imgui.h"
 #include "Vectors.h"
 
+inline namespace Logger {
+	inline HANDLE hConsole;
+
+	inline void info(auto str, bool endLine = true) {
+		SetConsoleTextAttribute(hConsole, 9);
+		if (endLine)
+			std::cout << "[Info] " << str << std::endl;
+		else
+			std::cout << "[Info] " << str;
+	}
+
+	inline void success(auto str, bool endLine = true) {
+		SetConsoleTextAttribute(hConsole, 10);
+		if (endLine)
+			std::cout << "[Success] " << str << std::endl;
+		else
+			std::cout << "[Success] " << str;
+	}
+
+	inline void error(auto str, bool endLine = true) {
+		SetConsoleTextAttribute(hConsole, 12);
+		if (endLine)
+			std::cout << "[Error] " << str << std::endl;
+		else
+			std::cout << "[Error] " << str;
+	}
+
+	inline void warn(auto str, bool endLine = true) {
+		SetConsoleTextAttribute(hConsole, 14);
+		if (endLine)
+			std::cout << "[Warning] " << str << std::endl;
+		else
+			std::cout << "[Warning] " << str;
+	}
+}
+
 inline namespace utils {
 	// https://www.unknowncheats.me/forum/dayz-sa/129893-calculate-distance-meters.html
 	// https://www.unknowncheats.me/forum/general-programming-and-reversing/478087-calculate-size-esp-boxes-based-distance.html
