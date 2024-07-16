@@ -117,7 +117,7 @@ bool overlayESP::isMenuOpen() {
 
 void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 	bool state = true;
-	bool check;
+	bool check = false;
 
 	while (state) {
 		if (GetAsyncKeyState(VK_INSERT) & 1)
