@@ -392,7 +392,7 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::Text("https://www.unknowncheats.me/forum/members/6169955.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Text("Version: Release 33");
+		ImGui::Text("Version: v2.1.0 (Release 34)");
 		ImGui::EndChild();
 	}
 }
