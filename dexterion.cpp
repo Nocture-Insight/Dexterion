@@ -79,12 +79,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	WNDCLASSEXW windowClass = overlayClass.createWindowClass(hInstance, Wndproc, L"Dexterion");
 	HWND window = overlayClass.createWindow(GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN));
 
-	Logger::info("[dexterion.cpp] Drawing overlay...\n");
+	Logger::info("[dexterion.cpp] Drawing overlay...");
 	overlayClass.makeFrameIntoClientArea();
 	overlayClass.makeDeviceAndSwapChain();
 	overlayClass.initWindow(nShowCmd);
 
-	Logger::info("[overlay.cpp] Starting main loop...\n");
+	Logger::info("[overlay.cpp] Starting main loop...");
 	overlayClass.renderLoop(client);
 
 	return 0;
