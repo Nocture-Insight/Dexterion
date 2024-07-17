@@ -31,7 +31,8 @@ Press Build solution and you should receive **Dexterion.exe** file in the path `
 2. Manualy update from [a2x repo's](https://github.com/a2x/cs2-dumper/blob/main/output) the following files: `buttons.json`, `offsets.json`, `client.dll.json`.
 
 > [!IMPORTANT]
-   > Close Visual Studio to stop the realesed version that is ran automaticaly when you build. Then go to the `/x64/Realese/` path and open dexterion.\
+   > Close Visual Studio to stop the realesed version that is ran automaticaly when you build.
+   > Then go to the `/x64/Realese/` path and open dexterion.
    > **If you use the version that was ran when you built the application this will be bugged.**
 
 ### Run
