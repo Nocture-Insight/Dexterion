@@ -71,6 +71,7 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 
 ## Credits
 - [kristofhracza/tim_apple](https://github.com/kristofhracza/tim_apple) (Forked from this. Inspiration)
+- [Patitotective/ImThemes](https://github.com/Patitotective/ImThemes)
 - [a2x/cs2-dumper](https://github.com/a2x/cs2-dumper)
 - [nlohmann/json](https://github.com/nlohmann/json)
 - [ocornut/imgui](https://github.com/ocornut/imgui)
@@ -78,6 +79,9 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 ## Disclaimer
 > [!IMPORTANT]
 > We are not responsible for any **banned accounts** and the **bad use** of this application. This application was made for educational propurse to test the [VAC ( Valve Anti-Cheat )](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74). **USE AT YOUR OWN RISK**.
+
+> [!NOTE]
+> **This cheat is only tested on [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74) and `0` bans has been issued.**
 
 ## License
 > [!NOTE]
@@ -88,8 +92,11 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
     <h2>Previews</h2>
   </summary>
 
-![Preview](assets/screenshots/preview.png)
-![Preview1](assets/screenshots/preview0.png)
-![Preview2](assets/screenshots/preview1.png)
+
+![Preview](assets/screenshots/preview1.png)
+![Preview](assets/screenshots/preview2.png)
+![Preview](assets/screenshots/preview3.png)
+![Preview](assets/screenshots/preview4.png)
+![Preview](assets/screenshots/preview5.png)
 
 </details>
