@@ -27,7 +27,7 @@ Press Build solution and you should receive **Dexterion.exe** file in the path `
 
 ## Usage
 ### Update Offsets ( Choose 1 or 2 )
-1. Update Offsets. (Run `updateoffsets.cmd` in the same folder as `Dexterion.exe`)\
+1. Update Offsets. (Run `updateoffsets.cmd` in the same folder as `Dexterion.exe`)
 2. Manualy update from [a2x repo's](https://github.com/a2x/cs2-dumper/blob/main/output) the following files: `buttons.json`, `offsets.json`, `client.dll.json`.
 
 > [!IMPORTANT]
