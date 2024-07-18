@@ -35,8 +35,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ GITHUB_SHA }}
-        release_name: ${{ GITHUB_SHA }}
+        tag_name: ${{ github.sha }}
+        release_name: ${{ github.sha }}
     - name: Upload PE
       uses: actions/upload-release-asset@v1
       env:
@@ -44,6 +44,6 @@ jobs:
       with:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./x64/Release/Dexterion.exe
-        asset_name: Dexterion SHA:${{ GITHUB_SHA }}-${{ RUNNER_ARCH }}.exe
+        asset_name: Dexterion SHA:${{ github.sha }}-${{ runner.arch }}.exe
         asset_content_type: application/exe
         
