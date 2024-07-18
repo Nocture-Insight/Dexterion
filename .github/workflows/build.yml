@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Build Cheat
+name: Build Application
 
 on:
     workflow_dispatch:
@@ -35,8 +35,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.run_id }}
-        release_name: Release ${{ github.run_id }}
+        tag_name: ${{ GITHUB_SHA }}
+        release_name: ${{ GITHUB_SHA }}
     - name: Upload PE
       uses: actions/upload-release-asset@v1
       env:
@@ -44,6 +44,6 @@ jobs:
       with:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./x64/Release/Dexterion.exe
-        asset_name: Dexterion v${{ github.run_id }}.exe
+        asset_name: Dexterion SHA:${{ GITHUB_SHA }}-${{ RUNNER_ARCH }}.exe
         asset_content_type: application/exe
         
