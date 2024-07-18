@@ -90,7 +90,7 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 > **USE AT YOUR OWN RISK**.
 
 > [!NOTE]
-> **This cheat is only tested on [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74) and `0` bans has been issued.**
+> **This cheat is only tested on [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74) and `1` bans has been issued.**
 
 ## License
 > [!NOTE]
