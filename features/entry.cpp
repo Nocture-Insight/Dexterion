@@ -103,7 +103,9 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 		// C4 ESP
 		if (espConf.c4State) {
-
+			if (!overlayESP::isMenuOpen()) {
+				if (!misc::isGameWindowActive()) return;
+			}
 			CGameSceneNode.value = C_C4.getCGameSceneNode();
 			CGameSceneNode.getOrigin();
 
