@@ -450,11 +450,11 @@ void imGuiMenu::configRender() {
 
 		ImGui::Combo("Select Config", &currentConfigIndex, configNamesCStr.data(), configNamesCStr.size());
 
-		if (ImGui::Button("Save", ImVec2(50, 20))) {
+		if (ImGui::Button("Save", ImVec2(70, 30))) {
 			config::save(currentConfigIndex);
 		}
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		if (ImGui::Button("Load", ImVec2(50, 20))) {
+		if (ImGui::Button("Load", ImVec2(70, 30))) {
 			config::load(currentConfigIndex);
 		}
 		ImGui::EndChild();
