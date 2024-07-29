@@ -26,7 +26,7 @@ Download the code from the green button that says `Code`.
 Extract the RAR file into any folder.
 Open `Dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
 Open `dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.\
-Press Build solution and you should receive **Dexterion.exe** file in the path `Dexterion/x64/Realese/`
+Press Build solution and you should receive **Dexterion.exe** file in the path `Dexterion/x64/Release/`
 
 </sub></sup>Little story about compiling the source:</sup></sub>
 <sup><sub><sup><sub>Recently, some portuguese and russian kids asked if this was a virus. They ended up blocking me and I'll tell you how. They made me run the cheat, so I did and they still didn't believe it wasn't malware. They tried compiling the cheat and told me to help them. I was really trying to but they were retarded or something because the wasn't listening to me and didn't know how to extract the src. They blocked me after that failed attempt of extract the file. Don't be like those guys, please.</sub></sup></sub></sup>
