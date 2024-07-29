@@ -76,7 +76,7 @@ inline namespace Logger {
 }
 
 inline namespace utils {
-	inline const wchar_t* version = L"2.1.1";
+	inline const char version = "2.1.1";
 
 	// https://www.unknowncheats.me/forum/dayz-sa/129893-calculate-distance-meters.html
 	// https://www.unknowncheats.me/forum/general-programming-and-reversing/478087-calculate-size-esp-boxes-based-distance.html
