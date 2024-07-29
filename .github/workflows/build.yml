@@ -29,6 +29,9 @@ jobs:
       run: |
           DEXTERION_VERSION=$(powershell -c -ExecutionPolicy Bypass $RawText = Get-Content D:\Users\Sergio\source\repos\Dexterion\dexterion.cpp -Raw; $Records = $RawText -split '(?=inline const wchar_t\* version = )'; $Records = $Records[1] -split '= L"'; $Records = $Records[1] -split '";'; $Records = $Records[0]; $Records);
           echo "DEXTERION_VERSION=$DEXTERION_VERSION" >> $GITHUB_ENV
+    - name: Rename Dexterion
+      run: |
+          rename "./x64/Release/Dexterion.exe" "./x64/Release/Dexterion-${{ env.DEXTERION_VERSION }}.exe"
     - name: Release
       id: release
       uses: actions/create-release@v1.1.4
