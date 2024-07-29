@@ -10,10 +10,6 @@
 #include "util/MemMan.hpp"
 #include "util/attributes.hpp"
 
-inline namespace Dexterion {
-	inline const wchar_t* version = L"v2.1.1";
-}
-
 LRESULT Wndproc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam)) {
 		return 0;
