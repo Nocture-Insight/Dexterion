@@ -22,11 +22,9 @@ A free open-source with educational propurse cheat built to test [VAC (Valve Ant
 - [Previews](#Previews)
 
 ## Compiling
-<<<<<<< HEAD
 Download the code from the green button that says `Code`.
 Extract the RAR file into any folder.
 Open `Dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
-=======
 Open `dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.\
 Press Build solution and you should receive **Dexterion.exe** file in the path `Dexterion/x64/Realese/`
 
