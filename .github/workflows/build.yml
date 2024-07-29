@@ -57,7 +57,7 @@ jobs:
         draft: false
         prerelease: false
         files: |
-          ./x64/Release/Dexterion.exe
+          ./x64/Release/Dexterion-${{ env.DEXTERION_VERSION }}.exe
           ./updateoffsets.cmd
     #- name: Upload PE
     #  uses: actions/upload-release-asset@v1
