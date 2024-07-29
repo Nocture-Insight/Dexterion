@@ -21,13 +21,18 @@ Welcome to **Dexterion**! A free open-source with educational propurse cheat bui
 - [Previews](#Previews)
 
 ## Compiling
-Open `dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
+Download the code from the green button that says `Code`.
+Extract the RAR file into any folder.
+Open `Dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
 Press Build solution and you should receive **Dexterion.exe** file in the path `Dexterion/x64/Realese/`
+
+</sub></sup>Little story about compiling the source:</sup></sub>
+<sup><sub><sup><sub>Recently, some portuguese and russian kids asked if this was a virus. They ended up blocking me and I'll tell you how. They made me run the cheat, so I did and they still didn't believe it wasn't malware. They tried compiling the cheat and told me to help them. I was really trying to but they were retarded or something because the wasn't listening to me and didn't know how to extract the src. They blocked me after that failed attempt of extract the file. Don't be like those guys, please.</sub></sup></sub></sup>
 
 ## Usage
 ### Update Offsets ( Choose 1 or 2 )
 1. Update Offsets. (Run `updateoffsets.cmd` in the same folder as `Dexterion.exe`)
-2. Manualy update from [a2x repo's](https://github.com/a2x/cs2-dumper/blob/main/output) the following files: `buttons.json`, `offsets.json`, `client.dll.json`.
+2. Manualy update from [a2x repo's](https://github.com/a2x/cs2-dumper/blob/main/output) the following files: `buttons.json`, `offsets.json`, `client__dll.json`.
 ### Run
 4. Run `Dexterion.exe` From realese path
 5. Follow Terminal instructions.
