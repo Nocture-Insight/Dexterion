@@ -1,8 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Build Cheat
 
 on:
@@ -43,15 +38,33 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.run_number }}
-        release_name: Release ${{ github.run_number }}
-    - name: Upload PE
-      uses: actions/upload-release-asset@v1
+        tag_name: ${{ env.DEXTERION_VERSION }}
+        release_name: Release ${{ env.DEXTERION_VERSION }}
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.release.outputs.upload_url }}
-        asset_path: ./x64/Release/Dexterion.exe
-        asset_name: Dexterion v2.1.0.exe
-        asset_content_type: application/exe
-        
+        name: Dexterion ${{ env.DEXTERION_VERSION }}
+        tag_name: ${{ env.DEXTERION_VERSION }}
+        body: |
+          Installation:
+          There are 2 files attached here:
+          One is Dexterion-${{ env.DEXTERION_VERSION }}.exe which contains the cheat.
+            
+          Second one is updateoffests.cmd which updates the offsets when executing. 
+        draft: false
+        prerelease: false
+        files: |
+          ./x64/Release/Dexterion-${{ env.DEXTERION_VERSION }}.exe
+          ./updateoffsets.cmd
+    #- name: Upload PE
+    #  uses: actions/upload-release-asset@v1
+    #  env:
+    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #  with:
+    #    upload_url: ${{ steps.release.outputs.upload_url }}
+    #    asset_path: ./x64/Release/Dexterion.exe
+    #    asset_name: Dexterion {{ env.DEXTERION_VERSION }}.exe
+    #    asset_content_type: application/exe

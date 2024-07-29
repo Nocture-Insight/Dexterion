@@ -22,7 +22,12 @@ A free open-source with educational propurse cheat built to test [VAC (Valve Ant
 - [Previews](#Previews)
 
 ## Compiling
-Open `dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
+<<<<<<< HEAD
+Download the code from the green button that says `Code`.
+Extract the RAR file into any folder.
+Open `Dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
+=======
+Open `dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.\
 Press Build solution and you should receive **Dexterion.exe** file in the path `Dexterion/x64/Realese/`
 
 </sub></sup>Little story about compiling the source:</sup></sub>
@@ -31,7 +36,12 @@ Press Build solution and you should receive **Dexterion.exe** file in the path `
 ## Usage
 ### Update Offsets ( Choose 1 or 2 )
 1. Update Offsets. (Run `updateoffsets.cmd` in the same folder as `Dexterion.exe`)
-2. Manualy update from [a2x repo's](https://github.com/a2x/cs2-dumper/blob/main/output) the following files: `buttons.json`, `offsets.json`, `client.dll.json`.
+2. Manualy update from [a2x repo's](https://github.com/a2x/cs2-dumper/blob/main/output) the following files: `buttons.json`, `offsets.json`, `client_dll.json`.
+
+> [!IMPORTANT]
+   > Close Visual Studio to stop the realesed version that is ran automaticaly when you build.\
+   > Then go to the `/x64/Realese/` path and open dexterion.\
+   > **If you use the version that was ran when you built the application this will be bugged.**
 ### Run
 4. Run `Dexterion.exe` From realese path
 5. Follow Terminal instructions.
