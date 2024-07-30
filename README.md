@@ -36,11 +36,11 @@ Press Build solution and you should receive **Dexterion.exe** file in the path `
 2. Manualy update from [a2x repo's](https://github.com/a2x/cs2-dumper/blob/main/output) the following files: `buttons.json`, `offsets.json`, `client_dll.json`.
 
 > [!IMPORTANT]
-   > Close Visual Studio to stop the realesed version that is ran automaticaly when you build.\
-   > Then go to the `/x64/Realese/` path and open dexterion.\
+   > Close Visual Studio to stop the released version that is ran automaticaly when you build.\
+   > Then go to the `/x64/Release/` path and open dexterion.\
    > **If you use the version that was ran when you built the application this will be bugged.**
 ### Run
-4. Run `Dexterion.exe` From realese path
+4. Run `Dexterion.exe` From release path
 5. Follow Terminal instructions.
 6. Wait For Load.
 
@@ -85,7 +85,7 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 - [Patitotective/ImThemes](https://github.com/Patitotective/ImThemes)
 - [a2x/cs2-dumper](https://github.com/a2x/cs2-dumper)
 - [nlohmann/json](https://github.com/nlohmann/json)
-- [ocornut/imgui](https://github.com/ocornut/imgui)
+- [ocornut/imgui](https://github.com/ocornut/imgui) (Only in old version, it was replaced with ImThemes)
 
 ## Disclaimer
 > [!IMPORTANT]
