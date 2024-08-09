@@ -39,11 +39,12 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	// Memory and game related vars (used in entry and passed through overlay)
 	int procId = MemMan.getPid(L"cs2.exe");
-	if (procId == 0)
+	if (procId == 0) {
 		Logger::info("[MemMan] Waiting For Counter Strike 2");
-	while (procId == 0) {
-		procId = MemMan.getPid(L"cs2.exe");
-		std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+		while (procId == 0) {
+			procId = MemMan.getPid(L"cs2.exe");
+			std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+		}
 	}
 	Logger::success(std::format("[MemMan] Counter Strike 2 Found (%d)!", procId));
 	Logger::info("[Config.hpp] Checking for config file...");

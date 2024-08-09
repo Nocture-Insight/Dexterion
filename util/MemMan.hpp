@@ -71,6 +71,23 @@ public:
 
 
     uintptr_t getPid(const wchar_t* name) {
+        DWORD pid = 0;
+        HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+        if (hSnap != INVALID_HANDLE_VALUE) {
+            PROCESSENTRY32W pe32; // Using PROCESSENTRY32W for wide strings (wchar_t)
+            pe32.dwSize = sizeof(PROCESSENTRY32W);
+            if (Process32FirstW(hSnap, &pe32)) { // Using Process32FirstW for wide strings (wchar_t)
+                do {
+                    if (_wcsicmp(pe32.szExeFile, name) == 0) { // Using _wcsicmp for wide strings (wchar_t) comparison
+                        pid = pe32.th32ProcessID;
+                        break;
+                    }
+                } while (Process32NextW(hSnap, &pe32)); // Using Process32NextW for wide strings (wchar_t)
+            }
+            CloseHandle(hSnap);
+        }
+        return pid;
+        /* Old getPid method
         HANDLE processID = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
         uintptr_t process;
         PROCESSENTRY32W processEntry;
@@ -84,7 +101,7 @@ public:
             }
         } while (Process32NextW(processID, &processEntry));
 
-        return process;
+        return process;*/
     }
 
 
