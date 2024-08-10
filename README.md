@@ -20,6 +20,7 @@ A free open-source with educational propurse cheat built to test [VAC (Valve Ant
 - [LICENSE](#License)
 - [Disclaimer](#Disclaimer)
 - [Previews](#Previews)
+- [IsThiaVirus?](#IsThisVirus)
 
 ## Compiling
 Download the code from the green button that says `Code`.
@@ -80,6 +81,9 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 > [!CAUTION]
 > **Bunny Hop, Anti-Flash, Fov are using write memory function from windows api and this could result in a ban.**
 
+##IsThisVirus
+- Short answer, if you dont trust just don't use this.
+
 ## Credits
 - [kristofhracza/tim_apple](https://github.com/kristofhracza/tim_apple) (Forked from this. Inspiration)
 - [Patitotective/ImThemes](https://github.com/Patitotective/ImThemes)
@@ -94,7 +98,7 @@ Move fonts folder to the same folder as `Dexterion.exe` is.
 > **USE AT YOUR OWN RISK**.
 
 > [!NOTE]
-> **This cheat is only tested on [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74) and `1` bans has been issued.**
+> **This cheat is only tested on [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74) with non-writeMem features and `0` bans has been issued.**
 
 ## License
 > [!NOTE]
