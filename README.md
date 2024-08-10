@@ -52,6 +52,12 @@ Press Build solution and you should receive **Dexterion.exe** file in the path `
 ### Using Icon Fonts
 Move fonts folder to the same folder as `Dexterion.exe` is.
 
+### Config
+All config files are located on `X:\Dexterion`
+`X` will be the letter of the disk you're running dexterion on
+#### Example:
+- If you run `Dexterion.exe` in a pendrive which letter is `F:`, Dexterion config files will be in `F:\Dexterion`
+
 ## Anti-Cheat
 > [!CAUTION]
 > **This is a cheat, this agains any game tos. We are not responsible of any account banned. USE AT YOUR OWN RISK.**
