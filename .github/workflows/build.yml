@@ -10,7 +10,7 @@ permissions: write-all
 jobs:
   build:
     name: Build project
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     outputs:
       DEXTERION_VERSION: ${{ steps.DEXTERION_VERSION.outputs.DEXTERION_VERSION }}
     steps:
@@ -26,13 +26,21 @@ jobs:
       run: msbuild -p:Configuration="Release" -p:Platform="x64"
     - name: Get Version
       id: DEXTERION_VERSION
+      shell: pwsh
       run: |
-          #DEXTERION_VERSION=$(powershell -c -ExecutionPolicy Bypass $RawText = Get-Content ./util/utilFunctions.hpp -Raw; $Records = $RawText -split '(?=inline std::string version = )'; $Records = $Records[1] -split '= "'; $Records = $Records[1] -split '";'; $Records = $Records[0]; $Records);
-          DEXTERION_VERSION=$(grep -Po 'version\s*=\s*"\K[^"]*' ./util/utilFunctions.hpp)
-          echo "DEXTERION_VERSION=$DEXTERION_VERSION" >> $GITHUB_ENV
+          Get-ExecutionPolicy
+          Set-ExecutionPolicy Bypass -Force
+          $RawText = Get-Content ./util/utilFunctions.hpp -Raw
+          $Records = $RawText -split '(?=inline std::string version = )'
+          $Records = $Records[1] -split '= "'
+          $Records = $Records[1] -split '";'
+          $Records = $Records[0]
+          Set-Variable DEXTERION_VERSION $Records
+          #DEXTERION_VERSION=$(grep -Po 'version\s*=\s*"\K[^"]*' ./util/utilFunctions.hpp)
+          echo "DEXTERION_VERSION=$DEXTERION_VERSION" >> $GITHUB_OUTPUT
     - name: Rename Dexterion
       run: |
-          mv "./x64/Release/Dexterion.exe" "./x64/Release/Dexterion-${{ env.DEXTERION_VERSION }}.exe"
+          move "./x64/Release/Dexterion.exe" "./x64/Release/Dexterion-${{ env.DEXTERION_VERSION }}.exe"
     - name: Release
       id: release
       uses: actions/create-release@v1.1.4
