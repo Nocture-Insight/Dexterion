@@ -41,14 +41,6 @@ jobs:
     - name: Rename Dexterion
       run: |
           move "./x64/Release/Dexterion.exe" "./x64/Release/Dexterion-${{ env.DEXTERION_VERSION }}.exe"
-    - name: Release
-      id: release
-      uses: actions/create-release@v1.1.4
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ env.DEXTERION_VERSION }}
-        release_name: Release ${{ env.DEXTERION_VERSION }}
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v2
