@@ -39,12 +39,29 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	// Memory and game related vars (used in entry and passed through overlay)
 	int procId = MemMan.getPid(L"cs2.exe");
+	// Weird method until I find a proper fix, im tired rn
 	if (procId == 0) {
 		Logger::info("[MemMan] Waiting For Counter Strike 2");
 		while (procId == 0) {
-			procId = MemMan.getPid(L"cs2.exe");
+			DWORD pid = 0;
+			HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+			if (hSnap != INVALID_HANDLE_VALUE) {
+				PROCESSENTRY32W pe32; // Using PROCESSENTRY32W for wide strings (wchar_t)
+				pe32.dwSize = sizeof(PROCESSENTRY32W);
+				if (Process32FirstW(hSnap, &pe32)) { // Using Process32FirstW for wide strings (wchar_t)
+					do {
+						if (_wcsicmp(pe32.szExeFile, L"cs2.exe") == 0) { // Using _wcsicmp for wide strings (wchar_t) comparison
+							pid = pe32.th32ProcessID;
+							break;
+						}
+					} while (Process32NextW(hSnap, &pe32)); // Using Process32NextW for wide strings (wchar_t)
+				}
+				CloseHandle(hSnap);
+			}
+			procId = pid;
 			std::this_thread::sleep_for(std::chrono::milliseconds(1500));
 		}
+		procId = MemMan.getPid(L"cs2.exe");
 	}
 	Logger::success(std::format("[MemMan] Counter Strike 2 Found (%d)!", procId));
 	Logger::info("[Config.hpp] Checking for config file...");

@@ -77,7 +77,7 @@ inline namespace Logger {
 }
 
 inline namespace utils {
-	inline std::string version = "2.2.0";
+	inline std::string version = "2.2.0-Hotfix";
 
 	// https://www.unknowncheats.me/forum/dayz-sa/129893-calculate-distance-meters.html
 	// https://www.unknowncheats.me/forum/general-programming-and-reversing/478087-calculate-size-esp-boxes-based-distance.html
