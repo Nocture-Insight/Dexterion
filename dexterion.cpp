@@ -48,13 +48,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	}
 	Logger::success(std::format("[MemMan] Counter Strike 2 Found (%d)!", procId));
 	Logger::info("[Config.hpp] Checking for config file...");
+	config::refresh();
 	if (config::exists(0)) { // passing 0 cause setup
 		Logger::success("[Config.hpp] Config File Found! Loading config...");
 		config::load(0);
 	}
 	else {
 		Logger::error("[Config.hpp] Config File Not Found! Loading Defaults...");
-		config::create(0);
+		config::create(L"config.json");
 		config::save(0);
 	}
 	
