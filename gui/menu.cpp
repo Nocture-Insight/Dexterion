@@ -428,7 +428,8 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::Text("https://www.unknowncheats.me/forum/members/6169955.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Text("Version: "+utils::version);
+		ImGui::PushFont(imGuiMenu::titleText);
+		ImGui::Text(("Version: " + utils::version).c_str());
 		ImGui::EndChild();
 	}
 }
@@ -450,11 +451,21 @@ void imGuiMenu::configRender() {
 
 		ImGui::Combo("Select Config", &currentConfigIndex, configNamesCStr.data(), configNamesCStr.size());
 
-		if (ImGui::Button("Save", ImVec2(70, 30))) {
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		if (ImGui::Button("Refresh Config", ImVec2(210, 50))) {
+			config::refresh();
+			for (const auto& name : CONFIG_NAMES) {
+				configNamesNarrow.push_back(std::string(name.begin(), name.end()));
+			}
+			for (const auto& name : configNamesNarrow) {
+				configNamesCStr.push_back(name.c_str());
+			}
+		}
+		if (ImGui::Button("Save", ImVec2(100, 50))) {
 			config::save(currentConfigIndex);
 		}
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		if (ImGui::Button("Load", ImVec2(70, 30))) {
+		ImGui::SameLine();
+		if (ImGui::Button("Load", ImVec2(100, 50))) {
 			config::load(currentConfigIndex);
 		}
 		ImGui::EndChild();
