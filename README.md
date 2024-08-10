@@ -7,22 +7,26 @@
 [![License](https://img.shields.io/badge/License-BDSv3-green.svg?style=plastic)](https://github.com/Skwrr/Dexterion/blob/master/LICENSE)
 
 Welcome to **Dexterion**!\
-A free open-source with educational propurse cheat built to test [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74).
+This is a free, open-source tool created solely for educational purposes and testing [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74).
 
 </div>
 
 ## Table of contents 
-- [Compile](#Compiling)
+- [How To Use](#Howtouse)
+- [Contributing](#Contributing)
 - [Usage](#Usage)
 - [Anti-Cheat](#Anti-Cheat)
 - [Features](#Features)
+- [IsThisVirus?](#IsThisVirus)
 - [Credits](#Credits)
 - [LICENSE](#License)
 - [Disclaimer](#Disclaimer)
 - [Previews](#Previews)
-- [IsThisVirus?](#IsThisVirus)
 
-## Compiling
+## HowtoUse
+- You can see [Contributing](#Contributing) if you don't know how to compile you can directly download github automated build app in realese.
+
+## Contributing
 Download the code from the green button that says `Code`.
 Extract the RAR file into any folder.
 Open `Dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
@@ -60,7 +64,7 @@ All config files are located on `X:\Dexterion`
 
 ## Anti-Cheat
 > [!CAUTION]
-> **This is a cheat, this agains any game tos. We are not responsible of any account banned. USE AT YOUR OWN RISK.**
+> **This software constitutes a cheat and is in *violation of the Terms of Service (ToS)* of any game in which it is used. We disclaim all liability for any *account bans* or *penalties incurred* as a result of its use. By using this software, you acknowledge that you are solely responsible for any consequences. USE AT YOUR OWN RISK**
 
 ## Features
 - ESP
@@ -80,7 +84,7 @@ All config files are located on `X:\Dexterion`
   - Bunny hop
   - Anti flash
   - Deathmatch Mode
-  - Dropped item ESP (PERFORMANCE ISSUES)
+  - Dropped item ESP
   - Bomb Timer
   - Spectator List
 
@@ -89,14 +93,14 @@ All config files are located on `X:\Dexterion`
 
 ## IsThisVirus
 - Short answer, no.
-- But, as you are too lazy to view te source code, just don't use free cheats in general. 🤷
+- But, as you are too lazy to view the source code, just don't use this.
 
 ## Credits
 - [kristofhracza/tim_apple](https://github.com/kristofhracza/tim_apple) (Forked from this. Inspiration)
 - [Patitotective/ImThemes](https://github.com/Patitotective/ImThemes)
 - [a2x/cs2-dumper](https://github.com/a2x/cs2-dumper)
 - [nlohmann/json](https://github.com/nlohmann/json)
-- [ocornut/imgui](https://github.com/ocornut/imgui) (Only in old version, it was replaced with ImThemes)
+- [ocornut/imgui](https://github.com/ocornut/imgui) 
 
 ## Disclaimer
 > [!IMPORTANT]
@@ -109,12 +113,13 @@ All config files are located on `X:\Dexterion`
 
 ## License
 > [!NOTE]
-> This repository is under [BSD-3](https://github.com/Skwrr/Dexterion/blob/master/LICENSE) Clause License.
+> This repository is licensed under the [BSD-3](https://github.com/Skwrr/Dexterion/blob/master/LICENSE) Clause License.
+> Any modified version of this source code is strictly prohibited from being sold under any circumstances. Modified versions must remain for private, personal use only, or be released as open-source software under the same [BSD-3](https://github.com/Skwrr/Dexterion/blob/master/LICENSE) Clause License. Any redistribution must include proper attribution and a hyperlink to the [original GitHub repository](https://github.com/Skwrr/Dexterion).
 
 <details>
   <summary>
     <h2>Previews</h2>
-  </summary>
+</summary>
 
 
 ![Preview](assets/screenshots/preview1.png)
