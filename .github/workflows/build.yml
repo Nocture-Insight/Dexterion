@@ -28,7 +28,6 @@ jobs:
       id: DEXTERION_VERSION
       shell: pwsh
       run: |
-          Get-ExecutionPolicy
           Set-ExecutionPolicy Bypass -Force
           $RawText = Get-Content ./util/utilFunctions.hpp -Raw
           $Records = $RawText -split '(?=inline std::string version = )'
