@@ -218,11 +218,11 @@ nlohmann::json config::to_json() {
 }
 
 void config::load(int index) {
-	if (index < 0 || index >= MAX_CONFIGS) return;
+	if (index < 0 || index >= CONFIG_NAMES.size() || index >= MAX_CONFIGS) return;
 
 	try {
 		Logger::info(L"[Config.cpp] Loading config: " + CONFIG_NAMES[index], true);
-		configFiles[index] = json::readFromJsonFile(CONFIG_NAMES[index]);
+		configFiles[index] = json::readFromJsonFile(utils::getConfigPath(), CONFIG_NAMES[index]);
 		aimConf.from_json(configFiles[index]["aimConf"]);
 		espConf.from_json(configFiles[index]["espConf"]);
 		miscConf.from_json(configFiles[index]["miscConf"]);
@@ -239,26 +239,48 @@ void config::load(int index) {
 
 
 void config::save(int index) {
-	if (index < 0 || index >= MAX_CONFIGS) return;
+	if (index < 0 || index >= CONFIG_NAMES.size() || index >= MAX_CONFIGS) return;
 
-	std::wstring filePath = utils::getExePath() + L"\\" + CONFIG_NAMES[index];
+	std::wstring filePath = utils::getConfigPath() + L"\\" + CONFIG_NAMES[index];
 	//std::wcout << filePath << " Current index: " << index << std::endl; // debug
 	std::ofstream outfile(filePath, std::ios_base::out);
 	outfile << config::to_json();
 	outfile.close();
 }
 
-void config::create(int index) {
-	if (index < 0 || index >= MAX_CONFIGS) return;
+void config::refresh() {
 
-	std::wstring filePath = utils::getExePath() + L"\\" + CONFIG_NAMES[index];
+	Logger::info("[Config.cpp] Refreshing configs!");
+
+	CONFIG_NAMES.clear();
+	configFiles->clear();
+	currentConfigIndex = 0;
+
+	if (std::filesystem::exists(utils::getConfigPath()) && std::filesystem::is_directory(utils::getConfigPath()))
+	{
+		for (auto const& entry : std::filesystem::recursive_directory_iterator(utils::getConfigPath()))
+		{
+			if (std::filesystem::is_regular_file(entry) && entry.path().extension() == ".json" && 0 != json::readFromJsonFile(utils::getConfigPath(), entry.path().filename().wstring())) 
+				CONFIG_NAMES.push_back(entry.path().filename().wstring());
+		}
+	}
+	else
+		std::filesystem::create_directory(utils::getConfigPath());
+
+	Logger::success("[Config.cpp] Config files refreshed succesfully!");
+}
+
+void config::create(std::wstring name) {
+	std::wstring filePath = utils::getConfigPath() + L"\\" + name;
 	std::ofstream outfile(filePath);
 	outfile.close();
+
+	CONFIG_NAMES.push_back(name);
 }
 
 bool config::exists(int index) {
-	if (index < 0 || index >= MAX_CONFIGS) return false;
+	if (index < 0 || index >= CONFIG_NAMES.size() || index >= MAX_CONFIGS) return false;
 
-	std::wstring filePath = utils::getExePath() + L"\\" + CONFIG_NAMES[index];
+	std::wstring filePath = utils::getConfigPath() + L"\\" + CONFIG_NAMES[index];
 	return std::ifstream(filePath).good();
 }
