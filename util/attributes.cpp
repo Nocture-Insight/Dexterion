@@ -3,7 +3,7 @@
 
 
 bool clientDLL::load() {
-	clientDLLOffsets = json::readFromJsonFile(json::clientDLLFile);
+	clientDLLOffsets = json::readFromJsonFile(utils::getExePath(), json::clientDLLFile);
 
 	if (clientDLLOffsets == 0)
 		return 0;
@@ -33,7 +33,7 @@ bool clientDLL::load() {
 
 bool offsets::load()
 {
-	clientDLL = json::readFromJsonFile(json::offsetFile);
+	clientDLL = json::readFromJsonFile(utils::getExePath(), json::offsetFile);
 
 	if (clientDLL == 0)
 		return 0;
@@ -44,7 +44,7 @@ bool offsets::load()
 }
 
 bool loadJson() {
-	buttons = json::readFromJsonFile(json::buttonsFile);
+	buttons = json::readFromJsonFile(utils::getExePath(), json::buttonsFile);
 
 	if (buttons == 0)
 		return 0;

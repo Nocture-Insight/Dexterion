@@ -129,6 +129,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="imgui\render.h" />
     <ClInclude Include="json\json.hpp" />
     <ClInclude Include="json\jsonOps.hpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="util\attributes.hpp" />
     <ClInclude Include="util\config.hpp" />
     <ClInclude Include="util\DiscordVerify.hpp" />
@@ -180,6 +182,13 @@
     <ClCompile Include="dexterion.cpp" />
     <ClCompile Include="util\attributes.cpp" />
     <ClCompile Include="util\config.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\dexterion.ico" />
+    <Image Include="assets\dexterion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Dexterion.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

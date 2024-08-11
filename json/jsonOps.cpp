@@ -1,10 +1,12 @@
 #include "jsonOps.hpp"
 
-nlohmann::json json::readFromJsonFile(std::wstring fileName) {
+nlohmann::json json::readFromJsonFile(std::wstring path, std::wstring fileName) {
 	nlohmann::json fileContent;
 	try {
 		std::wstring currentPath;
-		currentPath = utils::getExePath().append(fileName);
+		std::wstring Directory = path;
+		Directory = Directory + L"\\";
+		currentPath = Directory.append(fileName);
 
 		std::ifstream f(currentPath);
 		fileContent = nlohmann::json::parse(f);

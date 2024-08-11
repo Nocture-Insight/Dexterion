@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning (disable: 4302)
 
 #include <string>
 #include <vector>
@@ -9,7 +10,75 @@
 #include "../imgui/imgui.h"
 #include "Vectors.h"
 
+inline namespace Logger {
+	inline HANDLE hConsole;
+
+	inline std::wstring StrToWstr(std::string str)
+	{
+		std::wstring temp;
+		std::copy(str.begin(), str.end(), std::back_inserter(temp));
+		return temp;
+	}
+
+	// WString
+	inline void info(std::wstring str, bool endLine = true) {
+		SetConsoleTextAttribute(hConsole, 9);
+		if (endLine)
+			std::wcout << "[Info] " << str << std::endl;
+		else
+			std::wcout << "[Info] " << str;
+	}
+
+	inline void success(std::wstring str, bool endLine = true) {
+		SetConsoleTextAttribute(hConsole, 10);
+		if (endLine)
+			std::wcout << "[Success] " << str << std::endl;
+		else
+			std::wcout << "[Success] " << str;
+	}
+
+	inline void error(std::wstring str, bool endLine = true) {
+		SetConsoleTextAttribute(hConsole, 12);
+		if (endLine)
+			std::wcout << "[Error] " << str << std::endl;
+		else
+			std::wcout << "[Error] " << str;
+	}
+
+	inline void warn(std::wstring str, bool endLine = true) {
+		SetConsoleTextAttribute(hConsole, 14);
+		if (endLine)
+			std::wcout << "[Warning] " << str << std::endl;
+		else
+			std::wcout << "[Warning] " << str;
+	}
+
+
+
+
+
+
+	// String
+	inline void info(std::string str, bool endLine = true) {
+		info(StrToWstr(str), endLine);
+	}
+
+	inline void success(std::string str, bool endLine = true) {
+		success(StrToWstr(str), endLine);
+	}
+
+	inline void error(std::string str, bool endLine = true) {
+		error(StrToWstr(str), endLine);
+	}
+
+	inline void warn(std::string str, bool endLine = true) {
+		warn(StrToWstr(str), endLine);
+	}
+}
+
 inline namespace utils {
+	inline std::string version = "2.2.0-Hotfix";
+
 	// https://www.unknowncheats.me/forum/dayz-sa/129893-calculate-distance-meters.html
 	// https://www.unknowncheats.me/forum/general-programming-and-reversing/478087-calculate-size-esp-boxes-based-distance.html
 	inline float getDistance(Vector3 from, Vector3 to) {
@@ -21,6 +90,13 @@ inline namespace utils {
 		GetModuleFileNameW(NULL, buffer, MAX_PATH);
 		std::wstring::size_type pos = std::wstring(buffer).find_last_of(L"\\/");
 		return std::wstring(buffer).substr(0, pos);
+	}
+
+	inline std::wstring getConfigPath() {
+		WCHAR buffer[MAX_PATH] = { 0 };
+		GetModuleFileNameW(NULL, buffer, MAX_PATH);
+		std::wstring::size_type pos = std::wstring(buffer).find_first_of(L"\\/");
+		return std::wstring(buffer).substr(0, pos) + L"\\Dexterion";
 	}
 
 	inline ImColor float3ToImColor(float colours[3], float a = 1.f) {

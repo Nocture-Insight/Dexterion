@@ -57,7 +57,7 @@ inline bool aimConfig::from_json(nlohmann::json json) {
 		hotSelectTrigger = json["hotSelectTrigger"];
 	}
 	catch (nlohmann::json::type_error& ignored) {
-		std::cout << "[Config.cpp] aimConfig section has missing properties, using defaults for missing options." << std::endl;
+		Logger::warn("[Config.cpp] aimConfig section has missing properties, using defaults for missing options.");
 	}
 
 	return true;
@@ -91,7 +91,6 @@ inline nlohmann::json espConfig::to_json() {
 	json["jointColours"] = jointColours;
 	json["checkSpotted"] = checkSpotted;
 	json["cornerColours"] = cornerColours;
-	json["filledBoxAlpha"] = filledBoxAlpha;
 	json["spottedColours"] = spottedColours;
 	json["cornerGradient"] = cornerGradient;
 	json["skeletonColours"] = skeletonColours;
@@ -112,6 +111,7 @@ inline bool espConfig::from_json(nlohmann::json json) {
 		health[0] = json["health"][0];
 		health[1] = json["health"][1];
 		health[2] = json["health"][2];
+		health[3] = json["health"][3];
 		pawnGun = json["pawnGun"];
 		c4State = json["c4State"];
 		distance = json["distance"];
@@ -126,41 +126,50 @@ inline bool espConfig::from_json(nlohmann::json json) {
 		cornerGradient[0] = json["cornerGradient"][0];
 		cornerGradient[1] = json["cornerGradient"][1];
 		cornerGradient[2] = json["cornerGradient"][2];
+		cornerGradient[3] = json["cornerGradient"][3];
 		filledBox = json["filledBox"];
 		c4Carrier = json["c4Carrier"];
 		isPawnName = json["isPawnName"];
 		headColours[0] = json["headColours"][0];
 		headColours[1] = json["headColours"][1];
 		headColours[2] = json["headColours"][2];
+		headColours[3] = json["headColours"][3];
 		isHealthBar = json["isHealthBar"];
 		jointColours[0] = json["jointColours"][0];
 		jointColours[1] = json["jointColours"][1];
 		jointColours[2] = json["jointColours"][2];
+		jointColours[3] = json["jointColours"][3];
 		c4Colors[0] = json["c4Colors"][0];
 		c4Colors[1] = json["c4Colors"][1];
 		c4Colors[2] = json["c4Colors"][2];
+		c4Colors[3] = json["c4Colors"][3];
 		c4Thickness = json["c4Thickness"];
 		checkSpotted = json["checkSpotted"];
 		cornerColours[0] = json["cornerColours"][0];
 		cornerColours[1] = json["cornerColours"][1];
 		cornerColours[2] = json["cornerColours"][2];
-		filledBoxAlpha = json["filledBoxAlpha"];
+		cornerColours[3] = json["cornerColours"][3];
 		spottedColours[0] = json["spottedColours"][0];
 		spottedColours[1] = json["spottedColours"][1];
 		spottedColours[2] = json["spottedColours"][2];
+		spottedColours[3] = json["spottedColours"][3];
 		skeletonColours[0] = json["skeletonColours"][0];
 		skeletonColours[1] = json["skeletonColours"][1];
 		skeletonColours[2] = json["skeletonColours"][2];
+		skeletonColours[3] = json["skeletonColours"][3];
 		attributeColours[0] = json["attributeColours"][0];
 		attributeColours[1] = json["attributeColours"][1];
 		attributeColours[2] = json["attributeColours"][2];
+		attributeColours[3] = json["attributeColours"][3];
 		boundBoxThickness = json["boundBoxThickness"];
 		notSpottedColours[0] = json["notSpottedColours"][0];
 		notSpottedColours[1] = json["notSpottedColours"][1];
 		notSpottedColours[2] = json["notSpottedColours"][2];
+		notSpottedColours[3] = json["notSpottedColours"][3];
 		c4ColorsGradient[0] = json["c4ColorsGradient"][0];
 		c4ColorsGradient[1] = json["c4ColorsGradient"][1];
 		c4ColorsGradient[2] = json["c4ColorsGradient"][2];
+		c4ColorsGradient[3] = json["c4ColorsGradient"][3];
 	}
 	catch (nlohmann::json::type_error& ignored) {
 		std::cout << "[Config.cpp] espConfig section has missing properties, using defaults for missing options." << std::endl;
@@ -180,6 +189,8 @@ inline nlohmann::json miscConfig::to_json() {
 	json["bombTimer"] = bombTimer;
 	json["spectator"] = spectator;
 	json["deathmatchMode"] = deathmatchMode;
+	json["consoleVisible"] = consoleVisible;
+	json["obsBypass"] = obsBypass;
 	json["spectatorColours"] = spectatorColours;
 	json["bombTimerColours"] = bombTimerColours;
 	return json;
@@ -192,7 +203,9 @@ inline bool miscConfig::from_json(nlohmann::json json) {
 		itemESP = json["itemESP"];
 		bunnyHop = json["bunnyHop"];
 		fovCheck = json["fovCheck"];
-		spectator = json["spectator"];
+		spectator = json["spectator"]; 
+		consoleVisible = json["consoleVisible"];
+		obsBypass = json["obsBypass"];
 		deathmatchMode = json["deathmatchMode"];
 		spectatorColours[0] = json["spectatorColours"][0];
 		spectatorColours[1] = json["spectatorColours"][1];
@@ -203,7 +216,7 @@ inline bool miscConfig::from_json(nlohmann::json json) {
 		bombTimerColours[2] = json["bombTimerColours"][2];
 	}
 	catch (nlohmann::json::type_error& ignored) {
-		std::cout << "[Config.cpp] miscConfig section has missing properties, using defaults for missing options." << std::endl;
+		Logger::warn("[Config.cpp] miscConfig section has missing properties, using defaults for missing options.");
 	}
 
 	return true;
@@ -217,32 +230,70 @@ nlohmann::json config::to_json() {
 	return json;
 }
 
-void config::load() {
+void config::load(int index) {
+	if (index < 0 || index >= CONFIG_NAMES.size() || index >= MAX_CONFIGS) return;
+
 	try {
-		config::configFile = json::readFromJsonFile(json::configFile);
-		espConf.from_json(config::configFile["espConf"]);
-		aimConf.from_json(config::configFile["aimConf"]);
-		miscConf.from_json(config::configFile["miscConf"]);
+		Logger::info(L"[Config.cpp] Loading config: " + CONFIG_NAMES[index], true);
+		configFiles[index] = json::readFromJsonFile(utils::getConfigPath(), CONFIG_NAMES[index]);
+		aimConf.from_json(configFiles[index]["aimConf"]);
+		espConf.from_json(configFiles[index]["espConf"]);
+		miscConf.from_json(configFiles[index]["miscConf"]);
 	}
-	catch (nlohmann::json::type_error& ignored) {
-		std::cout << "[Config.cpp] Configuration section has missing properties, using defaults for missing options." << std::endl;
+	catch (const nlohmann::json::type_error& e) {
+		std::ostringstream str;
+
+		str << "[Config.cpp] Error: " << e.what();
+
+		Logger::error(str.str(), true);
+		Logger::warn("[Config.cpp] Configuration section has missing properties, using defaults for missing options.", true);
 	}
 }
 
-void config::save() {
-	std::ofstream outfile;
 
-	outfile.open(utils::getExePath().append(json::configFile), std::ios_base::out);
+void config::save(int index) {
+	if (index < 0 || index >= CONFIG_NAMES.size() || index >= MAX_CONFIGS) return;
+
+	std::wstring filePath = utils::getConfigPath() + L"\\" + CONFIG_NAMES[index];
+	//std::wcout << filePath << " Current index: " << index << std::endl; // debug
+	std::ofstream outfile(filePath, std::ios_base::out);
 	outfile << config::to_json();
-
 	outfile.close();
 }
 
-void config::create() {
-	std::ofstream outfile(utils::getExePath().append(json::configFile));
-	outfile.close();
+void config::refresh() {
+
+	Logger::info("[Config.cpp] Refreshing configs!");
+
+	CONFIG_NAMES.clear();
+	configFiles->clear();
+	currentConfigIndex = 0;
+
+	if (std::filesystem::exists(utils::getConfigPath()) && std::filesystem::is_directory(utils::getConfigPath()))
+	{
+		for (auto const& entry : std::filesystem::recursive_directory_iterator(utils::getConfigPath()))
+		{
+			if (std::filesystem::is_regular_file(entry) && entry.path().extension() == ".json" && 0 != json::readFromJsonFile(utils::getConfigPath(), entry.path().filename().wstring())) 
+				CONFIG_NAMES.push_back(entry.path().filename().wstring());
+		}
+	}
+	else
+		std::filesystem::create_directory(utils::getConfigPath());
+
+	Logger::success("[Config.cpp] Config files refreshed succesfully!");
 }
 
-bool config::exists() {
-	return std::ifstream(utils::getExePath().append(json::configFile)).good();
+void config::create(std::wstring name) {
+	std::wstring filePath = utils::getConfigPath() + L"\\" + name;
+	std::ofstream outfile(filePath);
+	outfile.close();
+
+	CONFIG_NAMES.push_back(name);
+}
+
+bool config::exists(int index) {
+	if (index < 0 || index >= CONFIG_NAMES.size() || index >= MAX_CONFIGS) return false;
+
+	std::wstring filePath = utils::getConfigPath() + L"\\" + CONFIG_NAMES[index];
+	return std::ifstream(filePath).good();
 }
