@@ -126,7 +126,7 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 	if (originalPosToScreen.z >= 0.01f) {
 		if (espConf.boundBox) {
 			ImColor filledBoxcolour;
-			isSpotted == true ? filledBoxcolour = ImColor(espConf.spottedColours[0], espConf.spottedColours[1], espConf.spottedColours[2], espConf.filledBoxAlpha) : filledBoxcolour = ImColor(espConf.notSpottedColours[0], espConf.notSpottedColours[1], espConf.notSpottedColours[2], espConf.filledBoxAlpha);
+			isSpotted == true ? filledBoxcolour = ImColor(espConf.spottedColours[0], espConf.spottedColours[1], espConf.spottedColours[2], espConf.spottedColours[3]) : filledBoxcolour = ImColor(espConf.notSpottedColours[0], espConf.notSpottedColours[1], espConf.notSpottedColours[2], espConf.notSpottedColours[3]);
 
 			if (!espConf.gradient) ImGui::GetBackgroundDrawList()->AddRect({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.cornerColours[0], espConf.cornerColours[1], espConf.cornerColours[2], 1.f), 0.f, 0.f, espConf.boundBoxThickness);
 			else Render::DrawGradientLine({ headPosToScreen.x - width, headPosToScreen.y }, { headPosToScreen.x + width, originalPosToScreen.y }, ImColor(espConf.cornerColours[0], espConf.cornerColours[1], espConf.cornerColours[2], 1.f), ImColor(espConf.cornerGradient[0], espConf.cornerGradient[1], espConf.cornerGradient[2], 1.f), espConf.boundBoxThickness);
