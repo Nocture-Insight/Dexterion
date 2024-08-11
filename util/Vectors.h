@@ -141,11 +141,11 @@ inline Vector3 normalizeAngles(Vector3 angle) {
 
 
 
-inline Vector3 calculateBestAngle(Vector3 angle,float configFov) {
+inline Vector3 calculateBestAngle(Vector3 angle,Vector3 configFov) {
 	Vector3 newAngle;
 
-	float calcFov = std::hypot(angle.x, angle.y);
-	float fov = configFov;
+	float calcFov = std::hypot(angle.x+configFov.x, angle.y+configFov.y);
+	float fov = configFov.z;
 
 	if (calcFov < fov) {
 		calcFov = fov;
