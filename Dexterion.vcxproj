@@ -154,6 +154,7 @@
     <ClInclude Include="json\jsonOps.hpp" />
     <ClInclude Include="util\attributes.hpp" />
     <ClInclude Include="util\config.hpp" />
+    <ClInclude Include="util\DiscordVerify.hpp" />
     <ClInclude Include="util\MemMan.hpp" />
     <ClInclude Include="util\utilFunctions.hpp" />
     <ClInclude Include="util\Vectors.h" />
