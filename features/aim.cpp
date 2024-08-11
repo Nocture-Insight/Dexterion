@@ -24,15 +24,7 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 
 	aimPos = MemMan.ReadMem<Vector3>(boneArray + aimConf.boneMap[aimConf.bones[aimConf.boneSelect]] * 32);
 	angle = CalculateAngle(localPlayer.eyepos, aimPos, localPlayer.viewAngles);
-	newAngle = calculateBestAngle(angle, aimConf.fov);
-
-	newAngle.x = (newAngle.x / (0.022f * aimConf.sens)) / aimConf.smoothing;
-	newAngle.y = (newAngle.y / (0.022f * aimConf.sens)) / aimConf.smoothing;
-
-	if (newAngle.IsZero()) {
-		lockedPlayer = 0;
-		return;
-	}
+	newAngle = calculateBestAngle(angle, { 0, 0, aimConf.fov });
 
 	if (aimConf.rcs) {
 		static Vector3 oldAngles = { 0, 0, 0 };
@@ -46,8 +38,16 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 			oldAngles.x = aimPunch.y;
 			oldAngles.y = aimPunch.x;
 		}
-		newAngle = newAngle - rcs;
+		newAngle = calculateBestAngle(angle, { rcs.x, rcs.y, aimConf.fov });
 	};
+
+	newAngle.x = (newAngle.x / (0.022f * aimConf.sens)) / aimConf.smoothing;
+	newAngle.y = (newAngle.y / (0.022f * aimConf.sens)) / aimConf.smoothing;
+
+	if (newAngle.IsZero()) {
+		lockedPlayer = 0;
+		return;
+	}
 	
 	if (aimConf.isHotAim) {
 		if (GetAsyncKeyState(aimConf.hotKeyMap[aimConf.hotKey[aimConf.hotSelectAim]])) {
