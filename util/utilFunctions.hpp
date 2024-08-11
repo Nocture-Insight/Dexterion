@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning (disable: 4302)
 
 #include <string>
 #include <vector>
@@ -76,6 +77,8 @@ inline namespace Logger {
 }
 
 inline namespace utils {
+	inline std::string version = "2.2.0-Hotfix";
+
 	// https://www.unknowncheats.me/forum/dayz-sa/129893-calculate-distance-meters.html
 	// https://www.unknowncheats.me/forum/general-programming-and-reversing/478087-calculate-size-esp-boxes-based-distance.html
 	inline float getDistance(Vector3 from, Vector3 to) {
@@ -87,6 +90,13 @@ inline namespace utils {
 		GetModuleFileNameW(NULL, buffer, MAX_PATH);
 		std::wstring::size_type pos = std::wstring(buffer).find_last_of(L"\\/");
 		return std::wstring(buffer).substr(0, pos);
+	}
+
+	inline std::wstring getConfigPath() {
+		WCHAR buffer[MAX_PATH] = { 0 };
+		GetModuleFileNameW(NULL, buffer, MAX_PATH);
+		std::wstring::size_type pos = std::wstring(buffer).find_first_of(L"\\/");
+		return std::wstring(buffer).substr(0, pos) + L"\\Dexterion";
 	}
 
 	inline ImColor float3ToImColor(float colours[3], float a = 1.f) {

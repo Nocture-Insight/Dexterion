@@ -123,7 +123,7 @@ void esp::boundingBox(Vector3 origin, view_matrix_t viewMatrix, std::string name
 	sharedData::height = height;
 	sharedData::width = width;
 
-	if (originalPosToScreen.z >= 0.01f) {
+	if (originalPosToScreen.z >= 0.1f) {
 		if (espConf.boundBox) {
 			ImColor filledBoxcolour;
 			isSpotted == true ? filledBoxcolour = ImColor(espConf.spottedColours[0], espConf.spottedColours[1], espConf.spottedColours[2], espConf.spottedColours[3]) : filledBoxcolour = ImColor(espConf.notSpottedColours[0], espConf.notSpottedColours[1], espConf.notSpottedColours[2], espConf.notSpottedColours[3]);

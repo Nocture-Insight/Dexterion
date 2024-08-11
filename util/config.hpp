@@ -124,8 +124,8 @@ struct miscConfig {
 miscConfig miscConf = {};
 
 //settings for configs
-constexpr int MAX_CONFIGS = 4;
-const std::wstring CONFIG_NAMES[MAX_CONFIGS] = { L"config.json", L"config1.json", L"config2.json", L"config3.json"};
+const int MAX_CONFIGS = 32;
+std::vector<std::wstring> CONFIG_NAMES;
 inline namespace config {
 	inline nlohmann::json configFiles[MAX_CONFIGS]; // to store multiple configs
 	inline int currentConfigIndex = 0; // current config
@@ -133,7 +133,8 @@ inline namespace config {
 	nlohmann::json to_json();
 	void load(int index);
 	void save(int index);
-	void create(int index);
+	void refresh();
+	void create(std::wstring name);
 	bool exists(int index);
 }
 
