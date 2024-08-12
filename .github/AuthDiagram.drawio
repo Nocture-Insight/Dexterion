@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="yOprYlMyU1xFvM3MLHBN">
+    <mxGraphModel dx="1094" dy="850" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0">
+          <mxCell id="1" parent="0"/>
+        </mxCell>
+        <mxCell id="2swHZbUEnthqY5wnp2zi-1" value="Client (C++)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="240" y="60" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="2swHZbUEnthqY5wnp2zi-2" value="Server (Node.js)" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="240" y="200" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="2swHZbUEnthqY5wnp2zi-3" value="Discord.js Bot" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="240" y="340" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="2swHZbUEnthqY5wnp2zi-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;edge=MathML;strokeColor=#000000;fillColor=#FFFFFF;" edge="1" parent="1" source="2swHZbUEnthqY5wnp2zi-1" target="2swHZbUEnthqY5wnp2zi-2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="2swHZbUEnthqY5wnp2zi-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;edge=MathML;strokeColor=#000000;fillColor=#FFFFFF;" edge="1" parent="1" source="2swHZbUEnthqY5wnp2zi-2" target="2swHZbUEnthqY5wnp2zi-3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="2swHZbUEnthqY5wnp2zi-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;edge=MathML;strokeColor=#000000;fillColor=#FFFFFF;" edge="1" parent="1" source="2swHZbUEnthqY5wnp2zi-1" target="2swHZbUEnthqY5wnp2zi-3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
