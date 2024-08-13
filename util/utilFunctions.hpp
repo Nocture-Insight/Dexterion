@@ -1,5 +1,8 @@
 #pragma once
 #pragma warning (disable: 4302)
+#pragma warning (disable: 4129)
+#pragma warning (disable: 4244)
+#pragma warning (disable: 6031)
 
 #include <string>
 #include <vector>
@@ -9,6 +12,9 @@
 
 #include "../imgui/imgui.h"
 #include "Vectors.h"
+
+#include <comdef.h>
+#include <Wbemidl.h>
 
 inline namespace Logger {
 	inline HANDLE hConsole;
@@ -85,6 +91,12 @@ inline namespace utils {
 		return sqrt(pow(to.x - from.x, 2) + pow(to.y - from.y, 2) + pow(to.z - from.z, 2));
 	};
 
+	inline std::string get_hwid() {
+		HW_PROFILE_INFO hwProfileInfo;
+		if (GetCurrentHwProfile(&hwProfileInfo))
+			return hwProfileInfo.szHwProfileGuid;
+	}
+
 	inline std::wstring getExePath() {
 		WCHAR buffer[MAX_PATH] = { 0 };
 		GetModuleFileNameW(NULL, buffer, MAX_PATH);
@@ -96,7 +108,7 @@ inline namespace utils {
 		WCHAR buffer[MAX_PATH] = { 0 };
 		GetModuleFileNameW(NULL, buffer, MAX_PATH);
 		std::wstring::size_type pos = std::wstring(buffer).find_first_of(L"\\/");
-		return std::wstring(buffer).substr(0, pos) + L"\\Dexterion";
+		return std::wstring(buffer).substr(0, pos) + L"\\Dexterion\\Config";
 	}
 
 	inline ImColor float3ToImColor(float colours[3], float a = 1.f) {
@@ -106,6 +118,10 @@ inline namespace utils {
 	inline uint64_t currentTimeMillis() {
 		using namespace std::chrono;
 		return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+	}
+
+	inline bool intToBool(int i) {
+		return i != 0;
 	}
 
 	inline namespace espF {
