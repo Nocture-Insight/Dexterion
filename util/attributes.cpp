@@ -13,6 +13,7 @@ bool clientDLL::load() {
 	C_BaseEntity_ = clientDLLOffsets["C_BaseEntity"]["fields"];
 	C_BaseModelEntity_ = clientDLLOffsets["C_BaseModelEntity"]["fields"];
 	CCSPlayerController_ = clientDLLOffsets["CCSPlayerController"]["fields"];
+	CBasePlayerController_ = clientDLLOffsets["CBasePlayerController"]["fields"];
 	C_BasePlayerPawn_ = clientDLLOffsets["C_BasePlayerPawn"]["fields"];
 	C_CSPlayerPawn_ = clientDLLOffsets["C_CSPlayerPawn"]["fields"];
 	C_CSPlayerPawnBase_ = clientDLLOffsets["C_CSPlayerPawnBase"]["fields"];
@@ -242,6 +243,11 @@ uintptr_t LocalPlayer::getPlayerPawn() {
 	return playerPawn;
 }
 
+uintptr_t LocalPlayer::getPlayerController() {
+	playerController = MemMan.ReadMem<uintptr_t>(base + offsets::clientDLL["dwLocalPlayerController"]);
+	return playerController;
+}
+
 uintptr_t LocalPlayer::getTeam() {
 	team = MemMan.ReadMem<uintptr_t>(localPlayer + clientDLL::C_BaseEntity_["m_iTeamNum"]);
 	return team;
@@ -368,4 +374,14 @@ long C_C4::getDefuseTime()
 uintptr_t C_C4::getCGameSceneNode() {
 	scene = MemMan.ReadMem<uintptr_t>(c4 + clientDLL::C_BaseEntity_["m_pGameSceneNode"]);
 	return scene;
+}
+
+uint32_t CBasePlayerController::getDesiredFov()
+{
+	return iDesiredFov = MemMan.ReadMem<uint32_t>(controller + clientDLL::CBasePlayerController_["m_iDesiredFov"]);
+}
+
+uint64_t CBasePlayerController::getSteamId()
+{
+	return steamId = MemMan.ReadMem<uint64_t>(controller + clientDLL::CBasePlayerController_["m_steamID"]);
 }
