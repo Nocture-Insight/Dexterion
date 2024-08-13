@@ -3,6 +3,7 @@
 void mainLoop(bool state, MemoryManagement::moduleData client) {
 	// Classes
 	CCSPlayerController		CCSPlayerController(client.base);
+	CBasePlayerController	CBasePlayerController;
 	C_CSPlayerPawn			C_CSPlayerPawn(client.base);
 	CGameSceneNode			CGameSceneNode;
 	LocalPlayer				localPlayer(client.base);
@@ -17,6 +18,9 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 	// NOTE: Cheats that only need local player / visuals that don't relate to gameplay
 	localPlayer.getPlayerPawn();
+
+	CBasePlayerController.controller = localPlayer.getPlayerController();
+	Shared::steamId = CBasePlayerController.getSteamId();
 	// Aimbot FOV circle
 	if (aimConf.fovCircle) {
 		if (!overlayESP::isMenuOpen()) {
