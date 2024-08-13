@@ -2,7 +2,8 @@
 
 #include "../features/entry.hpp"
 #include "../util/config.hpp"
-
+#include "../util/DiscordVerify.hpp"
+#include "../util/utilFunctions.hpp"
 
 void imGuiMenu::setStyle() {
 		// Dexterion GUI style from ImThemes
@@ -455,6 +456,7 @@ void imGuiMenu::aboutMeRender() {
 
 void imGuiMenu::configRender() {
 	static int lastConsoleState = miscConf.consoleVisible ? SW_RESTORE : SW_HIDE;
+	static int lastAffinity = miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE;
 
 	if (tabCount == 5) {
 		ImGui::BeginChild("Configuration File", ImVec2(0, 0), true);
@@ -481,32 +483,23 @@ void imGuiMenu::configRender() {
 				configNamesCStr.push_back(name.c_str());
 			}
 		}
-		if (ImGui::Button("Save", ImVec2(100, 50))) {
-			config::save(currentConfigIndex);
-		}
+		if (ImGui::Button("Save", ImVec2(100, 50))) config::save(currentConfigIndex);
 		ImGui::SameLine();
-		if (ImGui::Button("Load", ImVec2(100, 50))) {
-			config::load(currentConfigIndex);
-		}
+		if (ImGui::Button("Load", ImVec2(100, 50))) config::load(currentConfigIndex);
 
 		ImGui::Checkbox("Console Visibility", &miscConf.consoleVisible);
-		if (miscConf.consoleVisible != lastConsoleState) {
+		if (miscConf.consoleVisible != utils::intToBool(lastConsoleState)) {
 			ShowWindow(GetConsoleWindow(), miscConf.consoleVisible ? SW_RESTORE : SW_HIDE);
 			lastConsoleState = miscConf.consoleVisible ? SW_RESTORE : SW_HIDE;
 		}
 
-		ImGui::Checkbox("OBS BYPASS", &miscConf.obsBypass);
-		if (miscConf.obsBypass) {
-			SetWindowDisplayAffinity(GetForegroundWindow(), WDA_EXCLUDEFROMCAPTURE);
-		}
-		else
-		{
-			SetWindowDisplayAffinity(GetForegroundWindow(), WDA_NONE);
-		}
-		if (!SetWindowDisplayAffinity) {
-			Logger::error("[dexterion.cpp] Cannot update window affinity.");
-		}
+		if (ImGui::Button("Get My Token", ImVec2(100, 50))) DiscordVerify::getToken(Shared::steamId);
 
+		ImGui::Checkbox("OBS BYPASS", &miscConf.obsBypass);
+		if (miscConf.obsBypass != utils::intToBool(lastAffinity)) {
+			SetWindowDisplayAffinity(GetForegroundWindow(), miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
+			lastAffinity = miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE;
+		}
 
 		ImGui::EndChild();
 	}
