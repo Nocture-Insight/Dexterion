@@ -37,9 +37,11 @@ jobs:
           Set-Variable DEXTERION_VERSION $Records
           #DEXTERION_VERSION=$(grep -Po 'version\s*=\s*"\K[^"]*' ./util/utilFunctions.hpp)
           echo "DEXTERION_VERSION=$DEXTERION_VERSION" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
-    - name: Rename Dexterion
+    - name: Zip Dexterion
       run: |
-          move "./x64/Release/Dexterion.exe" "./x64/Release/Dexterion-${{ env.DEXTERION_VERSION }}.exe"
+          curl -L "https://github.com/ip7z/7zip/releases/download/24.08/7zr.exe" > 7z.exe
+          del x64\Release\Dexterion.pdb
+          .\7z.exe a -t* "Dexterion-${{ env.DEXTERION_VERSION }}.zip" "x64\Release"
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v2
@@ -51,13 +53,13 @@ jobs:
         body: |
           Installation:
           There are 2 files attached here:
-          One is Dexterion-${{ env.DEXTERION_VERSION }}.exe which contains the cheat.
+          One is Dexterion-${{ env.DEXTERION_VERSION }}.zip which contains the cheat.
             
           Second one is updateoffests.cmd which updates the offsets when executing. 
         draft: false
         prerelease: false
         files: |
-          ./x64/Release/Dexterion-${{ env.DEXTERION_VERSION }}.exe
+          ./Dexterion-${{ env.DEXTERION_VERSION }}.zip
           ./updateoffsets.cmd
     #- name: Upload PE
     #  uses: actions/upload-release-asset@v1
