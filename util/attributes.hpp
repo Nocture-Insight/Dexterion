@@ -26,6 +26,7 @@ namespace clientDLL {
 	nlohmann::json C_BaseEntity_;
 	nlohmann::json C_BaseModelEntity_;
 	nlohmann::json CCSPlayerController_;
+	nlohmann::json CBasePlayerController_;
 	nlohmann::json C_BasePlayerPawn_;
 	nlohmann::json C_CSPlayerPawn_;
 	nlohmann::json C_CSPlayerPawnBase_;
@@ -94,6 +95,17 @@ public:
 	// C_CSPlayerPawn
 	std::uint32_t C_CSPlayerPawn_;
 	std::uint32_t getC_CSPlayerPawn();
+};
+
+class CBasePlayerController {
+public:
+	uintptr_t controller;
+
+	uint32_t iDesiredFov;
+	uint32_t getDesiredFov();
+
+	uint64_t steamId;
+	uint64_t getSteamId();
 };
 
 
@@ -208,6 +220,9 @@ public:
 	uintptr_t playerPawn;
 	uintptr_t getPlayerPawn();
 
+	uintptr_t playerController;
+	uintptr_t getPlayerController();
+
 	uintptr_t team;
 	uintptr_t getTeam();
 
@@ -254,3 +269,9 @@ public:
 	static bool spottedCheck(C_CSPlayerPawn C_CSPlayerPawn, LocalPlayer localPlayer);
 	static bool inGame(DWORD_PTR base);
 };
+
+namespace Shared {
+	uint64_t steamId;
+	int lastConsoleState;
+	int lastAffinity;
+}

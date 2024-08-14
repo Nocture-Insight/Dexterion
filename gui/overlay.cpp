@@ -118,6 +118,9 @@ void overlayESP::renderLoop(MemoryManagement::moduleData client) {
 	bool state = true;
 	bool check = false;
 
+	ShowWindow(GetConsoleWindow(), miscConf.consoleVisible ? SW_RESTORE : SW_HIDE);
+	SetWindowDisplayAffinity(GetForegroundWindow(), miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
+
 	while (state) {
 		if (GetAsyncKeyState(VK_INSERT) & 1)
 			menutoggle = !menutoggle;

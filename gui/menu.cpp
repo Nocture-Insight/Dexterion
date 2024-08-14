@@ -2,7 +2,8 @@
 
 #include "../features/entry.hpp"
 #include "../util/config.hpp"
-
+#include "../util/DiscordVerify.hpp"
+#include "../util/utilFunctions.hpp"
 
 void imGuiMenu::setStyle() {
 		// Dexterion GUI style from ImThemes
@@ -11,17 +12,17 @@ void imGuiMenu::setStyle() {
 		style.Alpha = 1.0f;
 		style.DisabledAlpha = 1.0f;
 		style.WindowPadding = ImVec2(12.0f, 12.0f);
-		style.WindowRounding = 8.0f;
+		style.WindowRounding = 6.0f;
 		style.WindowBorderSize = 0.0f;
 		style.WindowMinSize = ImVec2(20.0f, 20.0f);
 		style.WindowTitleAlign = ImVec2(0.0f, 0.5f);
 		style.WindowMenuButtonPosition = ImGuiDir_Right;
-		style.ChildRounding = 8.0f;
+		style.ChildRounding = 6.0f;
 		style.ChildBorderSize = 1.0f;
-		style.PopupRounding = 8.0f;
-		style.PopupBorderSize = 0.0f;
+		style.PopupRounding = 6.0f;
+		style.PopupBorderSize = 1.0f;
 		style.FramePadding = ImVec2(20.0f, 8.0f);
-		style.FrameRounding = 20.0f;
+		style.FrameRounding = 6.0f;
 		style.FrameBorderSize = 0.0f;
 		style.ItemSpacing = ImVec2(7.900000095367432f, 6.0f);
 		style.ItemInnerSpacing = ImVec2(6.0f, 3.0f);
@@ -32,7 +33,7 @@ void imGuiMenu::setStyle() {
 		style.ScrollbarRounding = 20.0f;
 		style.GrabMinSize = 10.0f;
 		style.GrabRounding = 20.0f;
-		style.TabRounding = 8.0f;
+		style.TabRounding = 6.0f;
 		style.TabBorderSize = 1.0f;
 		style.TabMinWidthForCloseButton = 10.0f;
 		style.ColorButtonPosition = ImGuiDir_Left;
@@ -180,8 +181,6 @@ void imGuiMenu::espRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Colour fill", &espConf.filledBox);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::SliderFloat("Fill alpha", &espConf.filledBoxAlpha, 0.f, 1.f);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Width", &espConf.width, 1.f, 5.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Thickness", &espConf.boundBoxThickness, 1.f, 3.f);
@@ -199,29 +198,29 @@ void imGuiMenu::espRender() {
 		ImGui::Text("Colours");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Box spotted", (float*)&espConf.spottedColours);
+		ImGui::ColorEdit4("Box spotted", (float*)&espConf.spottedColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Box not spotted", (float*)&espConf.notSpottedColours);
+		ImGui::ColorEdit4("Box not spotted", (float*)&espConf.notSpottedColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Atrributes colour", (float*)&espConf.attributeColours);
+		ImGui::ColorEdit4("Atrributes colour", (float*)&espConf.attributeColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Corner colours", (float*)&espConf.cornerColours);
+		ImGui::ColorEdit4("Corner colours", (float*)&espConf.cornerColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		if (espConf.gradient) {
-			ImGui::ColorEdit3("Corner gradient", (float*)&espConf.cornerGradient);
+			ImGui::ColorEdit4("Corner gradient", (float*)&espConf.cornerGradient);
 			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		}
-		ImGui::ColorEdit3("Skeleton colour", (float*)&espConf.skeletonColours);
+		ImGui::ColorEdit4("Skeleton colour", (float*)&espConf.skeletonColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Head colours", (float*)&espConf.headColours);
+		ImGui::ColorEdit4("Head colours", (float*)&espConf.headColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Joint colours", (float*)&espConf.jointColours);
+		ImGui::ColorEdit4("Joint colours", (float*)&espConf.jointColours);
 		if (espConf.c4State) {
 			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-			ImGui::ColorEdit3("C4 Colors", (float*)&espConf.c4Colors);
+			ImGui::ColorEdit4("C4 Colors", (float*)&espConf.c4Colors);
 			if (espConf.c4Gradient) {
 				ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-				ImGui::ColorEdit3("C4 Gradient", (float*)&espConf.c4ColorsGradient);
+				ImGui::ColorEdit4("C4 Gradient", (float*)&espConf.c4ColorsGradient);
 			}
 		}
 
@@ -247,7 +246,7 @@ void imGuiMenu::aimRender() {
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::SliderFloat("Smoothing", &aimConf.smoothing, 1.f, 5.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::SliderFloat("Aim Sensibility", &aimConf.sens, 0.1f, 8.f);
+		ImGui::InputFloat("Aim Sensibility", &aimConf.sens, 0.01f, 8.f);
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
@@ -346,10 +345,19 @@ void imGuiMenu::miscRender() {
 	if (tabCount == 3) {
 		ImGui::BeginChild("Movement", ImVec2(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt), true);
 		ImGui::PushFont(imGuiMenu::titleText);
-		ImGui::Text("Movement");
+		ImGui::Text("Utilities");
 		ImGui::PopFont();
+		ImGui::Checkbox("Console Visibility", &miscConf.consoleVisible);
+		if (miscConf.consoleVisible != utils::intToBool(Shared::lastConsoleState)) {
+			ShowWindow(GetConsoleWindow(), miscConf.consoleVisible ? SW_RESTORE : SW_HIDE);
+			Shared::lastConsoleState = miscConf.consoleVisible ? SW_RESTORE : SW_HIDE;
+		}
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Bunny hop (!!! WRITE MEMORY !!!)", &miscConf.bunnyHop);
+		ImGui::Checkbox("OBS BYPASS", &miscConf.obsBypass);
+		if (miscConf.obsBypass != utils::intToBool(Shared::lastAffinity)) {
+			SetWindowDisplayAffinity(GetForegroundWindow(), miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
+			Shared::lastAffinity = miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE;
+		}
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
@@ -359,9 +367,9 @@ void imGuiMenu::miscRender() {
 		ImGui::Text("Colours");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Spectator List", (float*)&miscConf.spectatorColours);
+		ImGui::ColorEdit4("Spectator List", (float*)&miscConf.spectatorColours);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::ColorEdit3("Bomb Timer", (float*)&miscConf.bombTimerColours);
+		ImGui::ColorEdit4("Bomb Timer", (float*)&miscConf.bombTimerColours);
 		ImGui::EndChild();
 
 		horizontalSplitter(HEIGHT);
@@ -371,14 +379,6 @@ void imGuiMenu::miscRender() {
 		ImGui::Text("Visual");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Anti flash (!!! WRITE MEMORY !!!)", &miscConf.flash);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Fov Changer (!!! WRITE MEMORY !!!)", &miscConf.fovCheck);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		if (miscConf.fovCheck) {
-			ImGui::SliderInt("FOV", &miscConf.fov, 30, 140);
-			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		}
 		ImGui::Checkbox("DeathMatch Mode", &miscConf.deathmatchMode);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Dropped Item ESP", &miscConf.itemESP);
@@ -396,9 +396,9 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Github");
 		ImGui::PopFont();
-		ImGui::Text("Me: https://github.com/Skwrr/Dexterion");
+		ImGui::TextLinkOpenURL("Dexterion Github", "https://github.com/Skwrr/Dexterion");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Text("Inspiration: https://github.com/kristofhracza/tim_apple");
+		ImGui::TextLinkOpenURL("Tim Apple Github Fork", "https://github.com/kristofhracza/tim_apple");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::titleText);
@@ -408,7 +408,7 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Release thread");
 		ImGui::PopFont();
-		ImGui::Text("https://hackvshack.net/threads/dexterion-semi-external-cs2-cheat-updated-10-07-2024.4978/");
+		ImGui::TextLinkOpenURL("Dexterion", "https://hackvshack.net/threads/dexterion-semi-external-cs2-cheat-updated-10-07-2024.4978/");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::titleText);
@@ -418,15 +418,16 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Release thread");
 		ImGui::PopFont();
-		ImGui::Text("Me: https://www.unknowncheats.me/forum/counter-strike-2-a/647464-dexterion-semi-external-cs2-cheat.html");
+		ImGui::TextLinkOpenURL("Dexterion", " https://www.unknowncheats.me/forum/counter-strike-2-a/647464-dexterion-semi-external-cs2-cheat.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Text("Inspiration: https://www.unknowncheats.me/forum/counter-strike-2-releases/609206-cs2-external-cheat-tim-apple.html");
+		ImGui::TextLinkOpenURL("Tim Apple", "https://www.unknowncheats.me/forum/counter-strike-2-releases/609206-cs2-external-cheat-tim-apple.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::subTitleText);
 		ImGui::Text("Developer Profile");
 		ImGui::PopFont();
-		ImGui::Text("https://www.unknowncheats.me/forum/members/6169955.html");
+		ImGui::TextLinkOpenURL("UC Author Profile", "https://www.unknowncheats.me/forum/members/6169955.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::TextLinkOpenURL("Discord", "https://www.unknowncheats.me/forum/members/6169955.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text(("Version: " + utils::version).c_str());
@@ -461,13 +462,32 @@ void imGuiMenu::configRender() {
 				configNamesCStr.push_back(name.c_str());
 			}
 		}
-		if (ImGui::Button("Save", ImVec2(100, 50))) {
-			config::save(currentConfigIndex);
-		}
+		if (ImGui::Button("Save", ImVec2(100, 50))) config::save(currentConfigIndex);
 		ImGui::SameLine();
-		if (ImGui::Button("Load", ImVec2(100, 50))) {
-			config::load(currentConfigIndex);
+		if (ImGui::Button("Load", ImVec2(100, 50))) config::load(currentConfigIndex);
+
+		ImGui::EndChild();
+	}
+}
+
+void imGuiMenu::accountRender() {
+	if (tabCount == 6) {
+		ImGui::BeginChild("Account", ImVec2(0, 0), true);
+
+		if (ImGui::Button("Copy My Token", ImVec2(150, 40))) {
+			ImGui::LogToClipboard();
+			ImGui::LogText(DiscordVerify::getToken(Shared::steamId).c_str());
+			ImGui::LogFinish();
+			ImGui::OpenPopup("CopyToken");
 		}
+
+		if (ImGui::BeginPopupModal("CopyToken", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove)) {
+			ImGui::Text("Your token has been copied to your clipboard!");
+			ImGui::Separator();
+			if (ImGui::Button("OK", ImVec2(120, 0))) { ImGui::CloseCurrentPopup(); }
+			ImGui::EndPopup();
+		}
+
 		ImGui::EndChild();
 	}
 }
@@ -480,6 +500,7 @@ void imGuiMenu::menuBar() {
 	if (ImGui::MenuItem("Misc")) tabCount = 3;
 	if (ImGui::MenuItem("About")) tabCount = 4;
 	if (ImGui::MenuItem("Config")) tabCount = 5;
+	if (ImGui::MenuItem("Account")) tabCount = 6;
 
 	ImGui::EndMenuBar();
 }
@@ -488,7 +509,7 @@ void imGuiMenu::menuBar() {
 void imGuiMenu::renderMenu(bool state) {
 	ImGui::PushFont(normalText);
 	ImGui::SetNextWindowSize({WIDTH,HEIGHT}, ImGuiCond_FirstUseEver);
-	ImGui::Begin("Dexterion", &state, ImGuiWindowFlags_MenuBar);
+	ImGui::Begin("Dexterion", NULL, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoCollapse);
 	
 	// Config
 	setStyle();
@@ -500,6 +521,7 @@ void imGuiMenu::renderMenu(bool state) {
 	miscRender();
 	aboutMeRender();
 	configRender();
+	accountRender();
 
 	ImGui::PopFont();
 	ImGui::End();

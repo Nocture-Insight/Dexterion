@@ -44,14 +44,6 @@ public:
     }
 
 
-    template <class T>
-    T WriteMem(uintptr_t addr, T x)
-    {
-        WriteProcessMemory(proc, (LPBYTE*)addr, &x, sizeof(x), NULL);
-        return x;
-    }
-
-
     HANDLE getProcess(const wchar_t* name) {
         HANDLE processID = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
         uintptr_t process;

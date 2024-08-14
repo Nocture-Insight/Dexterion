@@ -3,6 +3,7 @@
 void mainLoop(bool state, MemoryManagement::moduleData client) {
 	// Classes
 	CCSPlayerController		CCSPlayerController(client.base);
+	CBasePlayerController	CBasePlayerController;
 	C_CSPlayerPawn			C_CSPlayerPawn(client.base);
 	CGameSceneNode			CGameSceneNode;
 	LocalPlayer				localPlayer(client.base);
@@ -17,6 +18,10 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 	// NOTE: Cheats that only need local player / visuals that don't relate to gameplay
 	localPlayer.getPlayerPawn();
+
+	CBasePlayerController.controller = localPlayer.getPlayerController();
+	if (Shared::steamId != CBasePlayerController.getSteamId())
+		Shared::steamId = CBasePlayerController.steamId;
 	// Aimbot FOV circle
 	if (aimConf.fovCircle) {
 		if (!overlayESP::isMenuOpen()) {
@@ -34,15 +39,6 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 
 	// Bomb Timer
 	if (miscConf.bombTimer) bomb::timer(C_C4);
-
-	// Bunny hop
-	if (miscConf.bunnyHop) misc::bunnyHop(client.base, localPlayer.getFlags());
-
-	// Flash
-	if (miscConf.flash) localPlayer.noFlash();
-
-	// Fov
-	if (miscConf.fovCheck) fov::setFov(miscConf.fov, localPlayer);
 
 	// Tigger
 	if (aimConf.trigger) aim::triggerBot(localPlayer, client.base);
@@ -158,7 +154,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			for (int i = 0; i < spectators.size(); i++) {
 				std::string name = spectators[i];
 
-				ImGui::TextColored(utils::float3ToImColor(miscConf.spectatorColours, 1.f).Value, name.c_str());
+				ImGui::TextColored(utils::float3ToImColor(miscConf.spectatorColours, miscConf.spectatorColours[3]).Value, name.c_str());
 			}
 
 			ImGui::End();

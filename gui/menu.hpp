@@ -35,4 +35,5 @@ namespace imGuiMenu {
 	void miscRender();
 	void aboutMeRender();
 	void configRender();
+	void accountRender();
 }

@@ -14,7 +14,7 @@ void bomb::timer(C_C4 C_C4) {
 	static float overlayWidth = 200.f;
 	ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize;
 	ImGui::SetNextWindowPos({ (ImGui::GetIO().DisplaySize.x - overlayWidth) / 2.f, 80.f }, ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize({ overlayWidth, 0 }, ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize({ overlayWidth, 60 }, ImGuiCond_FirstUseEver);
 
 	ImGui::Begin("Bomb Timer", nullptr, flags);
 
@@ -63,7 +63,7 @@ void bomb::timer(C_C4 C_C4) {
 		bar = 0.f;
 	}
 
-	ImGui::PushStyleColor(ImGuiCol_PlotHistogram, utils::float3ToImColor(miscConf.bombTimerColours, 1.f).Value);
+	ImGui::PushStyleColor(ImGuiCol_PlotHistogram, utils::float3ToImColor(miscConf.bombTimerColours, miscConf.bombTimerColours[3]).Value);
 	ImGui::ProgressBar(bar, { overlayWidth - 20, 15 });
 	ImGui::PopStyleColor();
 	ImGui::End();
