@@ -16,8 +16,8 @@ struct espConfig {
 	bool gradient;
 	bool filledBox = true;
 	float boundBoxThickness = 1.5f;
-	float spottedColours[4] = { 0.f,1.f,0.75f,1.f };
-	float notSpottedColours[4] = { 0.f,1.f,0.75f,1.f };
+	float spottedColours[4] = { 0.f,1.f,0.75f,0.3f };
+	float notSpottedColours[4] = { 0.f,1.f,0.75f,0.3f };
 	float cornerColours[4] = { 1.f,1.f,1.f,1.f };
 	float cornerGradient[4] = { 1.f,1.f,1.f,1.f };
 	float width = 2.5f;
