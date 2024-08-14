@@ -493,12 +493,32 @@ void imGuiMenu::configRender() {
 			lastConsoleState = miscConf.consoleVisible ? SW_RESTORE : SW_HIDE;
 		}
 
-		if (ImGui::Button("Get My Token", ImVec2(100, 50))) DiscordVerify::getToken(Shared::steamId);
-
 		ImGui::Checkbox("OBS BYPASS", &miscConf.obsBypass);
 		if (miscConf.obsBypass != utils::intToBool(lastAffinity)) {
 			SetWindowDisplayAffinity(GetForegroundWindow(), miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
 			lastAffinity = miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE;
+		}
+
+		ImGui::EndChild();
+	}
+}
+
+void imGuiMenu::accountRender() {
+	if (tabCount == 6) {
+		ImGui::BeginChild("Account", ImVec2(0, 0), true);
+
+		if (ImGui::Button("Copy My Token", ImVec2(150, 40))) {
+			ImGui::LogToClipboard();
+			ImGui::LogText(DiscordVerify::getToken(Shared::steamId).c_str());
+			ImGui::LogFinish();
+			ImGui::OpenPopup("CopyToken");
+		}
+
+		if (ImGui::BeginPopupModal("CopyToken", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize)) {
+			ImGui::Text("Your token has been copied to your clipboard!");
+			ImGui::Separator();
+			if (ImGui::Button("OK", ImVec2(120, 0))) { ImGui::CloseCurrentPopup(); }
+			ImGui::EndPopup();
 		}
 
 		ImGui::EndChild();
@@ -513,6 +533,7 @@ void imGuiMenu::menuBar() {
 	if (ImGui::MenuItem("Misc")) tabCount = 3;
 	if (ImGui::MenuItem("About")) tabCount = 4;
 	if (ImGui::MenuItem("Config")) tabCount = 5;
+	if (ImGui::MenuItem("Account")) tabCount = 6;
 
 	ImGui::EndMenuBar();
 }
@@ -533,6 +554,7 @@ void imGuiMenu::renderMenu(bool state) {
 	miscRender();
 	aboutMeRender();
 	configRender();
+	accountRender();
 
 	ImGui::PopFont();
 	ImGui::End();
