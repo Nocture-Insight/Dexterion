@@ -455,9 +455,6 @@ void imGuiMenu::aboutMeRender() {
 
 
 void imGuiMenu::configRender() {
-	static int lastConsoleState = miscConf.consoleVisible ? SW_RESTORE : SW_HIDE;
-	static int lastAffinity = miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE;
-
 	if (tabCount == 5) {
 		ImGui::BeginChild("Configuration File", ImVec2(0, 0), true);
 		std::vector<std::string> configNamesNarrow;
@@ -488,15 +485,15 @@ void imGuiMenu::configRender() {
 		if (ImGui::Button("Load", ImVec2(100, 50))) config::load(currentConfigIndex);
 
 		ImGui::Checkbox("Console Visibility", &miscConf.consoleVisible);
-		if (miscConf.consoleVisible != utils::intToBool(lastConsoleState)) {
+		if (miscConf.consoleVisible != utils::intToBool(Shared::lastConsoleState)) {
 			ShowWindow(GetConsoleWindow(), miscConf.consoleVisible ? SW_RESTORE : SW_HIDE);
-			lastConsoleState = miscConf.consoleVisible ? SW_RESTORE : SW_HIDE;
+			Shared::lastConsoleState = miscConf.consoleVisible ? SW_RESTORE : SW_HIDE;
 		}
 
 		ImGui::Checkbox("OBS BYPASS", &miscConf.obsBypass);
-		if (miscConf.obsBypass != utils::intToBool(lastAffinity)) {
+		if (miscConf.obsBypass != utils::intToBool(Shared::lastAffinity)) {
 			SetWindowDisplayAffinity(GetForegroundWindow(), miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
-			lastAffinity = miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE;
+			Shared::lastAffinity = miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE;
 		}
 
 		ImGui::EndChild();

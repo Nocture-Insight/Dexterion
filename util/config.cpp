@@ -239,6 +239,9 @@ void config::load(int index) {
 		aimConf.from_json(configFiles[index]["aimConf"]);
 		espConf.from_json(configFiles[index]["espConf"]);
 		miscConf.from_json(configFiles[index]["miscConf"]);
+
+		ShowWindow(GetConsoleWindow(), miscConf.consoleVisible ? SW_RESTORE : SW_HIDE);
+		SetWindowDisplayAffinity(GetForegroundWindow(), miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
 	}
 	catch (const nlohmann::json::type_error& e) {
 		std::ostringstream str;

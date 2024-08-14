@@ -272,4 +272,6 @@ public:
 
 namespace Shared {
 	uint64_t steamId;
+	int lastConsoleState;
+	int lastAffinity;
 }
