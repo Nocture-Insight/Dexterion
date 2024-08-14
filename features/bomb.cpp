@@ -63,7 +63,7 @@ void bomb::timer(C_C4 C_C4) {
 		bar = 0.f;
 	}
 
-	ImGui::PushStyleColor(ImGuiCol_PlotHistogram, utils::float3ToImColor(miscConf.bombTimerColours, 1.f).Value);
+	ImGui::PushStyleColor(ImGuiCol_PlotHistogram, utils::float3ToImColor(miscConf.bombTimerColours, miscConf.bombTimerColours[3]).Value);
 	ImGui::ProgressBar(bar, { overlayWidth - 20, 15 });
 	ImGui::PopStyleColor();
 	ImGui::End();

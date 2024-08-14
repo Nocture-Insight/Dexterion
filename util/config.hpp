@@ -16,10 +16,10 @@ struct espConfig {
 	bool gradient;
 	bool filledBox = true;
 	float boundBoxThickness = 1.5f;
-	float spottedColours[4] = { 0.f,1.f,0.75f };
-	float notSpottedColours[4] = { 0.f,1.f,0.75f };
-	float cornerColours[4] = { 1.f,1.f,1.f };
-	float cornerGradient[4] = { 1.f,1.f,1.f };
+	float spottedColours[4] = { 0.f,1.f,0.75f,1.f };
+	float notSpottedColours[4] = { 0.f,1.f,0.75f,1.f };
+	float cornerColours[4] = { 1.f,1.f,1.f,1.f };
+	float cornerGradient[4] = { 1.f,1.f,1.f,1.f };
 	float width = 2.5f;
 
 	bool isPawnName;
@@ -32,16 +32,16 @@ struct espConfig {
 	bool hpCounter;
 	float health[4];
 
-	float attributeColours[4] = { 1.f,1.f,1.f };
+	float attributeColours[4] = { 1.f,1.f,1.f,1.f };
 
 	bool skeleton;
-	float skeletonColours[4] = { 1.f,1.f,1.f };
+	float skeletonColours[4] = { 1.f,1.f,1.f,1.f };
 
 	bool head;
-	float headColours[4] = { 1.f,1.f,1.f };
+	float headColours[4] = { 1.f,1.f,1.f,1.f };
 
 	bool joint;
-	float jointColours[4] = { 1.f,1.f,1.f };
+	float jointColours[4] = { 1.f,1.f,1.f,1.f };
 
 	bool snapLines;
 
@@ -54,8 +54,8 @@ struct espConfig {
 
 	float c4Thickness = 1.f;
 
-	float c4Colors[4] = { 1.f, 0.f, 0.f};
-	float c4ColorsGradient[4] = { 1.f, 0.f, 0.f };
+	float c4Colors[4] = { 1.f, 0.f, 0.f, 1.f };
+	float c4ColorsGradient[4] = { 1.f, 0.f, 0.f, 1.f };
 
 	inline nlohmann::json to_json();
 	inline bool from_json(nlohmann::json json);
@@ -111,8 +111,8 @@ struct miscConfig {
 	bool bombTimer;
 	bool consoleVisible = true;
 	bool obsBypass = true;
-	float bombTimerColours[4] = { 0.f, 1.f, 0.5f };
-	float spectatorColours[4] = { 1.f, 0.f, 0.f };
+	float bombTimerColours[4] = { 0.f, 1.f, 0.5f, 1.f };
+	float spectatorColours[4] = { 1.f, 0.f, 0.f, 1.f };
 
 	inline nlohmann::json to_json();
 	inline bool from_json(nlohmann::json json);

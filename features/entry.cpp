@@ -154,7 +154,7 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 			for (int i = 0; i < spectators.size(); i++) {
 				std::string name = spectators[i];
 
-				ImGui::TextColored(utils::float3ToImColor(miscConf.spectatorColours, 1.f).Value, name.c_str());
+				ImGui::TextColored(utils::float3ToImColor(miscConf.spectatorColours, miscConf.spectatorColours[3]).Value, name.c_str());
 			}
 
 			ImGui::End();
