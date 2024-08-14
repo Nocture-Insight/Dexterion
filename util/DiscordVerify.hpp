@@ -1,7 +1,9 @@
 #include "utilFunctions.hpp"
-#include "cpr/cpr.h"
+#include "HTTPRequest.hpp"
 #include <iostream>
 #include <string>
+
+#pragma comment(lib, "WS2_32.lib")
 
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
@@ -16,20 +18,13 @@ namespace DiscordVerify {
         std::string tokenString;
         try
         {
-            CURL* curl;
-            CURLcode res;
+            http::Request request{ serverUrl };
+            const auto response = request.send("POST", userData, {
+                {"Content-Type", "application/x-www-form-urlencoded"}
+                });
+            tokenString = std::string{ response.body.begin(), response.body.end() };
 
-            curl = curl_easy_init();
-            if (curl) {
-                curl_easy_setopt(curl, CURLOPT_URL, serverUrl.c_str());
-                curl_easy_setopt(curl, CURLOPT_POSTFIELDS, userData.c_str());
-
-                curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-                curl_easy_setopt(curl, CURLOPT_WRITEDATA, &tokenString);
-
-                res = curl_easy_perform(curl);
-                curl_easy_cleanup(curl);
-            }
+            std::cout << tokenString << std::endl;
 
             nlohmann::json tokenJson = nlohmann::json::parse(tokenString);
 
