@@ -514,7 +514,7 @@ void imGuiMenu::accountRender() {
 			ImGui::OpenPopup("CopyToken");
 		}
 
-		if (ImGui::BeginPopupModal("CopyToken", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize)) {
+		if (ImGui::BeginPopupModal("CopyToken", NULL, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove)) {
 			ImGui::Text("Your token has been copied to your clipboard!");
 			ImGui::Separator();
 			if (ImGui::Button("OK", ImVec2(120, 0))) { ImGui::CloseCurrentPopup(); }
