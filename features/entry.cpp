@@ -20,7 +20,8 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	localPlayer.getPlayerPawn();
 
 	CBasePlayerController.controller = localPlayer.getPlayerController();
-	Shared::steamId = CBasePlayerController.getSteamId();
+	if (Shared::steamId != CBasePlayerController.getSteamId())
+		Shared::steamId = CBasePlayerController.steamId;
 	// Aimbot FOV circle
 	if (aimConf.fovCircle) {
 		if (!overlayESP::isMenuOpen()) {
