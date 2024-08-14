@@ -38,6 +38,7 @@ jobs:
           #DEXTERION_VERSION=$(grep -Po 'version\s*=\s*"\K[^"]*' ./util/utilFunctions.hpp)
           echo "DEXTERION_VERSION=$DEXTERION_VERSION" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
     - name: Zip Dexterion
+      shell: cmd
       run: |
           cd "x64\Release"
           rename Dexterion.exe "Dexterion-${{ env.DEXTERION_VERSION }}.exe"
