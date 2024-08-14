@@ -90,7 +90,7 @@ void esp::drawC4(Vector3 origin, view_matrix_t viewMatrix, LocalPlayer localPlay
 
 	if (c4PosToScreen.z <= 0.f) return; // Check if C4 is behind the player
 
-	float height = 5000 / distance;
+	float height = std::sqrt(distance);
 	float width = height * 1.2f;
 
 	float boxX = c4PosToScreen.x - width / 2;
