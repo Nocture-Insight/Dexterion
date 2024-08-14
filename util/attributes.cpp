@@ -298,10 +298,6 @@ int LocalPlayer::getShotsFired() {
 	return shotsFired;
 }
 
-void LocalPlayer::noFlash() {
-	MemMan.WriteMem<float>(playerPawn + clientDLL::C_CSPlayerPawnBase_["m_flFlashDuration"], 0.f);
-}
-
 int LocalPlayer::getEntitySpotted() {
 	spotted = MemMan.ReadMem<DWORD_PTR>(playerPawn + clientDLL::C_CSPlayerPawn_["m_entitySpottedState"] + clientDLL::EntitySpottedState_t_["m_bSpottedByMask"]);
 	return spotted;

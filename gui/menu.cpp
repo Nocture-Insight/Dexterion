@@ -347,8 +347,6 @@ void imGuiMenu::miscRender() {
 		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text("Movement");
 		ImGui::PopFont();
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Bunny hop (!!! WRITE MEMORY !!!)", &miscConf.bunnyHop);
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
@@ -370,33 +368,6 @@ void imGuiMenu::miscRender() {
 		ImGui::Text("Visual");
 		ImGui::PopFont();
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Anti flash (!!! WRITE MEMORY !!!)", &miscConf.flash);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		ImGui::Checkbox("Fov Changer (!!! WRITE MEMORY !!!)", &miscConf.fovCheck);
-		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		if (miscConf.fovCheck) {
-			ImGui::SliderInt("FOV", &miscConf.fov, 30, 140);
-			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
-		}
-
-		if (ImGui::Button("Modal"))
-			ImGui::OpenPopup("Modal window");
-
-		if (ImGui::BeginPopupModal("Modal window", NULL, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize))
-		{
-			ImGui::Text("Hello dsjfhds fhjs hfj dshfj hds");
-			if (ImGui::Button("Close"))
-			{
-				ImGui::CloseCurrentPopup();
-			}
-			ImGui::SameLine();
-			if (ImGui::Button("Close"))
-			{
-				ImGui::CloseCurrentPopup();
-			}
-			ImGui::EndPopup();
-		}
-
 		ImGui::Checkbox("DeathMatch Mode", &miscConf.deathmatchMode);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::Checkbox("Dropped Item ESP", &miscConf.itemESP);

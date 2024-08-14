@@ -181,11 +181,7 @@ inline bool espConfig::from_json(nlohmann::json json) {
 
 inline nlohmann::json miscConfig::to_json() {
 	nlohmann::json json;
-	json["fov"] = fov;
-	json["flash"] = flash;
 	json["itemESP"] = itemESP;
-	json["bunnyHop"] = bunnyHop;
-	json["fovCheck"] = fovCheck;
 	json["bombTimer"] = bombTimer;
 	json["spectator"] = spectator;
 	json["deathmatchMode"] = deathmatchMode;
@@ -198,11 +194,7 @@ inline nlohmann::json miscConfig::to_json() {
 
 inline bool miscConfig::from_json(nlohmann::json json) {
 	try {
-		fov = json["fov"];
-		flash = json["flash"];
 		itemESP = json["itemESP"];
-		bunnyHop = json["bunnyHop"];
-		fovCheck = json["fovCheck"];
 		spectator = json["spectator"]; 
 		consoleVisible = json["consoleVisible"];
 		obsBypass = json["obsBypass"];

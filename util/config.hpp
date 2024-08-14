@@ -105,18 +105,14 @@ aimConfig aimConf = {};
 
 
 struct miscConfig {
-	bool bunnyHop;
-	bool flash;
 	bool itemESP;
 	bool deathmatchMode;
-	bool fovCheck = false;
 	bool spectator;
 	bool bombTimer;
 	bool consoleVisible = true;
 	bool obsBypass = true;
 	float bombTimerColours[4] = { 0.f, 1.f, 0.5f };
 	float spectatorColours[4] = { 1.f, 0.f, 0.f };
-	int fov = 90;
 
 	inline nlohmann::json to_json();
 	inline bool from_json(nlohmann::json json);

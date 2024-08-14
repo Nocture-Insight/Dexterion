@@ -40,15 +40,6 @@ void mainLoop(bool state, MemoryManagement::moduleData client) {
 	// Bomb Timer
 	if (miscConf.bombTimer) bomb::timer(C_C4);
 
-	// Bunny hop
-	if (miscConf.bunnyHop) misc::bunnyHop(client.base, localPlayer.getFlags());
-
-	// Flash
-	if (miscConf.flash) localPlayer.noFlash();
-
-	// Fov
-	if (miscConf.fovCheck) fov::setFov(miscConf.fov, localPlayer);
-
 	// Tigger
 	if (aimConf.trigger) aim::triggerBot(localPlayer, client.base);
 

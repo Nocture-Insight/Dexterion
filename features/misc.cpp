@@ -10,15 +10,6 @@ bool misc::isGameWindowActive() {
 	return false;
 }
 
-void misc::bunnyHop(DWORD_PTR base, int flags) {
-	if (GetAsyncKeyState(VK_SPACE) && flags & bhopInAir) {
-		MemMan.WriteMem<int>(base + buttons["jump"], 65537);
-	}
-	else {
-		MemMan.WriteMem<int>(base + buttons["jump"], 256);
-	}
-}
-
 void misc::droppedItem(C_CSPlayerPawn C_CSPlayerPawn, CGameSceneNode CGameSceneNode, view_matrix_t viewMatrix) {
 	if (!overlayESP::isMenuOpen()) {
 		if (!misc::isGameWindowActive()) return;
