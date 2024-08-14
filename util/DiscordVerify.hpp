@@ -9,11 +9,11 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
 }
 
 namespace DiscordVerify {
-    bool getToken(uint64_t steamId) {
+    std::string getToken(uint64_t steamId) {
         std::string serverUrl = "http://spain2.firecloudllc.info:36570/getToken";
-        std::string userData = std::format("HWID={}&SteamId={}&Timezone={}", utils::get_hwid(), steamId, std::chrono::system_clock::now().time_since_epoch());
+        std::string userData = std::format("HWID={}&SteamId={}&Timezone={}", utils::get_hwid(), steamId, std::chrono::system_clock::now().time_since_epoch().count());
 
-        std::string token;
+        std::string tokenString;
         try
         {
             CURL* curl;
@@ -25,19 +25,20 @@ namespace DiscordVerify {
                 curl_easy_setopt(curl, CURLOPT_POSTFIELDS, userData.c_str());
 
                 curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-                curl_easy_setopt(curl, CURLOPT_WRITEDATA, &token);
+                curl_easy_setopt(curl, CURLOPT_WRITEDATA, &tokenString);
 
                 res = curl_easy_perform(curl);
                 curl_easy_cleanup(curl);
             }
 
-            Logger::info("[DiscordVerify.hpp] " + token); // print the result
-            return true;
+            nlohmann::json tokenJson = nlohmann::json::parse(tokenString);
+
+            return tokenJson["token"];
         }
         catch (const std::exception& e)
         {
             Logger::error("[DiscordVerify.hpp] Request failed");
-            return false;
+            return "Failed to parse token";
         }
     }
 }
