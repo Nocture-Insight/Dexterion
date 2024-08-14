@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\libcpr.1.10.5\build\native\libcpr.props" Condition="Exists('packages\libcpr.1.10.5\build\native\libcpr.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -137,56 +138,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="cpr\accept_encoding.h" />
-    <ClInclude Include="cpr\api.h" />
-    <ClInclude Include="cpr\async.h" />
-    <ClInclude Include="cpr\async_wrapper.h" />
-    <ClInclude Include="cpr\auth.h" />
-    <ClInclude Include="cpr\bearer.h" />
-    <ClInclude Include="cpr\body.h" />
-    <ClInclude Include="cpr\buffer.h" />
-    <ClInclude Include="cpr\callback.h" />
-    <ClInclude Include="cpr\cert_info.h" />
-    <ClInclude Include="cpr\connect_timeout.h" />
-    <ClInclude Include="cpr\cookies.h" />
-    <ClInclude Include="cpr\cpr.h" />
-    <ClInclude Include="cpr\cprtypes.h" />
-    <ClInclude Include="cpr\cprver.h" />
-    <ClInclude Include="cpr\curlholder.h" />
-    <ClInclude Include="cpr\curlmultiholder.h" />
-    <ClInclude Include="cpr\curl_container.h" />
-    <ClInclude Include="cpr\error.h" />
-    <ClInclude Include="cpr\file.h" />
-    <ClInclude Include="cpr\filesystem.h" />
-    <ClInclude Include="cpr\http_version.h" />
-    <ClInclude Include="cpr\interceptor.h" />
-    <ClInclude Include="cpr\interface.h" />
-    <ClInclude Include="cpr\limit_rate.h" />
-    <ClInclude Include="cpr\local_port.h" />
-    <ClInclude Include="cpr\local_port_range.h" />
-    <ClInclude Include="cpr\low_speed.h" />
-    <ClInclude Include="cpr\multipart.h" />
-    <ClInclude Include="cpr\multiperform.h" />
-    <ClInclude Include="cpr\parameters.h" />
-    <ClInclude Include="cpr\payload.h" />
-    <ClInclude Include="cpr\proxies.h" />
-    <ClInclude Include="cpr\proxyauth.h" />
-    <ClInclude Include="cpr\range.h" />
-    <ClInclude Include="cpr\redirect.h" />
-    <ClInclude Include="cpr\reserve_size.h" />
-    <ClInclude Include="cpr\resolve.h" />
-    <ClInclude Include="cpr\response.h" />
-    <ClInclude Include="cpr\session.h" />
-    <ClInclude Include="cpr\singleton.h" />
-    <ClInclude Include="cpr\ssl_ctx.h" />
-    <ClInclude Include="cpr\ssl_options.h" />
-    <ClInclude Include="cpr\status_codes.h" />
-    <ClInclude Include="cpr\threadpool.h" />
-    <ClInclude Include="cpr\timeout.h" />
-    <ClInclude Include="cpr\unix_socket.h" />
-    <ClInclude Include="cpr\user_agent.h" />
-    <ClInclude Include="cpr\util.h" />
-    <ClInclude Include="cpr\verbose.h" />
     <ClInclude Include="features\aim.hpp" />
     <ClInclude Include="features\bomb.hpp" />
     <ClInclude Include="features\entry.hpp" />
@@ -242,6 +193,18 @@
   <ItemGroup>
     <ResourceCompile Include="Dexterion.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\libcpr.1.10.5\build\native\libcpr.targets" Condition="Exists('packages\libcpr.1.10.5\build\native\libcpr.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\libcpr.1.10.5\build\native\libcpr.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\libcpr.1.10.5\build\native\libcpr.props'))" />
+    <Error Condition="!Exists('packages\libcpr.1.10.5\build\native\libcpr.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\libcpr.1.10.5\build\native\libcpr.targets'))" />
+  </Target>
 </Project>

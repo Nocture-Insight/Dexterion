@@ -1,5 +1,5 @@
 #include "utilFunctions.hpp"
-#include "../packages/libcpr.1.10.5/build/native/x64/Release/include/cpr/cpr.h"
+#include "cpr/cpr.h"
 #include <iostream>
 #include <string>
 
