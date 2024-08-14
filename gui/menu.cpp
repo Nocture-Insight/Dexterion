@@ -430,6 +430,11 @@ void imGuiMenu::aboutMeRender() {
 		ImGui::TextLinkOpenURL("Discord", "https://www.unknowncheats.me/forum/members/6169955.html");
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::PushFont(imGuiMenu::titleText);
+		ImGui::Text("Discord");
+		ImGui::PopFont();
+		ImGui::TextLinkOpenURL("Click me!", "https://discord.gg/jwueZBpnyY");
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::PushFont(imGuiMenu::titleText);
 		ImGui::Text(("Version: " + utils::version).c_str());
 		ImGui::EndChild();
 	}
