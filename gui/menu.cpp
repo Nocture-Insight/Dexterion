@@ -345,8 +345,19 @@ void imGuiMenu::miscRender() {
 	if (tabCount == 3) {
 		ImGui::BeginChild("Movement", ImVec2(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt), true);
 		ImGui::PushFont(imGuiMenu::titleText);
-		ImGui::Text("Movement");
+		ImGui::Text("Utilities");
 		ImGui::PopFont();
+		ImGui::Checkbox("Console Visibility", &miscConf.consoleVisible);
+		if (miscConf.consoleVisible != utils::intToBool(Shared::lastConsoleState)) {
+			ShowWindow(GetConsoleWindow(), miscConf.consoleVisible ? SW_RESTORE : SW_HIDE);
+			Shared::lastConsoleState = miscConf.consoleVisible ? SW_RESTORE : SW_HIDE;
+		}
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("OBS BYPASS", &miscConf.obsBypass);
+		if (miscConf.obsBypass != utils::intToBool(Shared::lastAffinity)) {
+			SetWindowDisplayAffinity(GetForegroundWindow(), miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
+			Shared::lastAffinity = miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE;
+		}
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
@@ -454,18 +465,6 @@ void imGuiMenu::configRender() {
 		if (ImGui::Button("Save", ImVec2(100, 50))) config::save(currentConfigIndex);
 		ImGui::SameLine();
 		if (ImGui::Button("Load", ImVec2(100, 50))) config::load(currentConfigIndex);
-
-		ImGui::Checkbox("Console Visibility", &miscConf.consoleVisible);
-		if (miscConf.consoleVisible != utils::intToBool(Shared::lastConsoleState)) {
-			ShowWindow(GetConsoleWindow(), miscConf.consoleVisible ? SW_RESTORE : SW_HIDE);
-			Shared::lastConsoleState = miscConf.consoleVisible ? SW_RESTORE : SW_HIDE;
-		}
-
-		ImGui::Checkbox("OBS BYPASS", &miscConf.obsBypass);
-		if (miscConf.obsBypass != utils::intToBool(Shared::lastAffinity)) {
-			SetWindowDisplayAffinity(GetForegroundWindow(), miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE);
-			Shared::lastAffinity = miscConf.obsBypass ? WDA_EXCLUDEFROMCAPTURE : WDA_NONE;
-		}
 
 		ImGui::EndChild();
 	}
