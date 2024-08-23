@@ -24,7 +24,15 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 
 	aimPos = MemMan.ReadMem<Vector3>(boneArray + aimConf.boneMap[aimConf.bones[aimConf.boneSelect]] * 32);
 	angle = CalculateAngle(localPlayer.eyepos, aimPos, localPlayer.viewAngles);
-	newAngle = calculateBestAngle(angle, { 0, 0, aimConf.fov });
+	newAngle = calculateBestAngle(angle, aimConf.fov);
+
+	newAngle.x = (newAngle.x / (0.022f * aimConf.sens)) / aimConf.smoothing;
+	newAngle.y = (newAngle.y / (0.022f * aimConf.sens)) / aimConf.smoothing;
+
+	if (newAngle.IsZero()) {
+		lockedPlayer = 0;
+		return;
+	}
 
 	if (aimConf.rcs) {
 		static Vector3 oldAngles = { 0, 0, 0 };
@@ -38,16 +46,8 @@ void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enem
 			oldAngles.x = aimPunch.y;
 			oldAngles.y = aimPunch.x;
 		}
-		newAngle = calculateBestAngle(angle, { rcs.x, rcs.y, aimConf.fov });
+		newAngle = newAngle - rcs;
 	};
-
-	newAngle.x = (newAngle.x / (0.022f * aimConf.sens)) / aimConf.smoothing;
-	newAngle.y = (newAngle.y / (0.022f * aimConf.sens)) / aimConf.smoothing;
-
-	if (newAngle.IsZero()) {
-		lockedPlayer = 0;
-		return;
-	}
 	
 	if (aimConf.isHotAim) {
 		if (GetAsyncKeyState(aimConf.hotKeyMap[aimConf.hotKey[aimConf.hotSelectAim]])) {
@@ -99,8 +99,10 @@ bool clicked = false;
 
 const int trigger_cooldown()
 {
-	return (int) (((rand() % 50)/100) + 0.15F);
+	// Generate a random float between 0.0 and 0.5, add 0.15F to it, then cast to int milliseconds
+	return static_cast<int>((static_cast<float>(rand() % 50) / 100.0F + 0.15F) * 1000);
 }
+
 
 void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
 	int crossHairEntity = MemMan.ReadMem<int>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawnBase_["m_iIDEntIndex"]);
@@ -117,7 +119,7 @@ void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
 	bool isDeathMatchEntity = (crossHairEntity != -1 && crossHairPawn.getPawnHealth() > 0 && crossHairPawn.getPawnHealth() <= 100 && miscConf.deathmatchMode);
 
 	if (localPlayerHealth > 100 || localPlayerHealth <= 0) return;
-
+	
 	if (aimConf.isHotTrigger) {
 		if (GetAsyncKeyState(aimConf.hotKeyMap[aimConf.hotKey[aimConf.hotSelectTrigger]])) {
 			if (isValidEntity || isDeathMatchEntity) {
@@ -125,6 +127,7 @@ void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
 				{
 					clicked = true;
 					const int t = trigger_cooldown();
+					//printf("Cooldown: %d ms\n", t);  // Correct printf syntax for int
 					mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
 					Sleep(t/2);
 					mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
@@ -141,6 +144,7 @@ void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
 			{
 				clicked = true;
 				const int t = trigger_cooldown();
+				//printf("Cooldown: %d ms\n", t);  // Correct printf syntax for int
 				mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
 				Sleep(t / 2);
 				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
