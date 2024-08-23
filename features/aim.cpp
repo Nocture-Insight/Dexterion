@@ -99,7 +99,8 @@ bool clicked = false;
 
 const int trigger_cooldown()
 {
-	return (int) (((rand() % 50)/100) + 0.15F);
+	// Generate a random float between 0.0 and 0.5, add 0.15F to it, then cast to int milliseconds
+	return static_cast<int>((static_cast<float>(rand() % 50) / 100.0F + 0.15F) * 1000);
 }
 
 void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
@@ -125,6 +126,7 @@ void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
 				{
 					clicked = true;
 					const int t = trigger_cooldown();
+					//printf("Cooldown: %d ms\n", t);  // Correct printf syntax for int
 					mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
 					Sleep(t/2);
 					mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
@@ -141,6 +143,7 @@ void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
 			{
 				clicked = true;
 				const int t = trigger_cooldown();
+				//printf("Cooldown: %d ms\n", t);  // Correct printf syntax for int
 				mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
 				Sleep(t / 2);
 				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
