@@ -1,131 +1,85 @@
-﻿<div align="center">
-  
-![DexterionBanner](assets/dexterion_banner.jpg)
-  
-[![C++](https://img.shields.io/badge/language-C%2B%2B-%23f34b7d.svg?style=plastic)](https://en.wikipedia.org/wiki/C%2B%2B)
-[![CS2](https://img.shields.io/badge/game-CS2-yellow.svg?style=plastic)](https://store.steampowered.com/app/730) 
-[![License](https://img.shields.io/badge/License-BDSv3-green.svg?style=plastic)](https://github.com/Skwrr/Dexterion/blob/master/LICENSE)
+<p align="center">
+<img src="" alt="dexterionRevmap-Logo" width="15%"/>
+</p>
 
-Welcome to **Dexterion**!\
-This is a free, open-source tool created solely for educational purposes and testing [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74).
+<h1 align="center">Dexterion User Mode</h1>
+<p align="center">An open-source, external tool for Counter-Strike 2 that operates at the <b>user mode level</b>, providing read-only gameplay enhancer.</p>
+<p align="center">This project was created to explore how computer comunicates, <br>Vulnerability on Anti-Cheat and explolring the world of game enhancements.</p>
 
+<div align="center">
+    <br>
+    <img src="https://img.shields.io/github/last-commit/Nocture-Insight/Dexterion" alt="GitHub last commit"/>
+    <img src="https://img.shields.io/github/commit-activity/w/Nocture-Insight/Dexterion" alt="GitHub commit activity"/>
+    <img src="https://img.shields.io/github/contributors/Nocture-Insight/Dexterion" alt="GitHub contributors"/>
+    <img src="https://img.shields.io/github/v/release/Nocture-Insight/Dexterion" alt="Lastest Realese"/>
+    <br>
+    <img src="https://img.shields.io/github/languages/code-size/Nocture-Insight/Dexterion" alt="GitHub code size in bytes"/>
+    <img src="https://img.shields.io/endpoint?url=https://ghloc.vercel.app/api/Nocture-Insight/Dexterion/badge?filter=.cpp$,.hpp$,.h$&label=lines%20of%20code&color=blue" alt="GitHub total lines"/>
+    <img src="https://img.shields.io/github/issues/Nocture-Insight/Dexterion" alt="Open issues"/>
 </div>
 
-## Table of contents 
-- [How To Use](#Howtouse)
-- [Contributing](#Contributing)
-- [Usage](#Usage)
-- [Anti-Cheat](#Anti-Cheat)
-- [Features](#Features)
-- [IsThisVirus?](#IsThisVirus)
-- [Credits](#Credits)
-- [LICENSE](#License)
-- [Disclaimer](#Disclaimer)
-- [Previews](#Previews)
 
-## HowtoUse
-- You can see [Contributing](#Contributing) if you don't know how to compile you can directly download github automated build app in realese.
-
-## Contributing
-Download the code from the green button that says `Code`.
-Extract the RAR file into any folder.
-Open `Dexterion.sln` in Visual Studio 2022, set build configuration to **Release | x64**.
-Press Build solution and you should receive **Dexterion.exe** file in the path `Dexterion/x64/Release/`
-
-</sub></sup>Little story about compiling the source:</sup></sub>
-<sup><sub><sup><sub>Recently, some portuguese and russian kids asked if this was a virus. They ended up blocking me and I'll tell you how. They made me run the cheat, so I did and they still didn't believe it wasn't malware. They tried compiling the cheat and told me to help them. I was really trying to but they were retarded or something because the wasn't listening to me and didn't know how to extract the src. They blocked me after that failed attempt of extract the file. Don't be like those guys, please.</sub></sup></sub></sup>
-
-## Usage
-### Update Offsets ( Choose 1 or 2 )
-1. Update Offsets. (Run `updateoffsets.cmd` in the same folder as `Dexterion.exe`)
-2. Manualy update from [a2x repo's](https://github.com/a2x/cs2-dumper/blob/main/output) the following files: `buttons.json`, `offsets.json`, `client_dll.json`.
+## READ FIRST
+> [!NOTE]
+> **First of all we recommend to know basics of [C++](https://en.cppreference.com/) and [Kernel Microsoft Docs](https://learn.microsoft.com/en-us/windows-hardware/drivers/develop/getting-started-with-windows-drivers) or [Kernel f/ Github](https://github.com/microsoft/Windows-driver-samples?tab=security-ov-file) or [Kernel f/ Code-Project](https://www.codeproject.com/Articles/9504/Driver-Development-Part-1-Introduction-to-Drivers)**\
+> **Additionaly, if dont know anything about cibersecurity or virus analysis we recommend to shut-up\
+> and learn about thigns mentioned above first then understand how does this works and why this isnt a virus.**
 
 > [!IMPORTANT]
-   > Close Visual Studio to stop the released version that is ran automaticaly when you build.\
-   > Then go to the `/x64/Release/` path and open dexterion.\
-   > **If you use the version that was ran when you built the application this will be bugged.**
-### Run
-4. Run `Dexterion.exe` From release path
-5. Follow Terminal instructions.
-6. Wait For Load.
+> **Dexterion Revmap is not a plug 'n play solution. [+info](https://github.com/Nocture-Insight/Dexterion/main/README.md#vac).**\
+> **We suggest you to read this [readme.md](https://github.com/Nocture-Insight/Dexterion/main/README.md) file before starting contributing, self-use, or anything related.**
 
-### Toggle/Kill UI
-- Toggle UI: `Inset` key.
-- Terminate UI: `End` key.
+### Building
+Manual building this game enhancer
+ - Clone this repo.
+ - Make realese x64 from .snl 
 
-### Using Icon Fonts
-Move fonts folder to the same folder as `Dexterion.exe` is.
+### Installation 
+ - Lore ismpus is something that you could be lol, hannahowo < sweetie fox < femboys.
 
-### Config
-All config files are located on `X:\Dexterion`
-`X` will be the letter of the disk you're running dexterion on
-#### Example:
-- If you run `Dexterion.exe` in a pendrive which letter is `F:`, Dexterion config files will be in `F:\Dexterion`
+## Contributions
+We will review and help with all reasonable pull requests as long as the guidelines below are met.
 
-## Anti-Cheat
-> [!CAUTION]
-> **This software constitutes a cheat and is in *violation of the Terms of Service (ToS)* of any game in which it is used. We disclaim all liability for any *account bans* or *penalties incurred* as a result of its use. By using this software, you acknowledge that you are solely responsible for any consequences. USE AT YOUR OWN RISK**
+- IDE or system-related files should be added to the `.gitignore`, never committed in pull requests.
+- Same IDE, We're currently using [Visual Studio](https://visualstudio.microsoft.com/) in the project for compilation and coding.
+- Explain as much as possible your self, dont do like " ^ as title says ", if we don't understand we going to direct close that issue.
+- In general, check existing code to make sure your code matches relatively close to the code already in the project.
+- Favour readability over compactness.
 
-## Features
-- ESP
-  - Health bar (+ HP counter)
-  - Player name
-  - Weapon icons / names
-  - Skeleton
-  - Joints
-  - Head
-  - Snap lines
-  - Distance
-- Aim
-  - Aimbot (+ Player lock)
-  - Recoil control system
-  - Trigger bot (random click delay)
-- Misc
-  - Bunny hop
-  - Anti flash
-  - Deathmatch Mode
-  - Dropped item ESP
-  - Bomb Timer
-  - Spectator List
+## Troubleshooting, Bugs & Suggestions
+Troublehoosting, bug reports and suggestions should be made in this repo's [issue tracker](https://github.com/Nocture-Insight/Dexterion/issues) using the templates provided.  
+Please provide as much information as you can to best help us understand your issue and give a better chance of it being resolved.
 
-> [!CAUTION]
-> **Bunny Hop, Anti-Flash, Fov are using write memory function from windows api and this could result in a ban.**
+*If you got any question non-related to cheats, you can join our community and stay updated:*
+> [!WARNING]
+> In this [discord server](https://discord.gg/25rtyPfMEQ) exclusively for discussions about hardware, kernels, and cybersecurity.\
+> We do not discuss cheats or any illegal activities that agains discord [tos](https://discord.com/tos) and [guidelines](https://discord.com/guidelines).
 
-## IsThisVirus
-- Short answer, no.
-- But, as you are too lazy to view the source code, just don't use this.
+## VAC
+Some considerations has taken into account when creating this game enhancer.\
+We do as much as posible to avoid begin detected ( goal of the project ) and invisible from VAC detection.\
+However, we declares heres, that we didnt studied in-depth of this system.\
+I cannot 100% confirm that vac doesnt detect this but in this case the cheat should be undetected 100%.\
+Something to be aware of is the Overwatch if you got any unussual activity you will get caught and banned.
+> [!WARNING]
+> **This game enchancer could be a *violation of* the Terms of Service (ToS) of any game in which it is used.\
+> We disclaim all liability for any *account bans* or *penalties incurred* as a result of its use.\
+> By using this game enchancer, you acknowledge that you are solely responsible for any consequences.**
+
+## Donations
+We appreciate it.
 
 ## Credits
-- [kristofhracza/tim_apple](https://github.com/kristofhracza/tim_apple) (Forked from this. Inspiration)
-- [Patitotective/ImThemes](https://github.com/Patitotective/ImThemes)
-- [a2x/cs2-dumper](https://github.com/a2x/cs2-dumper)
-- [nlohmann/json](https://github.com/nlohmann/json)
-- [ocornut/imgui](https://github.com/ocornut/imgui) 
+None rn.
 
-## Disclaimer
-> [!IMPORTANT]
-> We are not responsible for any **banned accounts** and the **bad use** of this application.\
-> This application was made for educational propurse to test the [VAC ( Valve Anti-Cheat )](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74).\
-> **USE AT YOUR OWN RISK**.
+## Features
+ - FUCK VAC
 
+## Licensing
 > [!NOTE]
-> **This cheat is only tested on [VAC (Valve Anti-Cheat)](https://help.steampowered.com/faqs/view/571A-97DA-70E9-FF74) with non-writeMem features and `0` bans has been issued.**
+> This repository is licensed under the [FUCK RE-SELLING OPEN SOURCE LICENCE](https://github.com/Nocture-Insight/Dexterion/blob/main/LICENSE) License.
+> Any modified version of this source code is strictly prohibited from being sold under any circumstances.
+> Modified versions must remain for private, personal use only, or be released as open-source software under the same [FRS-OPL](https://github.com/Nocture-Insight/Dexterion/blob/main/LICENSE).
+> Any redistribution must include proper attribution and a hyperlink to the [Original Github Repository](https://github.com/Nocture-Insight/Dexterion).
 
-## License
-> [!NOTE]
-> This repository is licensed under the [BSD-3](https://github.com/Skwrr/Dexterion/blob/master/LICENSE) Clause License.
-> Any modified version of this source code is strictly prohibited from being sold under any circumstances. Modified versions must remain for private, personal use only, or be released as open-source software under the same [BSD-3](https://github.com/Skwrr/Dexterion/blob/master/LICENSE) Clause License. Any redistribution must include proper attribution and a hyperlink to the [original GitHub repository](https://github.com/Skwrr/Dexterion).
-
-<details>
-  <summary>
-    <h2>Previews</h2>
-</summary>
-
-
-![Preview](assets/screenshots/preview1.png)
-![Preview](assets/screenshots/preview2.png)
-![Preview](assets/screenshots/preview3.png)
-![Preview](assets/screenshots/preview4.png)
-![Preview](assets/screenshots/preview5.png)
-
-</details>
+*If you have any other questions, you can join our community at [Troubleshooting, Bugs & Suggestions](https://github.com/Nocture-Insight/Dexterion/main/README.md#troubleshooting-bugs--suggestions)*
