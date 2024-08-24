@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">Dexterion User Mode</h1>
-<p align="center">An open-source, external tool for Counter-Strike 2 that operates at the <b>user mode level</b>, providing read-only gameplay enhancer.</p>
+<p align="center">An open-source, external tool for Counter-Strike 2 that operates at the <b>user mode level</b>, <br>providing read-only gameplay enhancer.</p>
 <p align="center">This project was created to explore how computer comunicates, <br>Vulnerability on Anti-Cheat and explolring the world of game enhancements.</p>
 
 <div align="center">
