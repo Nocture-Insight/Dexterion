@@ -21,8 +21,7 @@
 
 ## READ FIRST
 > [!NOTE]
-> **First of all we recommend to know basics of [C++](https://en.cppreference.com/) and [Kernel Microsoft Docs](https://learn.microsoft.com/en-us/windows-hardware/drivers/develop/getting-started-with-windows-drivers) or [Kernel f/ Github](https://github.com/microsoft/Windows-driver-samples?tab=security-ov-file) or [Kernel f/ Code-Project](https://www.codeproject.com/Articles/9504/Driver-Development-Part-1-Introduction-to-Drivers)**\
-> **Additionaly, if dont know anything about cibersecurity or virus analysis we recommend to shut-up\
+> **First of all we recommend to know basics of [C++](https://en.cppreference.com/)\
 > and learn about thigns mentioned above first then understand how does this works and why this isnt a virus.**
 
 > [!IMPORTANT]
@@ -83,3 +82,9 @@ None rn.
 > Any redistribution must include proper attribution and a hyperlink to the [Original Github Repository](https://github.com/Nocture-Insight/Dexterion).
 
 *If you have any other questions, you can join our community at [Troubleshooting, Bugs & Suggestions](https://github.com/Nocture-Insight/Dexterion/main/README.md#troubleshooting-bugs--suggestions)*
+
+![Preview](assets/screenshots/preview1.png)
+![Preview](assets/screenshots/preview2.png)
+![Preview](assets/screenshots/preview3.png)
+![Preview](assets/screenshots/preview4.png)
+![Preview](assets/screenshots/preview5.png)
