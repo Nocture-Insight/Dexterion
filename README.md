@@ -21,6 +21,7 @@
 > [!WARNING]
 > well dexterion is a little buggy so wait for the revmap version!
 > `insert` to open gui `end` to exit
+> source is outted we're not providing support for  this source all things still works but will be buggy so wait for the next update.
 ## READ FIRST
 > [!NOTE]
 > **First of all we recommend to know basics of [C++](https://en.cppreference.com/)\
