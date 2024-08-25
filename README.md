@@ -18,7 +18,9 @@
     <img src="https://img.shields.io/github/issues/Nocture-Insight/Dexterion" alt="Open issues"/>
 </div>
 
-
+> [!WARNING]
+> well dexterion is a little buggy so wait for the revmap version!
+> `insert` to open gui `end` to exit
 ## READ FIRST
 > [!NOTE]
 > **First of all we recommend to know basics of [C++](https://en.cppreference.com/)\
