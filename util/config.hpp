@@ -98,6 +98,10 @@ struct aimConfig {
 	std::vector<std::string> hotKey = { "SHIFT","ALT","CTRL","Left mouse","Right mouse" };
 	std::map <std::string, int> hotKeyMap = { {"SHIFT",VK_SHIFT}, {"ALT",VK_MENU},{"CTRL",VK_CONTROL},{"Left mouse",VK_LBUTTON},{"Right mouse",VK_RBUTTON} };
 
+	bool rageModeEnabled = false;
+	bool rageAutoFire = false;
+	bool ragePerfectSilent = false; // For "Perfect Silent Aim"
+
 	inline nlohmann::json to_json();
 	inline bool from_json(nlohmann::json json);
 };

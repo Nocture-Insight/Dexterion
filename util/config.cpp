@@ -26,6 +26,11 @@ inline nlohmann::json aimConfig::to_json() {
 	json["hotSelectAim"] = hotSelectAim;
 	json["isHotTrigger"] = isHotTrigger;
 	json["hotSelectTrigger"] = hotSelectTrigger;
+
+	// Add new rage mode settings
+	json["rageModeEnabled"] = rageModeEnabled;
+	json["rageAutoFire"] = rageAutoFire;
+	json["ragePerfectSilent"] = ragePerfectSilent;
 	return json;
 }
 
@@ -55,6 +60,11 @@ inline bool aimConfig::from_json(nlohmann::json json) {
 		hotSelectAim = json["hotSelectAim"];
 		isHotTrigger = json["isHotTrigger"];
 		hotSelectTrigger = json["hotSelectTrigger"];
+
+		// Load new rage mode settings, checking for existence
+		if (json.contains("rageModeEnabled")) rageModeEnabled = json["rageModeEnabled"].get<bool>();
+		if (json.contains("rageAutoFire")) rageAutoFire = json["rageAutoFire"].get<bool>();
+		if (json.contains("ragePerfectSilent")) ragePerfectSilent = json["ragePerfectSilent"].get<bool>();
 	}
 	catch (nlohmann::json::type_error& ignored) {
 		Logger::warn("[Config.cpp] aimConfig section has missing properties, using defaults for missing options.");

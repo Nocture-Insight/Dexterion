@@ -247,6 +247,20 @@ void imGuiMenu::aimRender() {
 		ImGui::SliderFloat("Smoothing", &aimConf.smoothing, 1.f, 5.f);
 		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
 		ImGui::InputFloat("Aim Sensibility", &aimConf.sens, 0.01f, 8.f);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace)); // Added for spacing before new section
+
+		ImGui::Separator(); // Separator before Rage Mode settings
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+		ImGui::Checkbox("Rage Mode", &aimConf.rageModeEnabled);
+		ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace)); 
+		if (aimConf.rageModeEnabled) { // Only show sub-options if Rage Mode is on
+			ImGui::Indent(); // Indent sub-options for clarity
+			ImGui::Checkbox("Rage Auto Fire", &aimConf.rageAutoFire);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Checkbox("Perfect Silent Aim", &aimConf.ragePerfectSilent);
+			ImGui::Dummy(ImVec2(0.0f, textSeparatorSpace));
+			ImGui::Unindent();
+		}
 		ImGui::EndChild();
 
 		verticalSplitter(imGuiMenu::widthSeparatorInt, imGuiMenu::heightSeparatorInt);
