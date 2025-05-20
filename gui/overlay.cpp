@@ -29,7 +29,15 @@ HWND overlayESP::createWindow(int horizontalSize, int verticallSize) {
 	int winx = GetSystemMetrics(SM_CXSCREEN);
 	int winy = GetSystemMetrics(SM_CYSCREEN);
 
-	window = CreateWindowExW(WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED, windowClass.lpszClassName, windowClass.lpszClassName, WS_POPUP, 0, 0, winx, winy, 0, 0, windowClass.hInstance, 0);
+	DWORD dwExStyle = WS_EX_TOPMOST | WS_EX_LAYERED;
+	if (!menutoggle) { // Accessing the static member overlayESP::menutoggle
+		dwExStyle |= WS_EX_TRANSPARENT;
+	}
+	// Add WS_EX_TOOLWINDOW as it's present in both cases in renderLoop
+	// WS_EX_TOOLWINDOW prevents the window from appearing in the taskbar and Alt+Tab list.
+	dwExStyle |= WS_EX_TOOLWINDOW; 
+
+	window = CreateWindowExW(dwExStyle, windowClass.lpszClassName, windowClass.lpszClassName, WS_POPUP, 0, 0, winx, winy, 0, 0, windowClass.hInstance, 0);
 	SetLayeredWindowAttributes(window, RGB(0, 0, 0), BYTE(255), LWA_ALPHA);
 
 	this->window = window;
