@@ -8,6 +8,8 @@
 
 #include <iostream>
 
+#include <chrono>
+
 using namespace std;
 
 void aim::aimBot(LocalPlayer localPlayer, Vector3 baseViewAngles, uintptr_t enemyPlayer, uintptr_t boneArray, MemoryManagement::moduleData client) {
@@ -103,10 +105,17 @@ const int trigger_cooldown()
 	return static_cast<int>((static_cast<float>(rand() % 50) / 100.0F + 0.15F) * 1000);
 }
 
-void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
+static std::chrono::steady_clock::time_point mouseDownStartTime;
+static bool mouseDown = false;
+static int currentCooldownMs = 0;
+static bool waitingForNextTrigger = true;
+
+void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base)
+{
 	int crossHairEntity = MemMan.ReadMem<int>(localPlayer.getPlayerPawn() + clientDLL::C_CSPlayerPawnBase_["m_iIDEntIndex"]);
 	int localPlayerHealth = MemMan.ReadMem<int>(localPlayer.getPlayerPawn() + clientDLL::C_BaseEntity_["m_iHealth"]);
-	if (!crossHairEntity) return;
+	if (!crossHairEntity)
+		return;
 
 	C_CSPlayerPawn crossHairPawn(base);
 	CCSPlayerController crossHairEntityController(base);
@@ -117,39 +126,43 @@ void aim::triggerBot(LocalPlayer localPlayer, DWORD_PTR base) {
 	bool isValidEntity = (crossHairEntity != -1 && crossHairPawn.getPawnHealth() > 0 && crossHairPawn.getPawnHealth() <= 100 && crossHairEntityController.getPawnTeam() != localPlayer.getTeam());
 	bool isDeathMatchEntity = (crossHairEntity != -1 && crossHairPawn.getPawnHealth() > 0 && crossHairPawn.getPawnHealth() <= 100 && miscConf.deathmatchMode);
 
-	if (localPlayerHealth > 100 || localPlayerHealth <= 0) return;
+	if (localPlayerHealth > 100 || localPlayerHealth <= 0)
+		return;
 
-	if (aimConf.isHotTrigger) {
-		if (GetAsyncKeyState(aimConf.hotKeyMap[aimConf.hotKey[aimConf.hotSelectTrigger]])) {
-			if (isValidEntity || isDeathMatchEntity) {
-				if (!clicked)
-				{
-					clicked = true;
-					const int t = trigger_cooldown();
-					//printf("Cooldown: %d ms\n", t);  // Correct printf syntax for int
-					mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-					Sleep(t/2);
-					mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-					Sleep(t/2);
-					clicked = false;
-				}
-			};
+	auto now = std::chrono::steady_clock::now();
+
+	bool triggerActive = false;
+	if (aimConf.isHotTrigger)
+	{
+		triggerActive = (GetAsyncKeyState(aimConf.hotKeyMap[aimConf.hotKey[aimConf.hotSelectTrigger]]) & 0x8000) && (isValidEntity || isDeathMatchEntity);
+	}
+	else
+	{
+		triggerActive = (isValidEntity || isDeathMatchEntity);
+	}
+
+	if (mouseDown)
+	{
+		int elapsedMs = std::chrono::duration_cast<std::chrono::milliseconds>(now - mouseDownStartTime).count();
+
+		if (elapsedMs >= currentCooldownMs)
+		{
+			mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+			mouseDown = false;
+			waitingForNextTrigger = true; 
+			// std::cout << "[TriggerBot] Mouse UP after cooldown (" << elapsedMs << " ms)\n";
 		}
 	}
-	else {
-		if (isValidEntity || isDeathMatchEntity)
+	else
+	{
+		if (triggerActive && waitingForNextTrigger)
 		{
-			if (!clicked)
-			{
-				clicked = true;
-				const int t = trigger_cooldown();
-				//printf("Cooldown: %d ms\n", t);  // Correct printf syntax for int
-				mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-				Sleep(t / 2);
-				mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-				Sleep(t / 2);
-				clicked = false;
-			}
-		};
+			currentCooldownMs = trigger_cooldown();
+			mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+			mouseDown = true;
+			mouseDownStartTime = now;
+			waitingForNextTrigger = false;
+			// std::cout << "[TriggerBot] Mouse DOWN at 0 ms (cooldown " << currentCooldownMs << " ms)\n";
+		}
 	}
 }
